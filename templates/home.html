@@ -1,0 +1,866 @@
+    {% load static %}
+
+    <!DOCTYPE html>
+    <html class="scroll-smooth" lang="en">
+    <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Madhura Wellness | Luxury Nutrition & Coaching</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
+
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    primary: "#11d473",
+                    "primary-dark": "#0a2b1a",
+                    "accent-gold": "#d4af37",
+                    "background-light": "#f6f8f7",
+                },
+                fontFamily: {
+                    display: ["Manrope", "sans-serif"]
+                }
+            }
+        }
+    };
+    </script>
+
+    <style>
+    body { font-family: 'Manrope', sans-serif; }
+
+    .gold-text {
+        background: linear-gradient(to bottom right, #d4af37, #fcf6ba, #d4af37);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .hero-gradient {
+        background: linear-gradient(to bottom, rgba(16,34,25,0.4), rgba(16,34,25,0.8));
+    }
+
+    .fade-up {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 0.8s ease;
+    }
+    .fade-up.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .glow-hover:hover {
+        box-shadow: 0 20px 60px rgba(17,212,115,0.3);
+        transform: translateY(-6px);
+        transition: all 0.4s ease;
+    }
+    .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+    </style>
+    </head>
+
+    <body class="bg-background-light text-slate-800">
+
+<!-- NAVBAR -->
+<nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b">
+  <div class="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex items-center justify-between">
+
+    <!-- Logo -->
+<div class="flex items-center gap-3">
+  <img 
+    src="{% static 'images/madhura.png' %}" 
+    alt="Madhura Wellness Logo"
+    class="h-12 md:h-14 w-auto object-contain"
+  />
+  <span class="text-lg md:text-xl font-extrabold">
+    MADHURA<span class="text-primary">WELLNESS WORLD</span>
+  </span>
+</div>
+
+
+    <!-- Desktop Menu -->
+    <div class="hidden md:flex gap-10">
+      <a href="#programs" class="hover:text-primary">Programs</a>
+      <a href="#transformations" class="hover:text-primary">Transformations</a>
+      <a href="#experience" class="hover:text-primary">Experience</a>
+      <a href="#about" class="hover:text-primary">About</a>
+    </div>
+
+    <!-- Desktop CTA -->
+    <a href="#consultation"
+       class="hidden md:inline-block bg-primary text-white px-5 md:px-8 py-2.5 md:py-3 rounded-full text-xs md:text-sm font-semibold shadow-lg">
+      Book Consultation
+    </a>
+
+    <!-- Mobile Menu Button -->
+    <button id="menuToggle" class="md:hidden text-primary">
+      <span class="material-icons text-3xl">menu</span>
+    </button>
+
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu"
+       class="hidden md:hidden bg-white border-t shadow-lg">
+    <div class="flex flex-col px-6 py-4 space-y-4 text-sm font-semibold">
+      <a href="#programs" class="hover:text-primary">Programs</a>
+      <a href="#transformations" class="hover:text-primary">Transformations</a>
+      <a href="#experience" class="hover:text-primary">Experience</a>
+      <a href="#about" class="hover:text-primary">About</a>
+
+      <a href="#consultation"
+         class="bg-primary text-white text-center px-6 py-3 rounded-full shadow-lg">
+        Book Consultation
+      </a>
+    </div>
+  </div>
+</nav>
+
+    <!-- HERO -->
+    <section class="relative h-screen flex items-center justify-center pt-20 md:pt-24">
+
+    <div class="absolute inset-0">
+    <img class="w-full h-full object-cover"
+    src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=1600"
+    alt="Wellness"/>
+    <div class="absolute inset-0 hero-gradient"></div>
+    </div>
+
+    <div class="relative text-center px-4 max-w-4xl">
+    <span class="px-4 py-1 rounded-full bg-primary/20 text-primary text-xs uppercase">
+    Redefining Personalized Nutrition
+    </span>
+
+    <h1 class="text-4xl sm:text-5xl md:text-7xl font-light text-white mt-6">
+    Transform Your Body.<br>
+    <span class="italic gold-text">Elevate Your Life.</span>
+    </h1>
+
+    <p class="text-base sm:text-lg md:text-xl text-slate-300 mt-6 max-w-2xl mx-auto">
+    Tailored nutrition and elite coaching designed for lasting results.
+    </p>
+
+    <div class="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+    <a class="px-8 py-4 bg-primary text-white rounded-full font-bold shadow-xl">
+    Begin Your Journey
+    </a>
+    <a class="px-8 py-4 border border-white text-white rounded-full">
+    Explore Programs
+    </a>
+    </div>
+    </div>
+
+    </section>
+
+    <!-- ABOUT COACH -->
+    <section class="py-16 md:py-24 px-4 md:px-6 fade-up">
+    <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+{% comment %} 
+    <img class="rounded-xl shadow-2xl"
+    src="https://images.unsplash.com/photo-1605296867304-46d5465a13f1?q=80&w=1400"
+    alt="Coach"/> {% endcomment %}
+{% if coach and coach.photo %}
+<img class="rounded-xl shadow-2xl"
+src="{{ coach.photo.url }}"
+alt="{{ coach.name }}">
+{% endif %}
+
+    <div>
+    <h2 class="text-sm text-primary uppercase font-bold mb-4">
+    Meet Your Coach
+    </h2>
+
+    {% comment %} <h3 class="text-3xl md:text-5xl font-light mb-6">
+    Head Coach <span class="text-primary italic">[Coach Name]</span>
+    </h3> {% endcomment %}
+<h3 class="text-3xl md:text-5xl font-light mb-6">
+Head Coach <span class="text-primary italic">{{ coach.name }}</span>
+</h3>
+
+<p class="text-slate-600 mb-6">
+{{ coach.bio }}
+</p>
+<div class="grid grid-cols-3 gap-4 text-center mb-8">
+<div>
+<p class="text-2xl font-bold text-primary">{{ coach.clients }}+</p>
+<p class="text-sm">Clients</p>
+</div>
+<div>
+<p class="text-2xl font-bold text-primary">{{ coach.years }}+</p>
+<p class="text-sm">Years</p>
+</div>
+<div>
+<p class="text-2xl font-bold text-primary">{{ coach.consultations }}+</p>
+<p class="text-sm">Consultations</p>
+</div>
+</div>
+    {% comment %} <div class="grid grid-cols-3 gap-4 text-center mb-8">
+    <div>
+    <p class="text-2xl font-bold text-primary">500+</p>
+    <p class="text-sm">Clients</p>
+    </div>
+    <div>
+    <p class="text-2xl font-bold text-primary">5+</p>
+    <p class="text-sm">Years</p>
+    </div>
+    <div>
+    <p class="text-2xl font-bold text-primary">1000+</p>
+    <p class="text-sm">Consultations</p>
+    </div>
+    </div> {% endcomment %}
+
+    <a class="px-8 py-4 bg-primary text-white rounded-full font-semibold glow-hover">
+    Book Consultation
+    </a>
+    </div>
+
+    </div>
+    </section>
+
+
+    <!-- Signature Programs -->
+    <section class="py-24 px-6 bg-background-light dark:bg-background-dark">
+    <div class="max-w-7xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+    <div class="max-w-2xl">
+    <h2 class="text-sm font-bold text-primary uppercase tracking-[0.2em] mb-4">Elite Offerings</h2>
+    <h3 class="text-4xl md:text-5xl font-light dark:text-white leading-tight">Signature Nutrition &amp; <br/><span class="text-primary italic">Performance Protocols</span></h3>
+    </div>
+    <a class="text-accent-gold font-bold flex items-center gap-2 group" href="#">
+                        View All Programs <span class="material-icons group-hover:translate-x-1 transition-transform">arrow_forward</span>
+    </a>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+        {% comment %} <div class="grid grid-cols-1 md:grid-cols-3 gap-8"> {% endcomment %}
+
+{% for program in programs %}
+<div class="group relative bg-white rounded-xl overflow-hidden border border-slate-200 hover:border-primary/50 transition-all hover:shadow-2xl">
+
+    <!-- Program image -->
+    <div class="h-64 overflow-hidden">
+        <img
+            src="{{ program.image.url }}"
+            alt="{{ program.title }}"
+            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+        >
+    </div>
+
+    <!-- Program content -->
+    <div class="p-8">
+        <span class="text-xs font-bold text-accent-gold uppercase tracking-widest">
+            {{ program.category }}
+        </span>
+
+        <h4 class="text-2xl font-semibold mt-2 mb-4">
+            {{ program.title }}
+        </h4>
+
+        <!-- Description -->
+        <p class="text-slate-500 mb-4 program-desc line-clamp-3">
+            {{ program.description }}
+        </p>
+
+        <button class="text-primary font-semibold read-more-btn mb-6">
+            Read More
+        </button>
+
+        <!-- Features -->
+        <ul class="space-y-3 mb-8">
+            {% for line in program.features.splitlines %}
+            <li class="flex items-center gap-2 text-sm text-slate-600">
+                <span class="material-icons text-primary text-sm">check_circle</span>
+                {{ line }}
+            </li>
+            {% endfor %}
+        </ul>
+
+        <a class="inline-block w-full text-center py-4 rounded-full border border-primary text-primary font-bold hover:bg-primary hover:text-white transition-colors">
+            Learn More
+        </a>
+    </div>
+</div>
+{% endfor %}
+
+</div>
+
+    <!-- Program 1 -->
+    {% comment %} <div class="group relative bg-white dark:bg-primary-dark/40 rounded-xl overflow-hidden border border-slate-200 dark:border-primary/10 hover:border-primary/50 transition-all hover:shadow-2xl">
+    <div class="h-64 overflow-hidden">
+    <img alt="Nutrition Coaching" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Gourmet healthy bowl of fresh green vegetables" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdhakR0yKNRStZlHLtG2JXNIDFZBJ_hrYINUFmaHrjzzBX50zIbrYwztCTbIvp5lp3MQwSVlEWh1n1imMkfhBMpH2VgK_NDf1fqbqPxghYvf_Q48UqvJx94H2dSLATc45zsqMBcVhOzszmGse22ekc-6Ct00WdVWoLPE8ud0DiQNlbo2mBL8_TwZRnizYW9Ef3H1EDCOiy91RCE9tp9kFVXlZF_cC8j3AM3rvdXc3Gp4xverN1ffNca4ByjW2vOLSp6DnlEi8dv721"/>
+    </div>
+    <div class="p-8">
+    <span class="text-xs font-bold text-accent-gold uppercase tracking-widest">Weight Management</span>
+    <h4 class="text-2xl font-semibold mt-2 mb-4 dark:text-white">Metabolic Reset</h4>
+    <p class="text-slate-500 dark:text-slate-400 mb-6 leading-relaxed">
+                                A science-based 12-week protocol utilizing elite Herbalife supplementation to optimize your biology.
+                            </p>
+    <ul class="space-y-3 mb-8">
+    <li class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
+    <span class="material-icons text-primary text-sm">check_circle</span> 1-on-1 Metabolic Analysis
+                                </li>
+    <li class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
+    <span class="material-icons text-primary text-sm">check_circle</span> Custom Macronutrient Plan
+                                </li>
+    </ul>
+    <a class="inline-block w-full text-center py-4 rounded-full border border-primary text-primary font-bold hover:bg-primary hover:text-white transition-colors" href="#">Learn More</a>
+    </div>
+    </div> {% endcomment %}
+    <!-- Program 2 -->
+    {% comment %} <div class="group relative bg-white dark:bg-primary-dark/40 rounded-xl overflow-hidden border border-slate-200 dark:border-primary/10 hover:border-primary/50 transition-all hover:shadow-2xl">
+    <div class="h-64 overflow-hidden">
+    <img alt="Athletic Performance" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Person performing athletic strength training workout" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCW8qhCztjVTCzf_ocFK7lLS5KJ-03Ih-1OlEf0XXiE5tQ4yecjTG-z7F3UCY0oEYhoacjNV-4P04nbWJNKg8G3f4Ijph5WAz_8GTz_OxkpRbrU2TfWRQZrYbD18Ii9EIThgIOszVvZOXYIqcaaPewtJvD8ThuBby11wdxlBHZeXkw0Ij6pbck7q5Szi1wtKDyWZy5yycEOsbxgaZStq4864So5mI5CHtQtiCQtVvIvhF07TB2m1lzP3mt6ROFhXvc9o6qGGDaIzXm0"/>
+    </div>
+    <div class="p-8">
+    <span class="text-xs font-bold text-accent-gold uppercase tracking-widest">Athletic Excellence</span>
+    <h4 class="text-2xl font-semibold mt-2 mb-4 dark:text-white">Elite Performance</h4>
+    <p class="text-slate-500 dark:text-slate-400 mb-6 leading-relaxed">
+                                Designed for high-performers seeking to push past plateaus and achieve peak physical condition.
+                            </p>
+    <ul class="space-y-3 mb-8">
+    <li class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
+    <span class="material-icons text-primary text-sm">check_circle</span> H24 Performance Stacking
+                                </li>
+    <li class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
+    <span class="material-icons text-primary text-sm">check_circle</span> Recovery Optimization
+                                </li>
+    </ul>
+    <a class="inline-block w-full text-center py-4 rounded-full border border-primary text-primary font-bold hover:bg-primary hover:text-white transition-colors" href="#">Learn More</a>
+    </div>
+    </div> {% endcomment %}
+    <!-- Program 3 -->
+    {% comment %} <div class="group relative bg-white dark:bg-primary-dark/40 rounded-xl overflow-hidden border border-slate-200 dark:border-primary/10 hover:border-primary/50 transition-all hover:shadow-2xl">
+    <div class="h-64 overflow-hidden">
+    <img alt="Holistic Health" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Calm spa treatment area with bamboo and water" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhkUR43GMRhdPiIs-ARS8dlFqHeUm4G5odShdO5VHbIAs7KvJqYnoPhWt1ELQ9CuE4GmFfw1vqznj9-JafIt2Rn3FHeqofJtHmKTwagyEJwjfnn_Ahn9ffzW7HXKQNgMzTKMfI8G7AdWyEPitITAuZndN5JjOQeFSDB-g66yjfdqI6UgDDdhavmMWB5dQkr0Q9exq_GtVSatCWnDCltAQ4YX0qYDlAB-r3Myy2hML5Uw9PbQ_QR6zndE7biIdYiSqhFpYWBJpdT6ZP"/>
+    </div>
+    <div class="p-8">
+    <span class="text-xs font-bold text-accent-gold uppercase tracking-widest">Holistic Health</span>
+    <h4 class="text-2xl font-semibold mt-2 mb-4 dark:text-white">Total Wellness</h4>
+    <p class="text-slate-500 dark:text-slate-400 mb-6 leading-relaxed">
+                                A comprehensive lifestyle audit and renewal program focusing on cellular nutrition and vitality.
+                            </p>
+    <ul class="space-y-3 mb-8">
+    <li class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
+    <span class="material-icons text-primary text-sm">check_circle</span> Digestive Health Protocol
+                                </li>
+    <li class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
+    <span class="material-icons text-primary text-sm">check_circle</span> Stress &amp; Sleep Support
+                                </li>
+    </ul>
+    <a class="inline-block w-full text-center py-4 rounded-full border border-primary text-primary font-bold hover:bg-primary hover:text-white transition-colors" href="#">Learn More</a>
+    </div> {% endcomment %}
+    </div>
+    </div>
+    </div>
+    </section>
+    <!-- Testimonial Reels -->
+<section class="py-24 px-6 bg-primary-dark text-white fade-up">
+<div class="max-w-7xl mx-auto">
+
+<div class="text-center max-w-3xl mx-auto mb-16">
+<h2 class="text-sm font-bold text-primary uppercase tracking-[0.2em] mb-4">
+Real Transformations
+</h2>
+<h3 class="text-4xl md:text-5xl font-light">
+Client Success <span class="italic text-primary">Stories</span>
+</h3>
+</div>
+
+<!-- Swiper -->
+<div class="swiper testimonialSwiper">
+  <div class="swiper-wrapper">
+
+    {% for t in testimonials %}
+    <div class="swiper-slide">
+      <div class="bg-black rounded-xl overflow-hidden shadow-lg glow-hover">
+
+        <!-- Video -->
+        <div class="aspect-[9/16]">
+          <video class="w-full h-full object-cover" controls preload="metadata">
+            <source src="{{ t.video.url }}" type="video/mp4">
+          </video>
+        </div>
+
+        <!-- Info -->
+        <div class="p-4 text-center bg-primary-dark">
+          <p class="text-sm text-slate-300 mb-2">
+            {{ t.name }}
+          </p>
+
+          {% if t.journey_url %}
+          <a href="{{ t.journey_url }}"
+             target="_blank"
+             class="inline-block text-xs uppercase tracking-wider text-primary border border-primary px-4 py-2 rounded-full hover:bg-primary hover:text-white transition">
+            View Journey
+          </a>
+          {% endif %}
+        </div>
+
+      </div>
+    </div>
+    {% endfor %}
+
+  </div>
+
+  <!-- Navigation -->
+  <div class="swiper-button-next"></div>
+  <div class="swiper-button-prev"></div>
+
+  <!-- Pagination -->
+  <div class="swiper-pagination"></div>
+</div>
+
+</div>
+</section>
+
+    {% comment %} <section class="py-24 px-6 bg-primary-dark text-white fade-up">
+    <div class="max-w-7xl mx-auto">
+
+    <div class="text-center max-w-3xl mx-auto mb-16">
+    <h2 class="text-sm font-bold text-primary uppercase tracking-[0.2em] mb-4">
+    Real Transformations
+    </h2>
+    <h3 class="text-4xl md:text-5xl font-light">
+    Client Success <span class="italic text-primary">Stories</span>
+    </h3>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+    <div class="aspect-[9/16] bg-black rounded-xl overflow-hidden shadow-lg glow-hover">
+    <iframe class="w-full h-full"
+    src="https://www.youtube.com/embed/VIDEO_ID"
+    frameborder="0"
+    allowfullscreen></iframe>
+    </div>
+
+    <div class="aspect-[9/16] bg-black rounded-xl overflow-hidden shadow-lg glow-hover">
+    <iframe class="w-full h-full"
+    src="https://www.youtube.com/embed/VIDEO_ID"
+    frameborder="0"
+    allowfullscreen></iframe>
+    </div>
+
+    <div class="aspect-[9/16] bg-black rounded-xl overflow-hidden shadow-lg glow-hover">
+    <iframe class="w-full h-full"
+    src="https://www.youtube.com/embed/VIDEO_ID"
+    frameborder="0"
+    allowfullscreen></iframe>
+    </div>
+
+    </div>
+    </div>
+    </section> {% endcomment %}
+
+    <!-- Why Choose Us -->
+    <section class="py-24 bg-primary-dark text-white relative overflow-hidden">
+    <div class="absolute right-0 top-0 opacity-10">
+    <span class="material-icons text-[400px]">nature</span>
+    </div>
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div class="text-center max-w-3xl mx-auto mb-20">
+    <h2 class="text-4xl md:text-5xl font-light mb-6">The Madhura <span class="italic text-primary">Difference</span></h2>
+    <p class="text-slate-400 text-lg font-light">
+                        We combine premium Herbalife Nutrition with bespoke concierge coaching to deliver results that aren't just seen—they're felt.
+                    </p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-16">
+    <div class="text-center">
+    <div class="w-20 h-20 bg-primary/10 border border-primary/30 rounded-full flex items-center justify-center mx-auto mb-8">
+    <span class="material-icons text-4xl text-accent-gold">verified_user</span>
+    </div>
+    <h4 class="text-2xl font-semibold mb-4">Certified Expertise</h4>
+    <p class="text-slate-400 leading-relaxed font-light">
+                            Our coaches are certified nutrition specialists with deep clinical knowledge of cellular health and metabolism.
+                        </p>
+    </div>
+    <div class="text-center">
+    <div class="w-20 h-20 bg-primary/10 border border-primary/30 rounded-full flex items-center justify-center mx-auto mb-8">
+    <span class="material-icons text-4xl text-accent-gold">biotech</span>
+    </div>
+    <h4 class="text-2xl font-semibold mb-4">Science-Driven</h4>
+    <p class="text-slate-400 leading-relaxed font-light">
+                            We don't guess. We use advanced body composition analysis and data tracking to adjust your protocol in real-time.
+                        </p>
+    </div>
+    <div class="text-center">
+    <div class="w-20 h-20 bg-primary/10 border border-primary/30 rounded-full flex items-center justify-center mx-auto mb-8">
+    <span class="material-icons text-4xl text-accent-gold">diamond</span>
+    </div>
+    <h4 class="text-2xl font-semibold mb-4">Luxury Experience</h4>
+    <p class="text-slate-400 leading-relaxed font-light">
+                            Enjoy a sanctuary designed for focus and rejuvenation, featuring private consultation suites and a gourmet hydration bar.
+                        </p>
+    </div>
+    </div>
+    </div>
+    </section>
+    <!-- Transformation Section -->
+    <section class="py-24 px-6 bg-background-light dark:bg-background-dark">
+<div class="max-w-7xl mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+<div>
+<h2 class="text-sm font-bold text-primary uppercase tracking-[0.2em] mb-4">
+Real Results
+</h2>
+
+<h3 class="text-4xl md:text-5xl font-light dark:text-white leading-tight mb-8">
+Stories of Total <span class="italic gold-text">Metamorphosis</span>
+</h3>
+
+<p class="text-slate-500 dark:text-slate-400 text-lg mb-10 leading-relaxed">
+Join hundreds of clients who have reclaimed their energy, confidence, and health through our elite mentorship and nutrition systems.
+</p>
+
+<div class="space-y-8">
+<div class="p-8 bg-white dark:bg-primary-dark/40 rounded-xl shadow-sm border border-slate-100 dark:border-primary/5">
+
+{% for t in featured %}
+<div class="featured-slide {% if not forloop.first %}hidden{% endif %}">
+    
+    <p class="text-lg italic text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">
+        "{{ t.quote }}"
+    </p>
+
+    <div class="flex items-center gap-4">
+        {% if t.photo %}
+        <div class="w-12 h-12 rounded-full overflow-hidden bg-slate-200">
+            <img src="{{ t.photo.url }}" class="w-full h-full object-cover">
+        </div>
+        {% endif %}
+        <div>
+            <p class="font-bold dark:text-white">{{ t.name }}</p>
+        </div>
+    </div>
+
+</div>
+{% endfor %}
+
+</div>
+</div>
+</div>
+
+<div class="relative">
+<div class="aspect-[4/5] rounded-xl overflow-hidden shadow-2xl">
+<img alt="Luxury Experience"
+     class="w-full h-full object-cover"
+     src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvEKQSu4EFvrZYNzsMRfwUtMKDV2DJIaNeSeh0q4FMwZdrUnhj4YpNa3FmMq18CuDO45s3A4zsR6Vf6RUSPi6NsJAFuFwkLisrrchfHMYn6goWgGOnt1xHrgf0iLszbK4ANLOL1k9GRU2UMduF1VAjlwuY9qmwj680Fi8DmN1vqu882jjOMIXqUcOe41jra8eU_SWjVOSBmqqCy9en8Gm7WpNHagdynsXAEMImtuJCI0ykYKpNfDWfTfYj3E8ssyunhoFiyOZ3X84Z"/>
+</div>
+
+<div class="absolute -bottom-10 -left-10 bg-primary p-10 rounded-xl shadow-2xl hidden md:block">
+<div class="text-white">
+<p class="text-5xl font-black">2.4k+</p>
+<p class="text-sm font-medium uppercase tracking-widest mt-2">
+Lives Transformed
+</p>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</section>
+
+    <!-- Map & Contact CTA -->
+  <section class="py-24 px-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="bg-primary-dark rounded-xl overflow-hidden shadow-2xl flex flex-col md:flex-row">
+
+      <!-- FORM SIDE -->
+      <div class="p-12 md:w-1/2 flex flex-col justify-center">
+        <h2 class="text-4xl font-light text-white mb-6">
+          Begin Your <br>
+          <span class="text-primary italic">Private Consultation</span>
+        </h2>
+
+        <p class="text-slate-400 mb-10 text-lg font-light leading-relaxed">
+          Secure your exclusive placement in our next intake. 
+          Let's design the blueprint for your ultimate transformation.
+        </p>
+
+        <form method="POST" class="space-y-5">
+          {% csrf_token %}
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <input
+              name="name"
+              type="text"
+              placeholder="Full Name"
+              required
+              class="bg-white/5 border border-white/10 rounded-full px-6 py-4 text-white focus:outline-none focus:ring-2 focus:ring-primary placeholder:text-slate-500"
+            >
+
+            <input
+              name="email"
+              type="email"
+              placeholder="Email Address"
+              required
+              class="bg-white/5 border border-white/10 rounded-full px-6 py-4 text-white focus:outline-none focus:ring-2 focus:ring-primary placeholder:text-slate-500"
+            >
+          </div>
+
+          <input
+            name="phone"
+            type="text"
+            placeholder="WhatsApp Number"
+            class="w-full bg-white/5 border border-white/10 rounded-full px-6 py-4 text-white focus:outline-none focus:ring-2 focus:ring-primary placeholder:text-slate-500"
+          >
+
+          <input
+            name="goal"
+            type="text"
+            placeholder="Your Primary Goal (Weight loss, Muscle gain, Energy, etc.)"
+            class="w-full bg-white/5 border border-white/10 rounded-full px-6 py-4 text-white focus:outline-none focus:ring-2 focus:ring-primary placeholder:text-slate-500"
+          >
+
+          <button
+            type="submit"
+            class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-5 rounded-full text-lg transition-all shadow-xl shadow-primary/20"
+          >
+            Request My Blueprint
+          </button>
+        </form>
+      </div>
+
+      <!-- IMAGE SIDE -->
+      <div class="md:w-1/2 h-[400px] md:h-auto">
+        <img
+          alt="Location"
+          class="w-full h-full object-cover opacity-80"
+          src="https://images.unsplash.com/photo-1526406915894-7bcd65f60845?q=80&w=1600"
+        />
+      </div>
+
+    </div>
+  </div>
+</section>
+  <!-- Footer -->
+    <footer class="bg-background-light border-t border-slate-200 py-16 px-6">
+  <div class="max-w-7xl mx-auto">
+
+    <!-- Top Footer -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+
+      <!-- Brand -->
+      <div>
+     <div class="flex items-center gap-3 mb-6">
+ <img 
+  src="{% static 'images/madhura.png' %}" 
+  alt="Madhura Wellness Logo"
+  class="h-14 w-auto object-contain"
+/>
+
+  <span class="text-lg font-extrabold uppercase">
+    Madhura <span class="text-primary">Wellness World</span>
+  </span>
+</div>
+
+        <p class="text-slate-500 text-sm leading-relaxed mb-6">
+          Personalized nutrition, transformation programs, and premium wellness coaching designed for lasting results.
+        </p>
+
+        <!-- Social Icons -->
+        <div class="flex gap-4">
+          <a class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center hover:bg-primary hover:text-white transition-all" href="#">
+            <span class="material-icons">instagram</span>
+          </a>
+          <a class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center hover:bg-primary hover:text-white transition-all" href="#">
+            <span class="material-icons">smart_display</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Programs -->
+      <div>
+        <h5 class="text-slate-800 font-bold mb-6">Programs</h5>
+        <ul class="space-y-4 text-sm text-slate-500">
+          <li><a class="hover:text-primary transition-colors" href="#">Weight Loss</a></li>
+          <li><a class="hover:text-primary transition-colors" href="#">Muscle Gain</a></li>
+          <li><a class="hover:text-primary transition-colors" href="#">Total Wellness</a></li>
+          <li><a class="hover:text-primary transition-colors" href="#">Metabolic Reset</a></li>
+        </ul>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h5 class="text-slate-800 font-bold mb-6">Quick Links</h5>
+        <ul class="space-y-4 text-sm text-slate-500">
+          <li><a class="hover:text-primary transition-colors" href="#">Home</a></li>
+          <li><a class="hover:text-primary transition-colors" href="#">Transformations</a></li>
+          <li><a class="hover:text-primary transition-colors" href="#">Coaches</a></li>
+          <li><a class="hover:text-primary transition-colors" href="#consultation">Book Consultation</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <h5 class="text-slate-800 font-bold mb-6">Contact</h5>
+        <ul class="space-y-4 text-sm text-slate-500">
+
+          <li class="flex items-start gap-2">
+            <span class="material-icons text-primary text-base">place</span>
+            <span>
+              5th Floor, Hare Plaza,<br>
+              KT Rd, opp. Varadaraja Swamy Temple,<br>
+              Tirupati, Andhra Pradesh 517501
+            </span>
+          </li>
+
+          <li class="flex items-center gap-2">
+            <span class="material-icons text-primary text-base">phone</span>
+            <a href="tel:+919246437143" class="hover:text-primary">
+              +91 92464 37143
+            </a>
+          </li>
+
+          <li class="flex items-center gap-2">
+            <span class="material-icons text-primary text-base">chat</span>
+            <a href="https://wa.me/919246437143" target="_blank" class="hover:text-primary">
+              Chat on WhatsApp
+            </a>
+          </li>
+
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="pt-8 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="text-xs text-slate-500 uppercase tracking-widest">
+        © 2026 Madhura Wellness Center. Independent Herbalife Distributor.
+      </p>
+      <div class="flex gap-8 text-xs text-slate-500 uppercase tracking-widest">
+        <a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+        <a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("show");
+                }
+            });
+        });
+        document.querySelectorAll(".fade-up").forEach(el => observer.observe(el));
+    });
+    </script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    // Fade-up animation
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("show");
+            }
+        });
+    });
+    document.querySelectorAll(".fade-up").forEach(el => observer.observe(el));
+
+    // Read more for programs
+    document.querySelectorAll(".read-more-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+            const desc = btn.previousElementSibling;
+            desc.classList.toggle("line-clamp-3");
+
+            btn.textContent =
+                desc.classList.contains("line-clamp-3")
+                ? "Read More"
+                : "Show Less";
+        });
+    });
+
+});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+const swiper = new Swiper(".testimonialSwiper", {
+  slidesPerView: 1,
+  spaceBetween: 20,
+  loop: true,
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+  breakpoints: {
+    640: {
+      slidesPerView: 2,
+    },
+    1024: {
+      slidesPerView: 3,
+    },
+  },
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const slides = document.querySelectorAll(".featured-slide");
+    let index = 0;
+
+    if (slides.length > 1) {
+        setInterval(() => {
+            slides[index].classList.add("hidden");
+            index = (index + 1) % slides.length;
+            slides[index].classList.remove("hidden");
+        }, 4000); // changes every 4 seconds
+    }
+});
+</script>
+<script>
+  const toggleBtn = document.getElementById("menuToggle");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  toggleBtn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+  });
+</script>
+<div class="fixed bottom-6 right-6 z-50 flex flex-col gap-4">
+
+  <!-- Call Button -->
+  <a href="tel:+919246437143"
+     class="w-14 h-14 bg-white text-primary rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition">
+    <span class="material-icons">call</span>
+  </a>
+
+  <!-- WhatsApp Button -->
+  <a href="https://wa.me/919246437143?text=Hi%20I%20want%20to%20book%20a%20consultation"
+     target="_blank"
+     class="w-14 h-14 bg-[#25D366] rounded-full shadow-xl flex items-center justify-center hover:scale-110 transition">
+     
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"
+         alt="WhatsApp"
+         class="w-7 h-7">
+         
+  </a>
+
+</div>
+
+
+    </body>
+    </html>
