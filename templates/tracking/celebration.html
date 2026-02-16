@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Congratulations</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ffe259, #ffa751);
+            color: #333;
+            padding-top: 60px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            display: inline-block;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        h1 {
+            margin-top: 15px;
+        }
+
+        .result {
+            font-size: 28px;
+            font-weight: bold;
+            color: green;
+        }
+
+        .back {
+            margin-top: 20px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    {% if person.photo %}
+        <img src="{{ person.photo.url }}" alt="profile">
+    {% else %}
+        <img src="https://via.placeholder.com/150" alt="profile">
+    {% endif %}
+
+    <h1>{{ person.name }}</h1>
+
+    {% if total_change > 0 %}
+        <div class="result">
+            Lost {{ total_change|floatformat:1 }} kg 🎉
+        </div>
+    {% elif total_change < 0 %}
+        <div class="result" style="color: red;">
+            Gained {{ total_change|floatformat:1|slice:"1:" }} kg
+        </div>
+    {% else %}
+        <div class="result">
+            No change
+        </div>
+    {% endif %}
+
+    <div class="back">
+        <a href="javascript:history.back()">← Back</a>
+    </div>
+</div>
+<div class="result">
+    {{ goal_text }}: {{ total_change }} kg 🎉
+</div>
+
+<script>
+    // Confetti burst
+    confetti({
+        particleCount: 150,
+        spread: 90,
+        origin: { y: 0.6 }
+    });
+</script>
+
+</body>
+</html>

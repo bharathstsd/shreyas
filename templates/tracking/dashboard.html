@@ -1,0 +1,418 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ coach.name }} Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #f3f5f7;
+            color: #222;
+        }
+
+        .app {
+            max-width: 500px;
+            margin: auto;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: white;
+            padding: 15px;
+            font-weight: 600;
+            font-size: 18px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .content {
+            flex: 1;
+            padding: 15px;
+            padding-bottom: 80px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+        }
+
+        .section-title {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .list-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .list-item:last-child {
+            border-bottom: none;
+        }
+
+        .performer {
+            background: #f9fafb;
+            padding: 12px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+
+        .actions a {
+            margin-right: 8px;
+            font-size: 13px;
+            padding: 6px 10px;
+            background: #eef3ff;
+            color: #1976d2;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .search-box input {
+            width: 70%;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+        }
+
+        .search-box button {
+            padding: 10px 14px;
+            border-radius: 10px;
+            border: none;
+            background: #2e7d32;
+            color: white;
+        }
+
+        .fab {
+            position: fixed;
+            bottom: 70px;
+            right: 20px;
+            background: #2e7d32;
+            color: white;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 28px;
+            text-decoration: none;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            max-width: 500px;
+            margin: auto;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
+        }
+
+        .nav-item {
+            text-align: center;
+            font-size: 12px;
+            color: #555;
+            text-decoration: none;
+        }
+
+        .nav-item.active {
+            color: #2e7d32;
+            font-weight: 600;
+        }
+
+        /* Desktop grid */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+
+        @media (min-width: 900px) {
+            .app {
+                max-width: 1100px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .bottom-nav {
+                max-width: 1100px;
+            }
+        }
+        #searchResults {
+    margin-top: 10px;
+}
+
+.result-item {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.result-name {
+    font-weight: 600;
+}
+
+.result-meta {
+    font-size: 12px;
+    color: #777;
+}
+
+.result-actions a {
+    margin-right: 8px;
+    font-size: 12px;
+    color: #1976d2;
+    text-decoration: none;
+}
+
+    </style>
+</head>
+<body>
+
+<div class="app">
+
+    <div class="header">
+        {{ coach.name }} Dashboard
+    </div>
+
+    <div class="content">
+        <div class="grid">
+
+            <!-- LEFT COLUMN -->
+            <div>
+
+                <!-- CELEBRATIONS -->
+                <div class="card">
+                    <div class="section-title">🎉 Celebrations</div>
+
+                    {% if today_birthdays %}
+                        <strong>🎂 Birthdays Today</strong>
+                        {% for p in today_birthdays %}
+                            <div class="list-item">
+                                <a href="{% url 'client_profile' p.slug %}">
+                                    {{ p.name }}
+                                </a>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+                    {% if tomorrow_birthdays %}
+                        <strong>🎂 Birthdays Tomorrow</strong>
+                        {% for p in tomorrow_birthdays %}
+                            <div class="list-item">
+                                <a href="{% url 'client_profile' p.slug %}">
+                                    {{ p.name }}
+                                </a>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+                    {% if today_anniversaries %}
+                        <strong>💐 Anniversaries Today</strong>
+                        {% for p in today_anniversaries %}
+                            <div class="list-item">
+                                <a href="{% url 'client_profile' p.slug %}">
+                                    {{ p.name }}
+                                </a>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+                    {% if tomorrow_anniversaries %}
+                        <strong>💐 Anniversaries Tomorrow</strong>
+                        {% for p in tomorrow_anniversaries %}
+                            <div class="list-item">
+                                <a href="{% url 'client_profile' p.slug %}">
+                                    {{ p.name }}
+                                </a>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                <!-- TOP PERFORMERS -->
+                <div class="card">
+                    <div class="section-title">Top Performers</div>
+
+                    {% if top_loss %}
+                    <div class="performer">
+                        <strong>🏆 {{ top_loss.0.name }}</strong>
+                        Total Loss: {{ top_loss.1|floatformat:1 }} kg
+                        <div class="actions">
+                            <a href="{% url 'celebration' top_loss.0.slug %}">Celebrate</a>
+                            <a href="{% url 'client_profile' top_loss.0.slug %}">Profile</a>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    {% if top_weekly_loss %}
+                    <div class="performer">
+                        <strong>🔥 {{ top_weekly_loss.0.name }}</strong>
+                        Weekly Loss: {{ top_weekly_loss.1|floatformat:1 }} kg
+                        <div class="actions">
+                            <a href="{% url 'celebration' top_weekly_loss.0.slug %}">Celebrate</a>
+                            <a href="{% url 'client_profile' top_weekly_loss.0.slug %}">Profile</a>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    {% if top_gain %}
+                    <div class="performer">
+                        <strong>🚀 {{ top_gain.0.name }}</strong>
+                        Total Gain: {{ top_gain.1|floatformat:1 }} kg
+                        <div class="actions">
+                            <a href="{% url 'celebration' top_gain.0.slug %}">Celebrate</a>
+                            <a href="{% url 'client_profile' top_gain.0.slug %}">Profile</a>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    {% if top_weekly_gain %}
+                    <div class="performer">
+                        <strong>💪 {{ top_weekly_gain.0.name }}</strong>
+                        Weekly Gain: {{ top_weekly_gain.1|floatformat:1 }} kg
+                        <div class="actions">
+                            <a href="{% url 'celebration' top_weekly_gain.0.slug %}">Celebrate</a>
+                            <a href="{% url 'client_profile' top_weekly_gain.0.slug %}">Profile</a>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+
+            </div>
+
+            <!-- RIGHT COLUMN -->
+            <div>
+
+                <!-- TODAY CHECKINS -->
+                <div class="card">
+                    <div class="section-title">Today’s Check-ins</div>
+                    {% for c in todays_checkins %}
+                        <div class="list-item">
+                            <a href="{% url 'client_profile' c.person.slug %}">
+                                {{ c.person.name }}
+                            </a>
+                            – {{ c.weight }} kg
+                        </div>
+                    {% empty %}
+                        <div class="list-item">No check-ins today</div>
+                    {% endfor %}
+                </div>
+
+                <!-- SEARCH -->
+                <!-- SEARCH -->
+<div class="card search-box">
+    <div class="section-title">Search Client or Coach</div>
+
+    <input 
+        type="text" 
+        id="searchInput"
+        placeholder="Type name or mobile..."
+        autocomplete="off"
+    >
+
+    <div id="searchResults"></div>
+</div>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Floating Add Button -->
+<a class="fab" href="{% url 'add_client' coach.slug %}">+</a>
+
+<!-- Bottom Navigation -->
+<div class="bottom-nav">
+    <a class="nav-item active" href="{% url 'coach_dashboard' coach.slug %}">
+        🏠<br>Home
+    </a>
+    <a class="nav-item" href="{% url 'tv_leaderboard' coach.slug %}">
+        🏆<br>Board
+    </a>
+</div>
+<script>
+const input = document.getElementById("searchInput");
+const resultsBox = document.getElementById("searchResults");
+
+let timer = null;
+
+input.addEventListener("keyup", function() {
+    clearTimeout(timer);
+
+    const query = input.value.trim();
+    if (query.length < 2) {
+        resultsBox.innerHTML = "";
+        return;
+    }
+
+    timer = setTimeout(() => {
+        fetch(`/tracking/search-people/?q=${query}`)
+            .then(res => res.json())
+            .then(data => {
+                resultsBox.innerHTML = "";
+
+                if (data.length === 0) {
+                    resultsBox.innerHTML = "<div class='result-item'>No results</div>";
+                    return;
+                }
+
+                data.forEach(person => {
+                    const div = document.createElement("div");
+                    div.className = "result-item";
+
+                    let actions = `
+                        <div class="result-actions">
+                            <a href="/tracking/person/${person.slug}/">Profile</a>
+                    `;
+
+                    if (person.role === "coach") {
+                        actions += `
+                            <a href="/tracking/coach/${person.slug}/">Dashboard</a>
+                        `;
+                    }
+
+                    actions += "</div>";
+
+                    div.innerHTML = `
+                        <div class="result-name">
+                            ${person.name}
+                        </div>
+                        <div class="result-meta">
+                            ${person.role} • ${person.mobile}
+                        </div>
+                        ${actions}
+                    `;
+
+                    resultsBox.appendChild(div);
+                });
+            })
+            .catch(err => {
+                console.error("Search error:", err);
+            });
+    }, 300);
+});
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,550 @@
+    {% load static %}
+
+    <!DOCTYPE html>
+    <html class="scroll-smooth" lang="en">
+    <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Madhura Wellness | Luxury Nutrition & Coaching</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
+
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    primary: "#11d473",
+                    "primary-dark": "#0a2b1a",
+                    "accent-gold": "#d4af37",
+                    "background-light": "#f6f8f7",
+                },
+                fontFamily: {
+                    display: ["Manrope", "sans-serif"]
+                }
+            }
+        }
+    };
+    </script>
+
+    <style>
+    body { font-family: 'Manrope', sans-serif; }
+
+    .gold-text {
+        background: linear-gradient(to bottom right, #d4af37, #fcf6ba, #d4af37);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .hero-gradient {
+        background: linear-gradient(to bottom, rgba(16,34,25,0.4), rgba(16,34,25,0.8));
+    }
+
+    .fade-up {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 0.8s ease;
+    }
+    .fade-up.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .glow-hover:hover {
+        box-shadow: 0 20px 60px rgba(17,212,115,0.3);
+        transform: translateY(-6px);
+        transition: all 0.4s ease;
+    }
+    .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+    </style>
+    </head>
+
+    <body class="bg-background-light text-slate-800">
+
+<!-- NAVBAR -->
+<nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b">
+  <div class="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex items-center justify-between">
+
+    <!-- Logo -->
+<div class="flex items-center gap-3">
+  <img 
+    src="{% static 'images/madhura.png' %}" 
+    alt="Madhura Wellness Logo"
+    class="h-12 md:h-14 w-auto object-contain"
+  />
+  <span class="text-lg md:text-xl font-extrabold">
+    MADHURA<span class="text-primary">WELLNESS WORLD</span>
+  </span>
+</div>
+
+
+    <!-- Desktop Menu -->
+    <div class="hidden md:flex gap-10">
+      <a href="#programs" class="hover:text-primary">Programs</a>
+      <a href="#transformations" class="hover:text-primary">Transformations</a>
+      <a href="#experience" class="hover:text-primary">Experience</a>
+      <a href="/about/" class="hover:text-primary">About</a>
+    </div>
+
+    <!-- Desktop CTA -->
+    <a href="/book/"
+       class="hidden md:inline-block bg-primary text-white px-5 md:px-8 py-2.5 md:py-3 rounded-full text-xs md:text-sm font-semibold shadow-lg">
+      Book Consultation
+    </a>
+
+    <!-- Mobile Menu Button -->
+    <button id="menuToggle" class="md:hidden text-primary">
+      <span class="material-icons text-3xl">menu</span>
+    </button>
+
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu"
+       class="hidden md:hidden bg-white border-t shadow-lg">
+    <div class="flex flex-col px-6 py-4 space-y-4 text-sm font-semibold">
+      <a href="#programs" class="hover:text-primary">Programs</a>
+      <a href="#transformations" class="hover:text-primary">Transformations</a>
+      <a href="#experience" class="hover:text-primary">Experience</a>
+      <a href="/about/" class="hover:text-primary">About</a>
+
+      <a href="/book/"
+         class="bg-primary text-white text-center px-6 py-3 rounded-full shadow-lg">
+        Book Consultation
+      </a>
+    </div>
+  </div>
+</nav>
+<!-- Hero Section -->
+<section class="relative h-[90vh] flex items-center overflow-hidden pt-24">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover" data-alt="Serene luxury wellness center interior with soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_h7OzKtw8gEfbVMVai9c6Ewi-6VWBPXFnktc5t7W8fKF5YgJJAHI490PncQPNUvuMf7XO-Fp-zxDAO1ihjqVID80mXg2-WHuRarLP2H8u3k2fYeyfOyYhBWHVwqYBtRZ_21quhDXpGLWG4SbGxUJAdc8Zpw97DHuWcRqOo0-00lG7K5rcztadVfodOdWvwiHA_CIlINnMgTjzxYcKgj0InoRw4rb7pOy6HHHmVl1xHySH0qZUK0PLI2Ks7tmtoAcswAatAWaSJ_rx"/>
+<div class="absolute inset-0 bg-gradient-to-r from-background-light via-background-light/60 to-transparent dark:from-background-dark dark:via-background-dark/60"></div>
+</div>
+<div class="container mx-auto px-6 relative z-10">
+<div class="max-w-2xl">
+<span class="inline-block py-1 px-4 rounded-full bg-primary/10 text-primary font-bold text-xs uppercase tracking-[0.2em] mb-6">Established 2012</span>
+<h1 class="text-4xl sm:text-5xl md:text-7xl font-light" mb-8 leading-tight dark:text-white">Where Nature <br/> <span class="font-extrabold text-primary">Meets Science.</span></h1>
+<p class="text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-10 leading-relaxed max-w-lg">
+                    A sanctuary dedicated to the art of personalized wellness, powered by Herbalife Nutrition's scientific excellence and our passion for holistic health.
+                </p>
+<div class="flex space-x-4">
+<a class="flex items-center space-x-2 text-primary font-bold hover:translate-x-2 transition-transform" href="#story">
+<span>EXPLORE OUR JOURNEY</span>
+<span class="material-icons">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- The Narrative Section -->
+<section class="py-24 bg-white dark:bg-background-dark/50" id="story">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+<div class="relative">
+<div class="relative z-10 rounded-xl overflow-hidden editorial-shadow">
+<img class="w-full h-[420px] md:h-[600px] object-cover" data-alt="Professional herbalist mixing natural green ingredients" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJ9HHJ05KkNW_CxxLo3LnlBqK9aSMv0Xuv3vMjA9JAe5p91gLUw8SRaOlAN3WHkv2Hdybjh3d1FRmgF4YNi_Z2RSG_ShiZP8LihlEeyNBIEqbTwggNcfLzbCtiJ6ETuJAnBH8BL262D4K6srntKNY_jU_NyOmi2AcOTEXGfXD8I5PmlMsdjNJvNhbSEKZwGDS29o23Qmp85gd97tht8vZhXf7Yp1BDyV6RUBG37stEihhRuhdraIbUd8S3PxEyDYYncJNbN-HkGnDC"/>
+</div>
+<div class="absolute -bottom-10 -right-10 w-64 h-64 bg-accent-gold/10 rounded-full -z-0"></div>
+<div class="absolute top-10 -left-10 w-32 h-32 bg-primary/10 rounded-full -z-0"></div>
+</div>
+<div class="space-y-8">
+<h2 class="text-4xl font-extrabold tracking-tight dark:text-white">Our Story</h2>
+<div class="w-20 h-1 bg-accent-gold"></div>
+<p class="text-lg leading-relaxed text-slate-600 dark:text-slate-400 italic">
+                        "We didn't just want to build a nutrition center; we wanted to create a legacy of vitality that spans generations."
+                    </p>
+<p class="text-lg leading-relaxed text-slate-600 dark:text-slate-400">
+                        Founded over a decade ago, Veda Life began as a small vision to bridge the gap between traditional herbal wisdom and modern nutritional science. As official Herbalife Nutrition partners, we've refined our approach to focus on the individual, acknowledging that every body tells a different story.
+                    </p>
+<p class="text-lg leading-relaxed text-slate-600 dark:text-slate-400">
+                        Today, our center serves as a global benchmark for luxury wellness, combining premium botanical treatments with the world's leading cellular nutrition protocols.
+                    </p>
+<div class="pt-6">
+<div class="flex items-center space-x-4">
+<div class="w-12 h-12 rounded-full overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Portrait of the founder Elena Vance" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPe94qRUW1m9cexOZl47rrjPMZccpbnYD_l_2G_kqB5QBBzV9aKBjm_K7osw6VstcyCkovNPX2s9QtXeYUITs1QkTm2RVFS0XOkTjhYwOfsKiVSkMPEwxsvPphlXp0qvX8vipzYQAFFx0eVW-fxPBAyUa3exE5kvU9a_QSIRr-Tyv-KS528CXhu98X6uvqkWHonMWZSNxD7VigHhHfOScGYn25qK23BbG5Q2Y_c04ZkvFDm0rY0Q9UZT0_pZYr-PSxDc5XukxNiYeC"/>
+</div>
+<div>
+<h4 class="font-bold text-slate-900 dark:text-white">Elena Vance</h4>
+<p class="text-sm text-accent-gold font-semibold uppercase tracking-wider">Founder &amp; Lead Clinician</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Mission & Vision -->
+<section class="py-24 bg-background-light dark:bg-background-dark">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+<div class="bg-white dark:bg-slate-900/50 p-12 rounded-lg gold-border relative overflow-hidden group hover:border-primary/50 transition-colors">
+<span class="material-icons text-primary text-5xl mb-6">lightbulb</span>
+<h3 class="text-3xl font-bold mb-4 dark:text-white">Our Mission</h3>
+<p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed">
+                        To empower individuals with the knowledge and high-performance nutrition required to live their most vibrant lives, fostering a community of wellness excellence.
+                    </p>
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full group-hover:bg-primary/10 transition-colors"></div>
+</div>
+<div class="bg-white dark:bg-slate-900/50 p-12 rounded-lg gold-border relative overflow-hidden group hover:border-accent-gold/50 transition-colors">
+<span class="material-icons text-accent-gold text-5xl mb-6">visibility</span>
+<h3 class="text-3xl font-bold mb-4 dark:text-white">Our Vision</h3>
+<p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed">
+                        To become the world's most trusted destination for integrated luxury nutrition, setting new standards for quality, efficacy, and personalized care.
+                    </p>
+<div class="absolute top-0 right-0 w-32 h-32 bg-accent-gold/5 rounded-bl-full group-hover:bg-accent-gold/10 transition-colors"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Philosophy Pillars -->
+<section class="py-24 relative overflow-hidden">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center max-w-3xl mx-auto mb-20">
+<h2 class="text-4xl md:text-5xl font-extrabold mb-6 dark:text-white">The Three Pillars</h2>
+<p class="text-slate-600 dark:text-slate-400 text-lg">Our philosophy is built upon three foundational truths that guide every consultation and program we create.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Pillar 1 -->
+<div class="bg-white dark:bg-background-dark p-8 rounded-xl border border-primary/5 hover:shadow-2xl transition-all hover:-translate-y-2 group">
+<div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-8 group-hover:bg-primary transition-colors">
+<span class="material-icons text-primary group-hover:text-white">person</span>
+</div>
+<h4 class="text-2xl font-bold mb-4 dark:text-white">Personalized Precision</h4>
+<p class="text-slate-600 dark:text-slate-400 mb-6">No two bodies are the same. We use advanced metabolic tracking and lifestyle assessment to tailor Herbalife programs to your unique DNA.</p>
+<ul class="space-y-3">
+<li class="flex items-center text-sm font-semibold text-slate-500"><span class="material-icons text-primary text-xs mr-2">check_circle</span> DNA Lifestyle Mapping</li>
+<li class="flex items-center text-sm font-semibold text-slate-500"><span class="material-icons text-primary text-xs mr-2">check_circle</span> Metabolic Profiling</li>
+</ul>
+</div>
+<!-- Pillar 2 -->
+<div class="bg-white dark:bg-background-dark p-8 rounded-xl border border-primary/5 hover:shadow-2xl transition-all hover:-translate-y-2 group">
+<div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-8 group-hover:bg-primary transition-colors">
+<span class="material-icons text-primary group-hover:text-white">science</span>
+</div>
+<h4 class="text-2xl font-bold mb-4 dark:text-white">Scientific Excellence</h4>
+<p class="text-slate-600 dark:text-slate-400 mb-6">Our protocols are backed by the Herbalife Nutrition Advisory Board, ensuring every shake, supplement, and snack is rooted in clinical research.</p>
+<ul class="space-y-3">
+<li class="flex items-center text-sm font-semibold text-slate-500"><span class="material-icons text-primary text-xs mr-2">check_circle</span> Evidence-Based Results</li>
+<li class="flex items-center text-sm font-semibold text-slate-500"><span class="material-icons text-primary text-xs mr-2">check_circle</span> Clinically Proven Efficacy</li>
+</ul>
+</div>
+<!-- Pillar 3 -->
+<div class="bg-white dark:bg-background-dark p-8 rounded-xl border border-primary/5 hover:shadow-2xl transition-all hover:-translate-y-2 group">
+<div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-8 group-hover:bg-primary transition-colors">
+<span class="material-icons text-primary group-hover:text-white">eco</span>
+</div>
+<h4 class="text-2xl font-bold mb-4 dark:text-white">Sustainable Vitality</h4>
+<p class="text-slate-600 dark:text-slate-400 mb-6">We don't believe in quick fixes. Our philosophy focuses on long-term habit formation and sustainable metabolic health for life-long wellness.</p>
+<ul class="space-y-3">
+<li class="flex items-center text-sm font-semibold text-slate-500"><span class="material-icons text-primary text-xs mr-2">check_circle</span> Lifestyle Integration</li>
+<li class="flex items-center text-sm font-semibold text-slate-500"><span class="material-icons text-primary text-xs mr-2">check_circle</span> Community Support</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- Certifications -->
+<section class="py-16 border-y border-primary/10">
+<div class="max-w-7xl mx-auto px-6">
+<p class="text-center text-xs font-bold uppercase tracking-[0.3em] text-slate-400 mb-10">Accreditations &amp; Trust</p>
+<div class="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0">
+<div class="flex items-center space-x-2">
+<span class="material-icons text-3xl">verified</span>
+<span class="font-bold">ISO 9001</span>
+</div>
+<div class="flex items-center space-x-2">
+<span class="material-icons text-3xl">workspace_premium</span>
+<span class="font-bold">HERBALIFE GOLD</span>
+</div>
+<div class="flex items-center space-x-2">
+<span class="material-icons text-3xl">health_and_safety</span>
+<span class="font-bold">GLOBAL WELLNESS</span>
+</div>
+<div class="flex items-center space-x-2">
+<span class="material-icons text-3xl">science</span>
+<span class="font-bold">NSF CERTIFIED</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Editorial Image Grid -->
+<section class="py-24">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid grid-cols-12 gap-6 h-[700px]">
+<div class="col-span-8 h-full rounded-lg overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="Modern high-end spa and wellness treatment room" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDS2U6Tcxn-kW4PYiLGH267aiA_FSIO_nAa0UEnhZHZSRvtwvkanVTVtyzCpSx5gdDJ8Oa0hgwUOJj-FBGdZGBH4qi4hcPdfDXIzg0iiKqbxPb-5q84p96nICHQepTdRBivj04n2pVbwTEwCrDtjUrjmzbttWBUMAiedgupygufhQdYdGiggUSXhfjyi74lVd867igVl-kZ3MaHpY-V5E4pVyl6OFf1HZAd72-HZ--cgBe_3Vn9CfujEYR2YQOQoj-YMUCydvx-GkAn"/>
+<div class="absolute inset-0 bg-black/20"></div>
+</div>
+<div class="col-span-4 flex flex-col gap-6 h-full">
+<div class="h-1/2 rounded-lg overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Healthy colorful gourmet breakfast bowl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDddEFcNil5P_4UcJzuOrZjIq0Ctm0ICLAGkcN7JQYE04P6inJiuZz85Pf3qKfZOItt02iqdyk5UjSbnumhInt19Rya459FfS4A0EdPfecWDQiMh9_ah59XESkUe-6xHfnw-G1s7djVO9akOMl_pATZwAhhcUK8MNI5tEQVA5DCDykm6k2TqzEX9YtVoOi9jTdG4wQYgFuFXeJjtxWoZ7LDqM0PWjazCmxUxDdcRWuelZ1mBFkSh3kII9wFppqMsfYTB1QuAlcFamfK"/>
+</div>
+<div class="h-1/2 rounded-lg overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Microscope and laboratory testing equipment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmUeYGjsupVLEAw9C5Qc99D5eqPLEccvAiF0vWRvSCqsEgWavz6uwg02CH72HM9_Pd-eBYUoFMChrLTwzbPkba9xldpzw9zEbOkD68F2RKB1rg5u5ToxQwPc5NcXEDXh_RX8WjPhV4I2TyQ0Ig5ta0yNrXAkRhMP64Y0JZOTAOp6lMDPABYnwTsk47hGolUiO4bmJfz8rcr7Dul8PD_MNgOE2qwREh-Z4KPihZLW-Hvhnu3ICZkbn8qcuu5dXCVRWbLqmDjYCi2jwN"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-24 bg-primary relative overflow-hidden">
+<div class="absolute top-0 right-0 w-1/3 h-full opacity-10">
+<svg viewbox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+<path d="M44.7,-76.4C58.1,-69.2,69.2,-58.1,76.4,-44.7C83.6,-31.3,87,-15.7,86.6,-0.2C86.2,15.2,82.1,30.4,74.5,43.4C66.9,56.5,55.9,67.3,42.7,75.1C29.5,82.9,14.7,87.6,0.3,87.2C-14.2,86.7,-28.4,81.1,-41.3,73C-54.2,64.9,-65.8,54.4,-73.7,41.4C-81.5,28.5,-85.7,14.2,-86,-0.1C-86.2,-14.4,-82.5,-28.9,-75.1,-41.9C-67.7,-54.9,-56.6,-66.4,-43.3,-73.7C-30,-80.9,-15,-83.9,0,-84C15,84,31.3,83.5,44.7,-76.4Z" fill="#FFFFFF" transform="translate(100 100)"></path>
+</svg>
+</div>
+<div class="container mx-auto px-6 relative z-10 text-center">
+<h2 class="text-4xl md:text-6xl font-extrabold text-white mb-8">Ready to Start Your <br/>Own Story?</h2>
+<p class="text-white/80 text-xl mb-12 max-w-2xl mx-auto">Join thousands of others who have transformed their lives through our philosophy and the power of premium nutrition.</p>
+<div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-6">
+{% comment %} <button class="bg-white text-primary px-12 py-5 rounded-full font-extrabold text-lg hover:bg-opacity-90 transition-all shadow-xl">
+                    BEGIN YOUR ASSESSMENT
+                </button>
+<button class="bg-transparent border-2 border-white text-white px-12 py-5 rounded-full font-extrabold text-lg hover:bg-white/10 transition-all">
+                    VIEW OUR PROGRAMS
+                </button> {% endcomment %}
+                <a href="/#consultation"
+   class="bg-white text-primary px-12 py-5 rounded-full font-extrabold text-lg hover:bg-opacity-90 transition-all shadow-xl">
+   BEGIN YOUR ASSESSMENT
+</a>
+
+<a href="/#programs"
+   class="bg-transparent border-2 border-white text-white px-12 py-5 rounded-full font-extrabold text-lg hover:bg-white/10 transition-all">
+   VIEW OUR PROGRAMS
+</a>
+
+</div>
+</div>
+</section>
+<!-- Footer -->
+  <!-- Footer -->
+    <footer class="bg-background-light border-t border-slate-200 py-16 px-6">
+  <div class="max-w-7xl mx-auto">
+
+    <!-- Top Footer -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+
+      <!-- Brand -->
+      <div>
+     <div class="flex items-center gap-3 mb-6">
+ <img 
+  src="{% static 'images/madhura.png' %}" 
+  alt="Madhura Wellness Logo"
+  class="h-14 w-auto object-contain"
+/>
+
+  <span class="text-lg font-extrabold uppercase">
+    Madhura <span class="text-primary">Wellness World</span>
+  </span>
+</div>
+
+        <p class="text-slate-500 text-sm leading-relaxed mb-6">
+          Personalized nutrition, transformation programs, and premium wellness coaching designed for lasting results.
+        </p>
+
+        <!-- Social Icons -->
+        <div class="flex gap-4">
+          <a class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center hover:bg-primary hover:text-white transition-all" href="#">
+            <span class="material-icons">instagram</span>
+          </a>
+          <a class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center hover:bg-primary hover:text-white transition-all" href="#">
+            <span class="material-icons">smart_display</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Programs -->
+      <div>
+        <h5 class="text-slate-800 font-bold mb-6">Programs</h5>
+        <ul class="space-y-4 text-sm text-slate-500">
+          <li><a class="hover:text-primary transition-colors" href="#">Weight Loss</a></li>
+          <li><a class="hover:text-primary transition-colors" href="#">Muscle Gain</a></li>
+          <li><a class="hover:text-primary transition-colors" href="#">Total Wellness</a></li>
+          <li><a class="hover:text-primary transition-colors" href="#">Metabolic Reset</a></li>
+        </ul>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h5 class="text-slate-800 font-bold mb-6">Quick Links</h5>
+        <ul class="space-y-4 text-sm text-slate-500">
+          <li><a class="hover:text-primary transition-colors" href="/">Home</a></li>
+          <li><a class="hover:text-primary transition-colors" href="#">Transformations</a></li>
+          <li><a class="hover:text-primary transition-colors" href="#">Coaches</a></li>
+          <li><a class="hover:text-primary transition-colors" href="/book/">Book Consultation</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <h5 class="text-slate-800 font-bold mb-6">Contact</h5>
+        <ul class="space-y-4 text-sm text-slate-500">
+
+          <li class="flex items-start gap-2">
+            <span class="material-icons text-primary text-base">place</span>
+            <span>
+              5th Floor, Hare Plaza,<br>
+              KT Rd, opp. Varadaraja Swamy Temple,<br>
+              Tirupati, Andhra Pradesh 517501
+            </span>
+          </li>
+
+          <li class="flex items-center gap-2">
+            <span class="material-icons text-primary text-base">phone</span>
+            <a href="tel:+919246437143" class="hover:text-primary">
+              +91 92464 37143
+            </a>
+          </li>
+
+          <li class="flex items-center gap-2">
+            <span class="material-icons text-primary text-base">chat</span>
+            <a href="https://wa.me/919246437143" target="_blank" class="hover:text-primary">
+              Chat on WhatsApp
+            </a>
+          </li>
+
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="pt-8 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="text-xs text-slate-500 uppercase tracking-widest">
+        © 2026 Madhura Wellness Center. Independent Herbalife Distributor.
+      </p>
+      <div class="flex gap-8 text-xs text-slate-500 uppercase tracking-widest">
+        <a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+        <a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("show");
+                }
+            });
+        });
+        document.querySelectorAll(".fade-up").forEach(el => observer.observe(el));
+    });
+    </script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    // Fade-up animation
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("show");
+            }
+        });
+    });
+    document.querySelectorAll(".fade-up").forEach(el => observer.observe(el));
+
+    // Read more for programs
+    document.querySelectorAll(".read-more-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+            const desc = btn.previousElementSibling;
+            desc.classList.toggle("line-clamp-3");
+
+            btn.textContent =
+                desc.classList.contains("line-clamp-3")
+                ? "Read More"
+                : "Show Less";
+        });
+    });
+
+});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+const swiper = new Swiper(".testimonialSwiper", {
+  slidesPerView: 1,
+  spaceBetween: 20,
+  loop: true,
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+  breakpoints: {
+    640: {
+      slidesPerView: 2,
+    },
+    1024: {
+      slidesPerView: 3,
+    },
+  },
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const slides = document.querySelectorAll(".featured-slide");
+    let index = 0;
+
+    if (slides.length > 1) {
+        setInterval(() => {
+            slides[index].classList.add("hidden");
+            index = (index + 1) % slides.length;
+            slides[index].classList.remove("hidden");
+        }, 4000); // changes every 4 seconds
+    }
+});
+</script>
+<script>
+  const toggleBtn = document.getElementById("menuToggle");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  toggleBtn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+  });
+</script>
+<div class="fixed bottom-5 right-4 md:bottom-6 md:right-6 z-50 flex flex-col gap-4">
+
+  <!-- Call Button -->
+  <a href="tel:+919246437143"
+     class="w-14 h-14 bg-white text-primary rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition">
+    <span class="material-icons">call</span>
+  </a>
+
+  <!-- WhatsApp Button -->
+  <a href="https://wa.me/919246437143?text=Hi%20I%20want%20to%20book%20a%20consultation"
+     target="_blank"
+     class="w-14 h-14 bg-[#25D366] rounded-full shadow-xl flex items-center justify-center hover:scale-110 transition">
+     
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"
+         alt="WhatsApp"
+         class="w-7 h-7">
+         
+  </a>
+
+</div>
+
+
+    </body>
+    </html>

@@ -1,0 +1,62 @@
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        font-size: 12px;
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th {
+        background: #f0f0f0;
+    }
+
+    th, td {
+        padding: 6px;
+        text-align: center;
+    }
+</style>
+
+<h1>{{ person.name }} Progress Report</h1>
+
+<table border="1" cellpadding="6" cellspacing="0">
+    <tr>
+        <th>Date</th>
+        <th>Weight (kg)</th>
+        <th>Body Fat %</th>
+        <th>Body Fat Mass</th>
+        <th>Visceral Fat</th>
+        <th>RMR</th>
+        <th>BMI</th>
+        <th>BMA</th>
+        <th>Subcutaneous Fat</th>
+        <th>Trunk Fat</th>
+        <th>Muscle Mass</th>
+        <th>Body Fluid %</th>
+        <th>Excess Fluid</th>
+    </tr>
+
+    {% for c in checkins %}
+    <tr>
+        <td>{{ c.date }}</td>
+        <td>{{ c.weight }}</td>
+        <td>{{ c.body_fat_percent }}</td>
+        <td>{{ c.body_fat_mass }}</td>
+        <td>{{ c.visceral_fat }}</td>
+        <td>{{ c.rmr }}</td>
+        <td>{{ c.bmi }}</td>
+        <td>{{ c.bma }}</td>
+        <td>{{ c.subcutaneous_fat }}</td>
+        <td>{{ c.trunk_fat }}</td>
+        <td>{{ c.muscle_mass }}</td>
+        <td>{{ c.body_fluid_percent }}</td>
+        <td>{{ c.excess_fluid }}</td>
+    </tr>
+    {% endfor %}
+</table>

@@ -1,0 +1,145 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Lifestyle Gallery | Madhura Wellness</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        primary: "#11d473",
+        "background-light": "#f6f8f7",
+      },
+      fontFamily: {
+        display: ["Manrope"]
+      }
+    }
+  }
+}
+</script>
+
+<style>
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+.fade-up.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+
+</head>
+
+<body class="bg-background-light font-display text-slate-800">
+
+<!-- NAVBAR -->
+<nav class="bg-white shadow-sm border-b">
+  <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="/" class="font-bold text-lg">
+      MADHURA<span class="text-primary">WELLNESS</span>
+    </a>
+    <a href="/book/"
+       class="bg-primary text-white px-5 py-2 rounded-full text-sm font-semibold">
+      Book Consultation
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="py-16 text-center">
+  <h1 class="text-4xl md:text-6xl font-extrabold mb-4">
+    Lifestyle Gallery
+  </h1>
+  <p class="text-slate-600 max-w-xl mx-auto">
+    Real moments from our transformations, events, and wellness journeys.
+  </p>
+</header>
+
+<!-- FILTERS -->
+<section class="mb-12">
+  <div class="flex flex-wrap justify-center gap-6 text-sm font-semibold">
+
+    <a href="/gallery/"
+       class="{% if not request.GET.category %}text-primary{% else %}text-slate-500{% endif %}">
+       All
+    </a>
+
+    <a href="?category=event"
+       class="{% if request.GET.category == 'event' %}text-primary{% else %}text-slate-500{% endif %}">
+       Events
+    </a>
+
+    <a href="?category=trip"
+       class="{% if request.GET.category == 'trip' %}text-primary{% else %}text-slate-500{% endif %}">
+       Trips
+    </a>
+
+    <a href="?category=lifestyle"
+       class="{% if request.GET.category == 'lifestyle' %}text-primary{% else %}text-slate-500{% endif %}">
+       Lifestyle
+    </a>
+
+    <a href="?category=transformation"
+       class="{% if request.GET.category == 'transformation' %}text-primary{% else %}text-slate-500{% endif %}">
+       Transformations
+    </a>
+
+  </div>
+</section>
+
+<!-- GRID -->
+<main class="max-w-7xl mx-auto px-6 pb-24">
+  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+
+    {% for item in items %}
+    <div class="group relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition fade-up">
+
+      <img src="{{ item.photo.url }}"
+           class="w-full h-64 object-cover group-hover:scale-105 transition duration-500">
+
+      <div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition flex items-end">
+        <div class="p-4 text-white opacity-0 group-hover:opacity-100 transition">
+          <h3 class="font-bold text-sm">
+            {{ item.title }}
+          </h3>
+          {% if item.caption %}
+          <p class="text-xs text-white/80">
+            {{ item.caption|truncatewords:10 }}
+          </p>
+          {% endif %}
+        </div>
+      </div>
+
+    </div>
+    {% endfor %}
+
+  </div>
+</main>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+          if (entry.isIntersecting) {
+              entry.target.classList.add("show");
+          }
+      });
+  });
+
+  document.querySelectorAll(".fade-up").forEach(el => observer.observe(el));
+});
+</script>
+
+</body>
+</html>

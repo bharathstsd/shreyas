@@ -1,0 +1,523 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>{{ story.title }} | Gallery</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<script>
+tailwind.config = {
+    theme: {
+        extend: {
+            colors: {
+                primary: "#11d473"
+            },
+            fontFamily: {
+                display: ["Manrope"]
+            }
+        }
+    }
+}
+</script>
+
+<style>
+
+.masonry {
+  column-count: 2;
+  column-gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .masonry {
+    column-count: 3;
+  }
+}
+
+@media (min-width: 1024px) {
+  .masonry {
+    column-count: 4;
+  }
+}
+
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 1rem;
+}
+
+.lightbox-bg {
+  background: rgba(0,0,0,0.9);
+}
+
+
+.img-zoom {
+  transition: transform 0.6s ease;
+}
+.group:hover .img-zoom {
+  transform: scale(1.08);
+}
+.card {
+  transition: all 0.35s ease;
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.08);
+}
+</style>
+</head>
+
+<body class="bg-gray-50 font-display text-slate-800">
+
+<!-- HERO -->
+<section class="relative h-[70vh] min-h-[420px]">
+    <img src="{{ story.cover_photo.url }}"
+         class="w-full h-full object-cover">
+
+    <!-- Gradient overlay -->
+    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10"></div>
+
+    <div class="absolute bottom-12 left-1/2 -translate-x-1/2 text-center px-6 max-w-3xl">
+
+    <!-- Back button -->
+    <a href="/gallery/"
+       class="inline-flex items-center gap-2 mb-6 px-5 py-2 rounded-full bg-white/20 backdrop-blur text-white text-sm font-semibold hover:bg-white hover:text-slate-900 transition">
+        <span class="material-icons text-base">arrow_back</span>
+        Back to Gallery
+    </a>
+        <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-4">
+            {{ story.title }}
+        </h1>
+
+        {% if story.location or story.date %}
+        <div class="inline-flex items-center gap-3 bg-white/10 backdrop-blur px-5 py-2 rounded-full text-white text-sm">
+            {% if story.location %}
+            <span>{{ story.location }}</span>
+            {% endif %}
+            {% if story.date %}
+            <span>•</span>
+            <span>{{ story.date }}</span>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- DESCRIPTION -->
+{% if story.description %}
+<section class="py-16 bg-white text-center">
+    <div class="max-w-3xl mx-auto px-6">
+        <p class="text-lg text-slate-600 leading-relaxed">
+            {{ story.description }}
+        </p>
+    </div>
+</section>
+{% endif %}
+
+<!-- STORY SECTIONS -->
+{% comment %} <section class="py-24 space-y-28"> {% endcomment %}
+<section class="py-24 space-y-28 bg-gradient-to-b from-gray-50 to-white">
+
+{% for section in story.sections.all %}
+<div class="max-w-6xl mx-auto px-6">
+
+  <div class="grid md:grid-cols-2 gap-14 items-center">
+
+    <!-- TEXT -->
+    <div class="{% if forloop.counter|divisibleby:2 %}md:order-2{% endif %}">
+      <div class="bg-white p-10 rounded-3xl shadow-xl border border-slate-100 relative">
+
+        <!-- Section number -->
+        <div class="absolute -top-6 -left-6 w-14 h-14 rounded-full bg-primary text-white flex items-center justify-center font-bold shadow-lg">
+          {{ forloop.counter|stringformat:"02d" }}
+        </div>
+
+        <h2 class="text-3xl font-bold mb-4">
+          {{ section.title }}
+        </h2>
+
+        <p class="text-slate-600 leading-relaxed">
+          {{ section.content|linebreaks }}
+        </p>
+
+      </div>
+    </div>
+
+    <!-- IMAGE -->
+    {% if section.image %}
+    <div class="flex justify-center {% if forloop.counter|divisibleby:2 %}md:order-1{% endif %}">
+      <div class="w-full max-w-md rounded-3xl overflow-hidden shadow-2xl border group">
+       <img src="{{ section.image.url }}"
+     class="w-full h-80 object-cover img-zoom">
+
+      </div>
+    </div>
+    {% endif %}
+
+  </div>
+
+</div>
+{% endfor %}
+
+</section>
+
+<!-- PHOTO GRID -->
+<!-- INSTAGRAM STYLE GALLERY -->
+<section class="py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <h2 class="text-3xl font-bold text-center mb-12">
+      Event Moments
+    </h2>
+
+    <div class="masonry">
+
+      {% for photo in story.photos.all %}
+      <div class="masonry-item group cursor-pointer">
+
+        {% if photo.image %}
+        <div onclick="openLightbox('image', '{{ photo.image.url }}')"
+             class="overflow-hidden rounded-2xl shadow hover:shadow-xl transition">
+      <img src="{{ photo.image.url }}"
+     class="w-full rounded-2xl img-zoom">
+
+        </div>
+        {% endif %}
+
+        {% if photo.video %}
+        <div onclick="openLightbox('video', '{{ photo.video.url }}')"
+             class="relative overflow-hidden rounded-2xl shadow hover:shadow-xl transition">
+
+          <video muted
+                 class="w-full rounded-2xl">
+            <source src="{{ photo.video.url }}" type="video/mp4">
+          </video>
+
+          <!-- Play Icon -->
+          <div class="absolute inset-0 flex items-center justify-center">
+            <span class="material-icons text-white text-6xl opacity-80">
+              play_circle
+            </span>
+          </div>
+
+        </div>
+        {% endif %}
+
+        {% if photo.caption %}
+        <p class="text-sm text-slate-500 mt-2 px-1">
+          {{ photo.caption }}
+        </p>
+        {% endif %}
+
+      </div>
+      {% endfor %}
+
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+{% comment %} <section class="py-24 text-center bg-gray-50"> {% endcomment %}
+ <section class="py-28 text-center bg-gradient-to-r from-primary/10 via-white to-primary/10">
+
+  <h2 class="text-4xl font-extrabold mb-6">
+    Join Our Next <span class="text-primary italic">Experience</span>
+  </h2>
+
+  <a href="/book/"
+   class="inline-block px-12 py-5 bg-primary text-white text-lg font-bold rounded-full shadow-2xl hover:shadow-primary/40 hover:-translate-y-1 transition-all"
+>
+    Book a Consultation
+  </a>
+</section>
+
+<!-- FOOTER -->
+{% comment %} <footer class="bg-white border-t py-10 text-center">
+  <p class="text-sm text-slate-500">
+    © 2026 Madhura Wellness Center
+  </p>
+</footer> {% endcomment %}
+<!-- LIGHTBOX -->
+{% comment %} <div id="lightbox"
+     class="fixed inset-0 hidden items-center justify-center z-50 lightbox-bg"> {% endcomment %}
+<div id="lightbox"
+     class="fixed inset-0 hidden items-center justify-center z-[999] lightbox-bg p-4">
+<button onclick="closeLightbox()"
+        class="absolute top-4 right-4 md:top-6 md:right-6
+               w-12 h-12 flex items-center justify-center
+               bg-black/60 rounded-full text-white text-2xl
+               z-[1000]">
+  ✕
+</button>
+
+
+  <div id="lightboxContent" class="max-w-5xl max-h-[90vh]"></div>
+</div>
+
+<script>
+function openLightbox(type, src) {
+    const box = document.getElementById("lightbox");
+    const content = document.getElementById("lightboxContent");
+
+    box.classList.remove("hidden");
+    box.classList.add("flex");
+
+    if (type === "image") {
+        content.innerHTML = `
+            <img src="${src}" class="max-h-[90vh] rounded-xl shadow-2xl">
+        `;
+    }
+
+if (type === "video") {
+    content.innerHTML = `
+        <div class="relative max-w-5xl w-full">
+            <video src="${src}" controls autoplay
+                   class="w-full max-h-[80vh] rounded-xl shadow-2xl">
+            </video>
+        </div>
+    `;
+}
+document.getElementById("lightbox").addEventListener("click", function(e) {
+    if (e.target.id === "lightbox") {
+        closeLightbox();
+    }
+});
+
+}
+
+function closeLightbox() {
+    const box = document.getElementById("lightbox");
+    const content = document.getElementById("lightboxContent");
+
+    box.classList.add("hidden");
+    box.classList.remove("flex");
+    content.innerHTML = "";
+}
+</script>
+<footer class="bg-background-light border-t border-slate-200 py-16 px-6">
+  <div class="max-w-7xl mx-auto">
+
+    <!-- Top Footer -->
+    {% comment %} <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16"> {% endcomment %}
+     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-16">
+
+
+      <!-- Brand -->
+      <div>
+     <div class="flex items-center gap-3 mb-6">
+ <img 
+  src="{% static 'images/madhura.png' %}" 
+  alt="Madhura Wellness Logo"
+  class="h-14 w-auto object-contain"
+/>
+
+  <span class="text-lg font-extrabold uppercase">
+    Madhura <span class="text-primary">Wellness World</span>
+  </span>
+</div>
+
+        <p class="text-slate-500 text-sm leading-relaxed mb-6">
+          Personalized nutrition, transformation programs, and premium wellness coaching designed for lasting results.
+        </p>
+
+        <!-- Social Icons -->
+        <div class="flex gap-4">
+          <a class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center hover:bg-primary hover:text-white transition-all" href="#">
+            <span class="material-icons">instagram</span>
+          </a>
+          <a class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center hover:bg-primary hover:text-white transition-all" href="#">
+            <span class="material-icons">smart_display</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Programs -->
+      <div>
+        <h5 class="text-slate-800 font-bold mb-6">Programs</h5>
+        <ul class="space-y-4 text-sm text-slate-500">
+          <li><a class="hover:text-primary transition-colors" href="#">Weight Loss</a></li>
+          <li><a class="hover:text-primary transition-colors" href="#">Muscle Gain</a></li>
+          <li><a class="hover:text-primary transition-colors" href="#">Total Wellness</a></li>
+          <li><a class="hover:text-primary transition-colors" href="#">Metabolic Reset</a></li>
+        </ul>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h5 class="text-slate-800 font-bold mb-6">Quick Links</h5>
+        <ul class="space-y-4 text-sm text-slate-500">
+          <li><a class="hover:text-primary transition-colors" href="#">Home</a></li>
+          <li><a class="hover:text-primary transition-colors" href="#">Transformations</a></li>
+          <li><a class="hover:text-primary transition-colors" href="#">Coaches</a></li>
+          <li><a class="hover:text-primary transition-colors" href="/book/">Book Consultation</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <h5 class="text-slate-800 font-bold mb-6">Contact</h5>
+        <ul class="space-y-4 text-sm text-slate-500">
+
+          <li class="flex items-start gap-2">
+            <span class="material-icons text-primary text-base">place</span>
+            <span>
+              5th Floor, Hare Plaza,<br>
+              KT Rd, opp. Varadaraja Swamy Temple,<br>
+              Tirupati, Andhra Pradesh 517501
+            </span>
+          </li>
+
+          <li class="flex items-center gap-2">
+            <span class="material-icons text-primary text-base">phone</span>
+            <a href="tel:+919246437143" class="hover:text-primary">
+              +91 92464 37143
+            </a>
+          </li>
+
+          <li class="flex items-center gap-2">
+            <span class="material-icons text-primary text-base">chat</span>
+            <a href="https://wa.me/919246437143" target="_blank" class="hover:text-primary">
+              Chat on WhatsApp
+            </a>
+          </li>
+
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="pt-8 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="text-xs text-slate-500 uppercase tracking-widest">
+        © 2026 Madhura Wellness Center. Independent Herbalife Distributor.
+      </p>
+      <div class="flex gap-8 text-xs text-slate-500 uppercase tracking-widest">
+        <a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+        <a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("show");
+                }
+            });
+        });
+        document.querySelectorAll(".fade-up").forEach(el => observer.observe(el));
+    });
+    </script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    // Fade-up animation
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("show");
+            }
+        });
+    });
+    document.querySelectorAll(".fade-up").forEach(el => observer.observe(el));
+
+    // Read more for programs
+    document.querySelectorAll(".read-more-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+            const desc = btn.previousElementSibling;
+            desc.classList.toggle("line-clamp-3");
+
+            btn.textContent =
+                desc.classList.contains("line-clamp-3")
+                ? "Read More"
+                : "Show Less";
+        });
+    });
+
+});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+const swiper = new Swiper(".testimonialSwiper", {
+  slidesPerView: 1,
+  spaceBetween: 20,
+  loop: true,
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+  breakpoints: {
+    640: {
+      slidesPerView: 2,
+    },
+    1024: {
+      slidesPerView: 3,
+    },
+  },
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const slides = document.querySelectorAll(".featured-slide");
+    let index = 0;
+
+    if (slides.length > 1) {
+        setInterval(() => {
+            slides[index].classList.add("hidden");
+            index = (index + 1) % slides.length;
+            slides[index].classList.remove("hidden");
+        }, 4000); // changes every 4 seconds
+    }
+});
+</script>
+<script>
+  const toggleBtn = document.getElementById("menuToggle");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  toggleBtn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+  });
+</script>
+<div class="fixed bottom-5 right-4 md:bottom-6 md:right-6 z-50 flex flex-col gap-4">
+
+  <!-- Call Button -->
+  <a href="tel:+919246437143"
+     class="w-14 h-14 bg-white text-primary rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition">
+    <span class="material-icons">call</span>
+  </a>
+
+  <!-- WhatsApp Button -->
+  <a href="https://wa.me/919246437143?text=Hi%20I%20want%20to%20book%20a%20consultation"
+     target="_blank"
+     class="w-14 h-14 bg-[#25D366] rounded-full shadow-xl flex items-center justify-center hover:scale-110 transition">
+     
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"
+         alt="WhatsApp"
+         class="w-7 h-7">
+         
+  </a>
+
+</div>
+
+
+
+<a href="/gallery/"
+   class="fixed bottom-6 left-6 bg-white text-slate-800 px-4 py-3 rounded-full shadow-lg flex items-center gap-2 text-sm font-semibold hover:shadow-xl transition z-40">
+   <span class="material-icons text-base">arrow_back</span>
+   Gallery
+</a>
+
+</body>
+</html>

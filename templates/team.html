@@ -1,0 +1,588 @@
+    {% load static %}
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Elite Coaching Team | Herbalife Luxury Wellness</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#11d473",
+                        "gold": "#C5A059",
+                        "background-light": "#f6f8f7",
+                        "background-dark": "#102219",
+                        "luxury-beige": "#F9F7F2",
+                        "deep-forest": "#0A2619",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1.25rem",
+                        "lg": "2.25rem",
+                        "xl": "3.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Manrope', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .gold-border {
+            position: relative;
+        }
+        .gold-border::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            bottom: -1px;
+            background: linear-gradient(45deg, #C5A059, #F2E4C1, #C5A059);
+            z-index: -1;
+            border-radius: inherit;
+        }
+        .luxury-gradient-text {
+            background: linear-gradient(135deg, #0A2619 0%, #11d473 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-deep-forest dark:text-background-light selection:bg-primary selection:text-white">
+<!-- Header / Navigation -->
+<!-- NAVBAR -->
+<nav class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md border-b">
+  <div class="max-w-7xl mx-auto px-4 h-16 md:h-20 flex items-center justify-between">
+
+    <!-- Logo -->
+    <div class="flex items-center gap-2">
+      <img 
+        src="{% static 'images/madhura.png' %}" 
+        alt="Madhura Wellness Logo"
+        class="h-10 md:h-14 w-auto object-contain"
+      />
+      <span class="text-sm md:text-xl font-extrabold leading-tight">
+        MADHURA<span class="text-primary">WELLNESS</span>
+      </span>
+    </div>
+
+    <!-- Desktop Menu -->
+    <div class="hidden md:flex gap-8">
+      <a href="#programs" class="hover:text-primary">Programs</a>
+      <a href="#transformations" class="hover:text-primary">Transformations</a>
+      <a href="#experience" class="hover:text-primary">Experience</a>
+      <a href="/about/" class="hover:text-primary">About</a>
+      <a href="/team/" class="hover:text-primary">Team</a>
+    </div>
+
+    <!-- CTA -->
+    <a href="/book/"
+       class="hidden md:inline-block bg-primary text-white px-6 py-3 rounded-full text-sm font-semibold shadow-lg">
+      Book Consultation
+    </a>
+
+    <!-- Mobile Button -->
+    <button id="menuToggle" class="md:hidden text-primary">
+      <span class="material-icons text-3xl">menu</span>
+    </button>
+
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu"
+       class="hidden md:hidden bg-white border-t shadow-lg">
+    <div class="flex flex-col px-6 py-4 space-y-4 text-sm font-semibold">
+      <a href="#programs">Programs</a>
+      <a href="#transformations">Transformations</a>
+      <a href="#experience">Experience</a>
+      <a href="/about/">About</a>
+      <a href="/team/">Team</a>
+
+      <a href="/book/"
+         class="bg-primary text-white text-center px-6 py-3 rounded-full shadow-lg">
+        Book Consultation
+      </a>
+    </div>
+  </div>
+</nav>
+
+<main>
+<!-- Hero Section -->
+<section class="relative pt-28 md:pt-32 pb-12 md:pb-16 px-4 md:px-6">
+  <div class="max-w-4xl mx-auto text-center">
+
+    <span class="inline-block py-1 px-4 mb-4 border border-gold text-gold rounded-full text-[10px] font-black tracking-[0.2em] uppercase">
+      Est. 2024
+    </span>
+
+    <h1 class="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-extralight tracking-tight mb-6 leading-tight">
+      The Architects of
+      <span class="italic font-medium">Transformation</span>
+    </h1>
+
+    <p class="text-sm sm:text-base md:text-lg text-deep-forest/60 max-w-xl mx-auto leading-relaxed">
+      A curated collective of wellness experts dedicated to your transformation journey.
+    </p>
+
+  </div>
+</section>
+
+<!-- Filter Bar -->
+<section class="max-w-7xl mx-auto px-4 md:px-6 mb-12">
+  <div class="flex flex-wrap justify-center gap-3 border-y border-deep-forest/5 py-6">
+
+    <a href="/team/"
+       class="px-4 py-2 rounded-full text-xs font-bold tracking-widest uppercase
+       {% if not active_specialization %}
+         bg-primary text-white
+       {% else %}
+         bg-white border border-deep-forest/10
+       {% endif %}">
+       All
+    </a>
+
+    {% for spec in specializations %}
+    <a href="/team/?specialization={{ spec }}"
+       class="px-4 py-2 rounded-full text-xs font-bold tracking-widest uppercase
+       {% if active_specialization == spec %}
+         bg-primary text-white
+       {% else %}
+         bg-white border border-deep-forest/10
+       {% endif %}">
+       {{ spec }}
+    </a>
+    {% endfor %}
+
+  </div>
+</section>
+
+<!-- Coaches Grid -->
+ <!-- Coaches Grid -->
+<section class="max-w-7xl mx-auto px-4 md:px-6 pb-20 md:pb-32">
+
+
+  {% with coach_count=coaches|length %}
+  <div
+    class="
+      grid gap-8 md:gap-x-8 md:gap-y-20
+      {% if coach_count == 1 %}
+        grid-cols-1 max-w-md mx-auto
+      {% elif coach_count == 2 %}
+        grid-cols-1 md:grid-cols-2 max-w-3xl mx-auto
+      {% else %}
+        grid-cols-1 md:grid-cols-2 lg:grid-cols-3
+      {% endif %}
+    "
+  >
+
+    {% for coach in coaches %}
+    <div class="group">
+
+      <div class="relative overflow-hidden rounded-lg gold-border p-[1px]">
+        <div class="aspect-[4/5] bg-luxury-beige overflow-hidden rounded-lg">
+
+          {% if coach.photo %}
+          <img src="{{ coach.photo.url }}"
+               alt="{{ coach.name }}"
+               class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+          {% else %}
+          <img src="{% static 'images/default-coach.jpg' %}"
+               class="w-full h-full object-cover">
+          {% endif %}
+
+          <div class="absolute inset-0 bg-gradient-to-t from-deep-forest/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        </div>
+      </div>
+
+      <div class="mt-8">
+
+        <div class="flex items-center gap-3 mb-2">
+          {% if coach.is_head_coach %}
+          <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+          <span class="text-[10px] font-bold tracking-widest uppercase text-gold">
+            Head Coach
+          </span>
+          {% endif %}
+        </div>
+
+        <h3 class="text-3xl font-light mb-1">
+          {{ coach.name }}
+        </h3>
+
+        <p class="text-deep-forest/50 text-sm font-medium mb-6 uppercase tracking-widest">
+          {{ coach.specialization }}
+        </p>
+
+        <a href="/team/{{ coach.slug }}/"
+           class="flex items-center gap-4 group/btn">
+          <span class="w-12 h-12 rounded-full border border-deep-forest/20 flex items-center justify-center group-hover/btn:bg-primary group-hover/btn:border-primary transition-all">
+            <span class="material-symbols-outlined text-sm group-hover/btn:text-white">east</span>
+          </span>
+          <span class="text-xs font-bold tracking-widest uppercase group-hover/btn:text-primary transition-colors">
+            View Profile
+          </span>
+        </a>
+
+      </div>
+    </div>
+    {% empty %}
+    <p class="text-center col-span-3 text-gray-500">
+      No coaches found.
+    </p>
+    {% endfor %}
+
+  </div>
+  {% endwith %}
+
+</section>
+
+{% comment %} <section class="max-w-7xl mx-auto px-6 pb-32">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-20">
+
+    {% for coach in coaches %}
+    <div class="group">
+
+      <div class="relative overflow-hidden rounded-lg gold-border p-[1px]">
+        <div class="aspect-[4/5] bg-luxury-beige overflow-hidden rounded-lg">
+
+          {% if coach.photo %}
+          <img src="{{ coach.photo.url }}"
+               alt="{{ coach.name }}"
+               class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+          {% else %}
+          <img src="{% static 'images/default-coach.jpg' %}"
+               class="w-full h-full object-cover">
+          {% endif %}
+
+          <div class="absolute inset-0 bg-gradient-to-t from-deep-forest/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        </div>
+      </div>
+
+      <div class="mt-8">
+
+        <div class="flex items-center gap-3 mb-2">
+          {% if coach.is_head_coach %}
+          <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+          <span class="text-[10px] font-bold tracking-widest uppercase text-gold">
+            Head Coach
+          </span>
+          {% endif %}
+        </div>
+
+        <h3 class="text-3xl font-light mb-1">
+          {{ coach.name }}
+        </h3>
+
+        <p class="text-deep-forest/50 text-sm font-medium mb-6 uppercase tracking-widest">
+          {{ coach.specialization }}
+        </p>
+
+        <a href="/book/"
+           class="flex items-center gap-4 group/btn">
+          <span class="w-12 h-12 rounded-full border border-deep-forest/20 flex items-center justify-center group-hover/btn:bg-primary group-hover/btn:border-primary transition-all">
+            <span class="material-symbols-outlined text-sm group-hover/btn:text-white">east</span>
+          </span>
+          <span class="text-xs font-bold tracking-widest uppercase group-hover/btn:text-primary transition-colors">
+            Book Consultation
+          </span>
+        </a>
+
+      </div>
+    </div>
+    {% empty %}
+    <p class="text-center col-span-3 text-gray-500">
+      No coaches found in this category.
+    </p>
+    {% endfor %}
+
+  </div>
+</section> {% endcomment %}
+
+<!-- CTA Section -->
+<section class="bg-deep-forest text-white py-16 md:py-32 px-4 relative overflow-hidden">
+  <div class="max-w-4xl mx-auto text-center">
+
+    <h2 class="text-2xl sm:text-3xl md:text-5xl font-extralight mb-6">
+      Ready to find your <span class="italic">Expert Match</span>?
+    </h2>
+
+    <p class="text-sm md:text-lg text-white/70 mb-8 max-w-xl mx-auto">
+      Take our quick assessment to get matched with the right coach.
+    </p>
+
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <button class="w-full sm:w-auto px-8 py-4 bg-primary text-deep-forest font-bold rounded-full uppercase">
+        Start Matcher
+      </button>
+      <button class="w-full sm:w-auto px-8 py-4 border border-white/20 rounded-full text-xs font-bold uppercase">
+        View Pricing
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<!-- Map Section -->
+<section class="bg-background-light dark:bg-background-dark py-24 px-6">
+<div class="max-w-7xl mx-auto">
+<div class="grid lg:grid-cols-2 gap-16 items-center">
+<div>
+<h2 class="text-4xl font-light mb-6">Our Flagship <span class="italic">Center</span></h2>
+<p class="text-deep-forest/60 dark:text-background-light/60 mb-8 leading-relaxed">Located in the heart of the luxury wellness district, our center offers private consultations, premium nutrition bar, and cellular testing facilities.</p>
+<div class="space-y-4">
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary mt-1">location_on</span>
+<div>
+<p class="font-bold uppercase tracking-widest text-xs">Address</p>
+<p class="text-deep-forest/50 dark:text-background-light/50">1022 Wellness Row, Beverly Hills, CA 90210</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary mt-1">schedule</span>
+<div>
+<p class="font-bold uppercase tracking-widest text-xs">Hours</p>
+<p class="text-deep-forest/50 dark:text-background-light/50">Mon - Fri: 08:00 AM - 08:00 PM</p>
+</div>
+</div>
+</div>
+</div>
+<div class="rounded-xl overflow-hidden grayscale hover:grayscale-0 transition-all duration-700 h-[400px]">
+<img class="w-full h-full object-cover" data-alt="Luxury modern architecture of a wellness center in Beverly Hills" data-location="Beverly Hills" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2zKxGEDhmX5h2JKVqb9JLVa1MQSQAXAGkMIv6nKaLCrQxzihgMNq1WUYTwp27n6__mM9rNKPD_lLixuXGm0oyZ6eCNLDj5fSV8vbfXV7RvazUXvi8D1WWgYSPOk3mwotwqYq9Yc0fYxN-dTFYFCCxBIGpEqx0hgHodZpD3AW7iVYVrld_CVVUktVnWiB1OWRsJOK5zJLnpoJj-Cg5MWm7NdSVbkuagfFgYAzBzPR3Owod6p-_g38s4BK62Ex-97G2WDS2oemUobd5"/>
+</div>
+</div>
+</div>
+</section>
+</main>
+  <!-- Footer -->
+    <footer class="bg-background-light border-t border-slate-200 py-16 px-6">
+  <div class="max-w-7xl mx-auto">
+
+    <!-- Top Footer -->
+    {% comment %} <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16"> {% endcomment %}
+     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-16">
+
+
+      <!-- Brand -->
+      <div>
+     <div class="flex items-center gap-3 mb-6">
+ <img 
+  src="{% static 'images/madhura.png' %}" 
+  alt="Madhura Wellness Logo"
+  class="h-14 w-auto object-contain"
+/>
+
+  <span class="text-lg font-extrabold uppercase">
+    Madhura <span class="text-primary">Wellness World</span>
+  </span>
+</div>
+
+        <p class="text-slate-500 text-sm leading-relaxed mb-6">
+          Personalized nutrition, transformation programs, and premium wellness coaching designed for lasting results.
+        </p>
+
+        <!-- Social Icons -->
+        <div class="flex gap-4">
+          <a class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center hover:bg-primary hover:text-white transition-all" href="#">
+            <span class="material-icons">instagram</span>
+          </a>
+          <a class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center hover:bg-primary hover:text-white transition-all" href="#">
+            <span class="material-icons">smart_display</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Programs -->
+      <div>
+        <h5 class="text-slate-800 font-bold mb-6">Programs</h5>
+        <ul class="space-y-4 text-sm text-slate-500">
+          <li><a class="hover:text-primary transition-colors" href="#">Weight Loss</a></li>
+          <li><a class="hover:text-primary transition-colors" href="#">Muscle Gain</a></li>
+          <li><a class="hover:text-primary transition-colors" href="#">Total Wellness</a></li>
+          <li><a class="hover:text-primary transition-colors" href="#">Metabolic Reset</a></li>
+        </ul>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h5 class="text-slate-800 font-bold mb-6">Quick Links</h5>
+        <ul class="space-y-4 text-sm text-slate-500">
+          <li><a class="hover:text-primary transition-colors" href="#">Home</a></li>
+          <li><a class="hover:text-primary transition-colors" href="#">Transformations</a></li>
+          <li><a class="hover:text-primary transition-colors" href="#">Coaches</a></li>
+          <li><a class="hover:text-primary transition-colors" href="/book/">Book Consultation</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <h5 class="text-slate-800 font-bold mb-6">Contact</h5>
+        <ul class="space-y-4 text-sm text-slate-500">
+
+          <li class="flex items-start gap-2">
+            <span class="material-icons text-primary text-base">place</span>
+            <span>
+              5th Floor, Hare Plaza,<br>
+              KT Rd, opp. Varadaraja Swamy Temple,<br>
+              Tirupati, Andhra Pradesh 517501
+            </span>
+          </li>
+
+          <li class="flex items-center gap-2">
+            <span class="material-icons text-primary text-base">phone</span>
+            <a href="tel:+919246437143" class="hover:text-primary">
+              +91 92464 37143
+            </a>
+          </li>
+
+          <li class="flex items-center gap-2">
+            <span class="material-icons text-primary text-base">chat</span>
+            <a href="https://wa.me/919246437143" target="_blank" class="hover:text-primary">
+              Chat on WhatsApp
+            </a>
+          </li>
+
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="pt-8 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="text-xs text-slate-500 uppercase tracking-widest">
+        © 2026 Madhura Wellness Center. Independent Herbalife Distributor.
+      </p>
+      <div class="flex gap-8 text-xs text-slate-500 uppercase tracking-widest">
+        <a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+        <a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("show");
+                }
+            });
+        });
+        document.querySelectorAll(".fade-up").forEach(el => observer.observe(el));
+    });
+    </script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    // Fade-up animation
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("show");
+            }
+        });
+    });
+    document.querySelectorAll(".fade-up").forEach(el => observer.observe(el));
+
+    // Read more for programs
+    document.querySelectorAll(".read-more-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+            const desc = btn.previousElementSibling;
+            desc.classList.toggle("line-clamp-3");
+
+            btn.textContent =
+                desc.classList.contains("line-clamp-3")
+                ? "Read More"
+                : "Show Less";
+        });
+    });
+
+});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+const swiper = new Swiper(".testimonialSwiper", {
+  slidesPerView: 1,
+  spaceBetween: 20,
+  loop: true,
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+  breakpoints: {
+    640: {
+      slidesPerView: 2,
+    },
+    1024: {
+      slidesPerView: 3,
+    },
+  },
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const slides = document.querySelectorAll(".featured-slide");
+    let index = 0;
+
+    if (slides.length > 1) {
+        setInterval(() => {
+            slides[index].classList.add("hidden");
+            index = (index + 1) % slides.length;
+            slides[index].classList.remove("hidden");
+        }, 4000); // changes every 4 seconds
+    }
+});
+</script>
+<script>
+  const toggleBtn = document.getElementById("menuToggle");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  toggleBtn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+  });
+</script>
+<div class="fixed bottom-5 right-4 md:bottom-6 md:right-6 z-50 flex flex-col gap-4">
+
+  <!-- Call Button -->
+  <a href="tel:+919246437143"
+     class="w-14 h-14 bg-white text-primary rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition">
+    <span class="material-icons">call</span>
+  </a>
+
+  <!-- WhatsApp Button -->
+  <a href="https://wa.me/919246437143?text=Hi%20I%20want%20to%20book%20a%20consultation"
+     target="_blank"
+     class="w-14 h-14 bg-[#25D366] rounded-full shadow-xl flex items-center justify-center hover:scale-110 transition">
+     
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"
+         alt="WhatsApp"
+         class="w-7 h-7">
+         
+  </a>
+
+</div>
+
+
+    </body>
+    </html>

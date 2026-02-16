@@ -1,0 +1,642 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>{{ transformation.name }} | Transformation Story</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+
+<script>
+tailwind.config = {
+    theme: {
+        extend: {
+            colors: {
+                primary: "#11d473",
+                "background-light": "#f6f8f7",
+            },
+            fontFamily: {
+                display: ["Manrope"],
+                serif: ["Playfair Display", "serif"]
+            }
+        }
+    }
+}
+</script>
+
+<style>
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.7s ease;
+}
+.fade-up.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+.quote-serif {
+  font-family: "Playfair Display", serif;
+}
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
+}
+.fade-up.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+</style>
+</head>
+
+{% comment %} <body class="bg-background-light text-slate-800"> {% endcomment %}
+<body class="bg-background-light text-slate-800 pt-20 md:pt-24">
+
+<!-- NAVBAR -->
+<nav class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md border-b">
+  <div class="max-w-7xl mx-auto px-4 h-16 md:h-20 flex items-center justify-between">
+
+    <!-- Logo -->
+    <div class="flex items-center gap-2">
+      <img 
+        src="{% static 'images/madhura.png' %}" 
+        alt="Madhura Wellness Logo"
+        class="h-10 md:h-14 w-auto object-contain"
+      />
+      <span class="text-sm md:text-xl font-extrabold leading-tight">
+        MADHURA<span class="text-primary">WELLNESS</span>
+      </span>
+    </div>
+
+    <!-- Desktop Menu -->
+    <div class="hidden md:flex gap-8">
+      <a href="#programs" class="hover:text-primary">Programs</a>
+      <a href="#transformations" class="hover:text-primary">Transformations</a>
+      <a href="#experience" class="hover:text-primary">Experience</a>
+      <a href="/about/" class="hover:text-primary">About</a>
+      <a href="/team/" class="hover:text-primary">Team</a>
+    </div>
+
+    <!-- CTA -->
+    <a href="/book/"
+       class="hidden md:inline-block bg-primary text-white px-6 py-3 rounded-full text-sm font-semibold shadow-lg">
+      Book Consultation
+    </a>
+
+    <!-- Mobile Button -->
+    <button id="menuToggle" class="md:hidden text-primary">
+      <span class="material-icons text-3xl">menu</span>
+    </button>
+
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu"
+       class="hidden md:hidden bg-white border-t shadow-lg">
+    <div class="flex flex-col px-6 py-4 space-y-4 text-sm font-semibold">
+      <a href="#programs">Programs</a>
+      <a href="#transformations">Transformations</a>
+      <a href="#experience">Experience</a>
+      <a href="/about/">About</a>
+      <a href="/team/">Team</a>
+
+      <a href="/book/"
+         class="bg-primary text-white text-center px-6 py-3 rounded-full shadow-lg">
+        Book Consultation
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+ <!-- HERO -->
+<header class="py-12 md:py-20">
+  <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-10 md:gap-16 items-center">
+
+    <div class="fade-up">
+      <span class="inline-block px-4 py-2 bg-primary/10 text-primary text-xs md:text-sm font-semibold rounded-full mb-4 md:mb-6">
+        Verified Transformation
+      </span>
+
+      <h1 class="text-3xl sm:text-4xl md:text-6xl font-extrabold mb-4 md:mb-6 leading-tight">
+        The Journey of
+        <span class="text-primary">{{ transformation.name }}</span>
+      </h1>
+
+      {% if transformation.coach %}
+      <p class="text-sm text-slate-500 mt-2">
+        Guided by {{ transformation.coach.name }}
+      </p>
+      {% endif %}
+
+      <p class="text-base md:text-lg text-slate-600 mb-6 md:mb-8 max-w-lg">
+        {{ transformation.full_story|truncatewords:40 }}
+      </p>
+
+      <!-- Metrics -->
+      <div class="grid grid-cols-2 sm:flex sm:flex-wrap gap-3 md:gap-4">
+
+        <div class="px-4 md:px-6 py-4 bg-white shadow rounded-xl text-center">
+          <div class="text-xl md:text-3xl font-bold text-primary">
+            {{ transformation.result_text }}
+          </div>
+          <div class="text-[10px] md:text-xs uppercase text-slate-500">
+            Result
+          </div>
+        </div>
+
+        {% for m in transformation.metrics.all %}
+        <div class="px-4 md:px-6 py-4 bg-white shadow rounded-xl text-center">
+          <div class="text-xl md:text-3xl font-bold text-primary">
+            {{ m.value }}
+          </div>
+          <div class="text-[10px] md:text-xs uppercase text-slate-500">
+            {{ m.label }}
+          </div>
+        </div>
+        {% endfor %}
+
+        {% if transformation.duration %}
+        <div class="px-4 md:px-6 py-4 bg-white shadow rounded-xl text-center">
+          <div class="text-xl md:text-3xl font-bold text-primary">
+            {{ transformation.duration }}
+          </div>
+          <div class="text-[10px] md:text-xs uppercase text-slate-500">
+            Duration
+          </div>
+        </div>
+        {% endif %}
+
+      </div>
+    </div>
+
+    <!-- Hero Image -->
+    <div class="fade-up">
+      <div class="rounded-xl overflow-hidden shadow-2xl">
+        <img src="{{ transformation.after_photo.url }}"
+             class="w-full h-[320px] sm:h-[420px] md:h-[500px] object-cover">
+      </div>
+    </div>
+
+  </div>
+</header>
+
+{% comment %} <header class="py-20">
+  <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+
+    <div class="fade-up">
+      <span class="inline-block px-4 py-2 bg-primary/10 text-primary text-sm font-semibold rounded-full mb-6">
+        Verified Transformation
+      </span>
+
+      <h1 class="text-4xl md:text-6xl font-extrabold mb-6">
+        The Journey of
+        <span class="text-primary">{{ transformation.name }}</span>
+      </h1>
+{% if transformation.coach %}
+<p class="text-sm text-slate-500 mt-4">
+  Guided by {{ transformation.coach.name }}
+</p>
+{% endif %}
+
+      <p class="text-lg text-slate-600 mb-8 max-w-lg">
+        {{ transformation.full_story|truncatewords:40 }}
+      </p>
+
+      <!-- Metrics -->
+      <div class="flex flex-wrap gap-4">
+
+        <div class="px-6 py-4 bg-white shadow rounded-xl">
+          <div class="text-3xl font-bold text-primary">
+            {{ transformation.result_text }}
+          </div>
+          <div class="text-xs uppercase text-slate-500">
+            Result
+          </div>
+        </div>
+
+        {% for m in transformation.metrics.all %}
+        <div class="px-6 py-4 bg-white shadow rounded-xl">
+          <div class="text-3xl font-bold text-primary">
+            {{ m.value }}
+          </div>
+          <div class="text-xs uppercase text-slate-500">
+            {{ m.label }}
+          </div>
+        </div>
+        {% endfor %}
+
+        {% if transformation.duration %}
+        <div class="px-6 py-4 bg-white shadow rounded-xl">
+          <div class="text-3xl font-bold text-primary">
+            {{ transformation.duration }}
+          </div>
+          <div class="text-xs uppercase text-slate-500">
+            Duration
+          </div>
+        </div>
+        {% endif %}
+
+      </div>
+    </div>
+
+    <!-- Hero Image -->
+    <div class="fade-up">
+      <div class="rounded-xl overflow-hidden shadow-2xl">
+        <img src="{{ transformation.after_photo.url }}"
+             class="w-full h-[500px] object-cover">
+      </div>
+    </div>
+
+  </div>
+</header> {% endcomment %}
+
+<!-- BEFORE AFTER -->
+ <!-- BEFORE AFTER -->
+<section class="py-12 md:py-20 bg-white">
+  <div class="max-w-6xl mx-auto px-6 grid gap-8 md:grid-cols-2">
+
+    <div class="text-center">
+      <div class="rounded-xl overflow-hidden shadow-lg">
+        <img src="{{ transformation.before_photo.url }}"
+             class="w-full h-72 sm:h-96 object-cover">
+      </div>
+      <p class="mt-3 text-sm text-slate-500 italic">Before</p>
+    </div>
+
+    <div class="text-center">
+      <div class="rounded-xl overflow-hidden shadow-lg border-4 border-primary/20">
+        <img src="{{ transformation.after_photo.url }}"
+             class="w-full h-72 sm:h-96 object-cover">
+      </div>
+      <p class="mt-3 text-sm text-primary font-semibold italic">After</p>
+    </div>
+
+  </div>
+</section>
+
+{% comment %} <section class="py-20 bg-white">
+  <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-10">
+
+    <div class="text-center">
+      <div class="rounded-xl overflow-hidden shadow-lg">
+        <img src="{{ transformation.before_photo.url }}"
+             class="w-full h-[450px] object-cover">
+      </div>
+      <p class="mt-4 text-slate-500 italic">Before</p>
+    </div>
+
+    <div class="text-center">
+      <div class="rounded-xl overflow-hidden shadow-lg border-4 border-primary/20">
+        <img src="{{ transformation.after_photo.url }}"
+             class="w-full h-[450px] object-cover">
+      </div>
+      <p class="mt-4 text-primary font-semibold italic">After</p>
+    </div>
+
+  </div>
+</section> {% endcomment %}
+
+<!-- JOURNEY SECTIONS -->
+<!-- JOURNEY SECTIONS -->
+<section class="py-28 space-y-32">
+
+{% for section in transformation.sections.all %}
+<div class="max-w-6xl mx-auto px-6">
+
+  <div class="grid md:grid-cols-2 gap-16 items-center">
+
+    <!-- TEXT CARD -->
+    <div class="{% if forloop.counter|divisibleby:2 %}md:order-2{% endif %}">
+      {% comment %} <div class="relative bg-white p-10 rounded-3xl shadow-xl border border-slate-100"> {% endcomment %}
+<div class="relative bg-white p-6 md:p-10 rounded-3xl shadow-xl border border-slate-100">
+
+        <!-- Section Number -->
+        <div class="absolute -top-6 -left-6 w-14 h-14 rounded-full bg-primary text-white flex items-center justify-center text-lg font-bold shadow-lg">
+          {{ forloop.counter|stringformat:"02d" }}
+        </div>
+
+        <!-- Icon -->
+        <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+          <span class="material-icons text-primary">insights</span>
+        </div>
+
+        <!-- Title -->
+        <h2 class="text-3xl md:text-4xl font-extrabold mb-6">
+          {{ section.title }}
+        </h2>
+
+        <!-- Content -->
+        <p class="text-lg text-slate-600 leading-relaxed">
+          {{ section.content|linebreaks }}
+        </p>
+
+      </div>
+    </div>
+
+    <!-- IMAGE -->
+    {% if section.image %}
+    <div class="flex justify-center {% if forloop.counter|divisibleby:2 %}md:order-1{% endif %}">
+      <div class="w-full max-w-md rounded-3xl overflow-hidden shadow-2xl border border-slate-200 transition duration-500 hover:shadow-3xl hover:-translate-y-1">
+        <img src="{{ section.image.url }}"
+            class="w-full h-64 md:h-80 object-cover">
+      </div>
+    </div>
+    {% endif %}
+
+  </div>
+
+</div>
+{% endfor %}
+
+</section>
+
+
+
+<!-- TESTIMONIAL QUOTE -->
+<section class="py-28 bg-slate-900 text-white text-center">
+  <div class="max-w-3xl mx-auto px-6">
+
+    <span class="material-icons text-primary text-5xl mb-6">
+      format_quote
+    </span>
+
+    <blockquote class="quote-serif text-3xl italic leading-tight mb-8">
+      "{{ transformation.short_story }}"
+    </blockquote>
+
+    <div class="text-lg font-bold">
+      {{ transformation.name }}
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+ <section class="py-16 md:py-24 text-center px-6">
+  <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-6">
+    Ready to write your own
+    <span class="text-primary italic">Success Story?</span>
+  </h2>
+
+  <a href="/book/"
+     class="inline-block px-8 md:px-10 py-4 bg-primary text-white text-base md:text-lg font-bold rounded-full shadow-xl hover:scale-105 transition">
+    Book Your Consultation
+  </a>
+</section>
+
+{% comment %} <section class="py-24 text-center">
+  <h2 class="text-4xl font-extrabold mb-6">
+    Ready to write your own
+    <span class="text-primary italic">Success Story?</span>
+  </h2>
+
+  <a href="/book/"
+     class="inline-block px-10 py-4 bg-primary text-white text-lg font-bold rounded-full shadow-xl hover:scale-105 transition">
+    Book Your Consultation
+  </a>
+</section> {% endcomment %}
+
+<!-- FOOTER -->
+{% comment %} <footer class="bg-white border-t py-10 text-center">
+  <p class="text-sm text-slate-500">
+    © 2026 Madhura Wellness Center
+  </p>
+</footer> {% endcomment %}
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+          if (entry.isIntersecting) {
+              entry.target.classList.add("show");
+          }
+      });
+  });
+
+  document.querySelectorAll(".fade-up").forEach(el => observer.observe(el));
+});
+</script>
+
+ <footer class="bg-background-light border-t border-slate-200 py-16 px-6">
+  <div class="max-w-7xl mx-auto">
+
+    <!-- Top Footer -->
+    {% comment %} <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16"> {% endcomment %}
+     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-16">
+
+
+      <!-- Brand -->
+      <div>
+     <div class="flex items-center gap-3 mb-6">
+ <img 
+  src="{% static 'images/madhura.png' %}" 
+  alt="Madhura Wellness Logo"
+  class="h-14 w-auto object-contain"
+/>
+
+  <span class="text-lg font-extrabold uppercase">
+    Madhura <span class="text-primary">Wellness World</span>
+  </span>
+</div>
+
+        <p class="text-slate-500 text-sm leading-relaxed mb-6">
+          Personalized nutrition, transformation programs, and premium wellness coaching designed for lasting results.
+        </p>
+
+        <!-- Social Icons -->
+        <div class="flex gap-4">
+          <a class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center hover:bg-primary hover:text-white transition-all" href="#">
+            <span class="material-icons">instagram</span>
+          </a>
+          <a class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center hover:bg-primary hover:text-white transition-all" href="#">
+            <span class="material-icons">smart_display</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Programs -->
+      <div>
+        <h5 class="text-slate-800 font-bold mb-6">Programs</h5>
+        <ul class="space-y-4 text-sm text-slate-500">
+          <li><a class="hover:text-primary transition-colors" href="#">Weight Loss</a></li>
+          <li><a class="hover:text-primary transition-colors" href="#">Muscle Gain</a></li>
+          <li><a class="hover:text-primary transition-colors" href="#">Total Wellness</a></li>
+          <li><a class="hover:text-primary transition-colors" href="#">Metabolic Reset</a></li>
+        </ul>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h5 class="text-slate-800 font-bold mb-6">Quick Links</h5>
+        <ul class="space-y-4 text-sm text-slate-500">
+          <li><a class="hover:text-primary transition-colors" href="#">Home</a></li>
+          <li><a class="hover:text-primary transition-colors" href="#">Transformations</a></li>
+          <li><a class="hover:text-primary transition-colors" href="#">Coaches</a></li>
+          <li><a class="hover:text-primary transition-colors" href="/book/">Book Consultation</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <h5 class="text-slate-800 font-bold mb-6">Contact</h5>
+        <ul class="space-y-4 text-sm text-slate-500">
+
+          <li class="flex items-start gap-2">
+            <span class="material-icons text-primary text-base">place</span>
+            <span>
+              5th Floor, Hare Plaza,<br>
+              KT Rd, opp. Varadaraja Swamy Temple,<br>
+              Tirupati, Andhra Pradesh 517501
+            </span>
+          </li>
+
+          <li class="flex items-center gap-2">
+            <span class="material-icons text-primary text-base">phone</span>
+            <a href="tel:+919246437143" class="hover:text-primary">
+              +91 92464 37143
+            </a>
+          </li>
+
+          <li class="flex items-center gap-2">
+            <span class="material-icons text-primary text-base">chat</span>
+            <a href="https://wa.me/919246437143" target="_blank" class="hover:text-primary">
+              Chat on WhatsApp
+            </a>
+          </li>
+
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="pt-8 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="text-xs text-slate-500 uppercase tracking-widest">
+        © 2026 Madhura Wellness Center. Independent Herbalife Distributor.
+      </p>
+      <div class="flex gap-8 text-xs text-slate-500 uppercase tracking-widest">
+        <a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+        <a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("show");
+                }
+            });
+        });
+        document.querySelectorAll(".fade-up").forEach(el => observer.observe(el));
+    });
+    </script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    // Fade-up animation
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("show");
+            }
+        });
+    });
+    document.querySelectorAll(".fade-up").forEach(el => observer.observe(el));
+
+    // Read more for programs
+    document.querySelectorAll(".read-more-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+            const desc = btn.previousElementSibling;
+            desc.classList.toggle("line-clamp-3");
+
+            btn.textContent =
+                desc.classList.contains("line-clamp-3")
+                ? "Read More"
+                : "Show Less";
+        });
+    });
+
+});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+const swiper = new Swiper(".testimonialSwiper", {
+  slidesPerView: 1,
+  spaceBetween: 20,
+  loop: true,
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+  breakpoints: {
+    640: {
+      slidesPerView: 2,
+    },
+    1024: {
+      slidesPerView: 3,
+    },
+  },
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const slides = document.querySelectorAll(".featured-slide");
+    let index = 0;
+
+    if (slides.length > 1) {
+        setInterval(() => {
+            slides[index].classList.add("hidden");
+            index = (index + 1) % slides.length;
+            slides[index].classList.remove("hidden");
+        }, 4000); // changes every 4 seconds
+    }
+});
+</script>
+<script>
+  const toggleBtn = document.getElementById("menuToggle");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  toggleBtn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+  });
+</script>
+<div class="fixed bottom-5 right-4 md:bottom-6 md:right-6 z-50 flex flex-col gap-4">
+
+  <!-- Call Button -->
+  <a href="tel:+919246437143"
+     class="w-14 h-14 bg-white text-primary rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition">
+    <span class="material-icons">call</span>
+  </a>
+
+  <!-- WhatsApp Button -->
+  <a href="https://wa.me/919246437143?text=Hi%20I%20want%20to%20book%20a%20consultation"
+     target="_blank"
+     class="w-14 h-14 bg-[#25D366] rounded-full shadow-xl flex items-center justify-center hover:scale-110 transition">
+     
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"
+         alt="WhatsApp"
+         class="w-7 h-7">
+         
+  </a>
+
+</div>
+
+
+    </body>
+    </html>

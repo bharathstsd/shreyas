@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'testimonials',
     'bookings',
     'website',
+    'tracking'
 
 ]
 
@@ -134,6 +135,9 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
+LOGIN_URL = "login"
+LOGOUT_REDIRECT_URL = "login"
+
 
 
 
@@ -145,3 +149,4 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'emailapikey'   # your email
 EMAIL_HOST_PASSWORD = 'PHtE6r1YEOi6ijUsphECsKC8EpSnNYIm9etlJFNG5otFCKcBG01c/YsplWe3oxwjBvFFRaKfz49o4rPNu73QJjzvZz4YWGqyqK3sx/VYSPOZsbq6x00at1gadE3UXYftdtVj0yDRstvdNA=='
 DEFAULT_FROM_EMAIL = "noreply@tirupatieasytrips.com"
+ADMIN_EMAIL = "bharathtsd@gmail.com"

@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Programs | Madhura Wellness</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+
+<script>
+tailwind.config = {
+    theme: {
+        extend: {
+            colors: { primary: "#11d473" },
+            fontFamily: { display: ["Manrope"] }
+        }
+    }
+}
+</script>
+</head>
+
+<body class="bg-gray-50 font-display text-slate-800">
+
+<!-- HEADER -->
+<section class="py-24 text-center bg-white">
+    <h1 class="text-4xl md:text-5xl font-extrabold">
+        Our <span class="text-primary">Programs</span>
+    </h1>
+    <p class="text-slate-500 mt-4">
+        Personalized plans designed for real, lasting results
+    </p>
+</section>
+
+<!-- PROGRAM GRID -->
+<section class="max-w-7xl mx-auto px-6 pb-24">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+
+        {% for program in programs %}
+        <a href="/programs/{{ program.slug }}/"
+           class="group bg-white rounded-3xl overflow-hidden shadow hover:shadow-2xl transition">
+
+            <!-- Image -->
+            <div class="h-60 overflow-hidden">
+                <img src="{{ program.image.url }}"
+                     class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+            </div>
+
+            <!-- Content -->
+            <div class="p-8">
+                <span class="text-xs uppercase tracking-widest text-primary font-bold">
+                    {{ program.category }}
+                </span>
+
+                <h3 class="text-2xl font-extrabold mt-2 mb-3">
+                    {{ program.title }}
+                </h3>
+
+                <p class="text-slate-600 text-sm leading-relaxed line-clamp-3">
+                    {{ program.description }}
+                </p>
+
+                <!-- Features -->
+                <ul class="space-y-2 mt-5">
+                    {% for feature in program.feature_list|slice:":3" %}
+                    <li class="flex items-center gap-2 text-sm text-slate-600">
+                        <span class="material-icons text-primary text-base">check_circle</span>
+                        {{ feature }}
+                    </li>
+                    {% endfor %}
+                </ul>
+
+                <!-- CTA -->
+                <div class="mt-6">
+                    <span class="text-primary font-semibold">
+                        View Program →
+                    </span>
+                </div>
+            </div>
+
+        </a>
+        {% endfor %}
+
+    </div>
+</section>
+
+</body>
+</html>
