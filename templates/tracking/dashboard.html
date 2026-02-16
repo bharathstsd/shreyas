@@ -187,10 +187,16 @@
 <body>
 
 <div class="app">
-
-    <div class="header">
+<div class="header" style="display:flex; justify-content:space-between; align-items:center;">
+    <div>
         {{ coach.name }} Dashboard
     </div>
+
+    <a href="{% url 'logout' %}" 
+       style="font-size:13px; padding:6px 10px; background:#ffeaea; color:#c62828; border-radius:8px; text-decoration:none; font-weight:600;">
+        Logout
+    </a>
+</div>
 
     <div class="content">
         <div class="grid">

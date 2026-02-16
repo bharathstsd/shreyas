@@ -23,6 +23,61 @@ tailwind.config = {
 </head>
 
 <body class="bg-white font-display text-slate-800">
+<nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b">
+  <div class="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex items-center justify-between">
+
+    <!-- Logo -->
+<div class="flex items-center gap-3">
+  <img 
+    src="{% static 'images/madhura.png' %}" 
+    alt="Madhura Wellness Logo"
+    class="h-12 md:h-14 w-auto object-contain"
+  />
+  <span class="text-lg md:text-xl font-extrabold">
+    MADHURA<span class="text-primary">WELLNESS WORLD</span>
+  </span>
+</div>
+
+
+    <!-- Desktop Menu -->
+    <div class="hidden md:flex gap-10">
+      <a href="#programs" class="hover:text-primary">Programs</a>
+      <a href="#transformations" class="hover:text-primary">Transformations</a>
+      <a href="#experience" class="hover:text-primary">Experience</a>
+      <a href="/about/" class="hover:text-primary">About</a>
+      <a href="/team/" class="hover:text-primary">Team</a>
+
+    </div>
+
+    <!-- Desktop CTA -->
+    <a href="/book/"
+       class="hidden md:inline-block bg-primary text-white px-5 md:px-8 py-2.5 md:py-3 rounded-full text-xs md:text-sm font-semibold shadow-lg">
+      Book Consultation
+    </a>
+
+    <!-- Mobile Menu Button -->
+    <button id="menuToggle" class="md:hidden text-primary">
+      <span class="material-icons text-3xl">menu</span>
+    </button>
+
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu"
+       class="hidden md:hidden bg-white border-t shadow-lg">
+    <div class="flex flex-col px-6 py-4 space-y-4 text-sm font-semibold">
+      <a href="#programs" class="hover:text-primary">Programs</a>
+      <a href="#transformations" class="hover:text-primary">Transformations</a>
+      <a href="#experience" class="hover:text-primary">Experience</a>
+      <a href="/about/" class="hover:text-primary">About</a>
+
+      <a href="/book/"
+         class="bg-primary text-white text-center px-6 py-3 rounded-full shadow-lg">
+        Book Consultation
+      </a>
+    </div>
+  </div>
+</nav>
 
 <!-- HERO -->
 <section class="relative h-[60vh]">
@@ -67,6 +122,228 @@ tailwind.config = {
 
     </div>
 </section>
+<footer class="bg-background-light border-t border-slate-200 py-16 px-6">
+  <div class="max-w-7xl mx-auto">
 
-</body>
-</html>
+    <!-- Top Footer -->
+    {% comment %} <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16"> {% endcomment %}
+     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-16">
+
+
+      <!-- Brand -->
+      <div>
+     <div class="flex items-center gap-3 mb-6">
+ <img 
+  src="{% static 'images/madhura.png' %}" 
+  alt="Madhura Wellness Logo"
+  class="h-14 w-auto object-contain"
+/>
+
+  <span class="text-lg font-extrabold uppercase">
+    Madhura <span class="text-primary">Wellness World</span>
+  </span>
+</div>
+
+        <p class="text-slate-500 text-sm leading-relaxed mb-6">
+          Personalized nutrition, transformation programs, and premium wellness coaching designed for lasting results.
+        </p>
+
+        <!-- Social Icons -->
+        <div class="flex gap-4">
+          <a class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center hover:bg-primary hover:text-white transition-all" href="#">
+            <span class="material-icons">instagram</span>
+          </a>
+          <a class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center hover:bg-primary hover:text-white transition-all" href="#">
+            <span class="material-icons">smart_display</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Programs -->
+      <div>
+        <h5 class="text-slate-800 font-bold mb-6">Programs</h5>
+        <ul class="space-y-4 text-sm text-slate-500">
+          <li><a class="hover:text-primary transition-colors" href="#">Weight Loss</a></li>
+          <li><a class="hover:text-primary transition-colors" href="#">Muscle Gain</a></li>
+          <li><a class="hover:text-primary transition-colors" href="#">Total Wellness</a></li>
+          <li><a class="hover:text-primary transition-colors" href="#">Metabolic Reset</a></li>
+        </ul>
+      </div>
+
+      <!-- Quick Links -->
+    <div>
+  <h5 class="text-slate-800 font-bold mb-6">Quick Links</h5>
+  <ul class="space-y-4 text-sm text-slate-500">
+    <li><a class="hover:text-primary transition-colors" href="/">Home</a></li>
+    <li><a class="hover:text-primary transition-colors" href="/transformations/">Transformations</a></li>
+    <li><a class="hover:text-primary transition-colors" href="/team/">Coaches</a></li>
+    <li><a class="hover:text-primary transition-colors" href="/book/">Book Consultation</a></li>
+
+    <!-- Coach Login -->
+    <li>
+      <a class="text-primary font-semibold hover:underline"
+         href="/tracking/login/">
+        Coach Login
+      </a>
+    </li>
+  </ul>
+</div>
+
+      <!-- Contact -->
+      <div>
+        <h5 class="text-slate-800 font-bold mb-6">Contact</h5>
+        <ul class="space-y-4 text-sm text-slate-500">
+
+          <li class="flex items-start gap-2">
+            <span class="material-icons text-primary text-base">place</span>
+            <span>
+              5th Floor, Hare Plaza,<br>
+              KT Rd, opp. Varadaraja Swamy Temple,<br>
+              Tirupati, Andhra Pradesh 517501
+            </span>
+          </li>
+
+          <li class="flex items-center gap-2">
+            <span class="material-icons text-primary text-base">phone</span>
+            <a href="tel:+919246437143" class="hover:text-primary">
+              +91 92464 37143
+            </a>
+          </li>
+
+          <li class="flex items-center gap-2">
+            <span class="material-icons text-primary text-base">chat</span>
+            <a href="https://wa.me/919246437143" target="_blank" class="hover:text-primary">
+              Chat on WhatsApp
+            </a>
+          </li>
+
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="pt-8 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="text-xs text-slate-500 uppercase tracking-widest">
+        © 2026 Madhura Wellness Center. Independent Herbalife Distributor.
+      </p>
+      <div class="flex gap-8 text-xs text-slate-500 uppercase tracking-widest">
+        <a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+        <a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("show");
+                }
+            });
+        });
+        document.querySelectorAll(".fade-up").forEach(el => observer.observe(el));
+    });
+    </script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    // Fade-up animation
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("show");
+            }
+        });
+    });
+    document.querySelectorAll(".fade-up").forEach(el => observer.observe(el));
+
+    // Read more for programs
+    document.querySelectorAll(".read-more-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+            const desc = btn.previousElementSibling;
+            desc.classList.toggle("line-clamp-3");
+
+            btn.textContent =
+                desc.classList.contains("line-clamp-3")
+                ? "Read More"
+                : "Show Less";
+        });
+    });
+
+});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+const swiper = new Swiper(".testimonialSwiper", {
+  slidesPerView: 1,
+  spaceBetween: 20,
+  loop: true,
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+  breakpoints: {
+    640: {
+      slidesPerView: 2,
+    },
+    1024: {
+      slidesPerView: 3,
+    },
+  },
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const slides = document.querySelectorAll(".featured-slide");
+    let index = 0;
+
+    if (slides.length > 1) {
+        setInterval(() => {
+            slides[index].classList.add("hidden");
+            index = (index + 1) % slides.length;
+            slides[index].classList.remove("hidden");
+        }, 4000); // changes every 4 seconds
+    }
+});
+</script>
+<script>
+  const toggleBtn = document.getElementById("menuToggle");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  toggleBtn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+  });
+</script>
+<div class="fixed bottom-5 right-4 md:bottom-6 md:right-6 z-50 flex flex-col gap-4">
+
+  <!-- Call Button -->
+  <a href="tel:+919246437143"
+     class="w-14 h-14 bg-white text-primary rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition">
+    <span class="material-icons">call</span>
+  </a>
+
+  <!-- WhatsApp Button -->
+  <a href="https://wa.me/919246437143?text=Hi%20I%20want%20to%20book%20a%20consultation"
+     target="_blank"
+     class="w-14 h-14 bg-[#25D366] rounded-full shadow-xl flex items-center justify-center hover:scale-110 transition">
+     
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"
+         alt="WhatsApp"
+         class="w-7 h-7">
+         
+  </a>
+
+</div>
+
+
+    </body>
+    </html>

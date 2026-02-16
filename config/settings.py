@@ -44,7 +44,11 @@ INSTALLED_APPS = [
     'testimonials',
     'bookings',
     'website',
-    'tracking'
+    'tracking',
+    'blog',
+    'ckeditor',
+
+
 
 ]
 

@@ -8,6 +8,8 @@ urlpatterns = [
     path('', include('website.urls')),
     path("book/", include("bookings.urls")),
     path("tracking/", include("tracking.urls")),
+    path("blog/", include("blog.urls")),
+
 
 
 ]
