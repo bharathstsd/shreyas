@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'tracking',
     'blog',
     'ckeditor',
+    'invites',
 
 
 
@@ -151,6 +152,8 @@ EMAIL_HOST = 'smtp.zeptomail.in'          # your SMTP host
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'emailapikey'   # your email
-EMAIL_HOST_PASSWORD = 'PHtE6r1YEOi6ijUsphECsKC8EpSnNYIm9etlJFNG5otFCKcBG01c/YsplWe3oxwjBvFFRaKfz49o4rPNu73QJjzvZz4YWGqyqK3sx/VYSPOZsbq6x00at1gadE3UXYftdtVj0yDRstvdNA=='
-DEFAULT_FROM_EMAIL = "noreply@tirupatieasytrips.com"
+EMAIL_HOST_PASSWORD = 'PHtE6r0KEbrujjYmoBcA5vW4EcGjMIso9OlufwRG4tsUCvQFHU0Eq9oslWe3rB18XKYUEqXPyY4+uL2asL2FIjvoZGhMXWqyqK3sx/VYSPOZsbq6x00VtFUbcUXeVoTscdBo0yffuN/SNA=='
+DEFAULT_FROM_EMAIL = "noreply@madhuraswellnessworld.com"
 ADMIN_EMAIL = "bharathtsd@gmail.com"
+
+

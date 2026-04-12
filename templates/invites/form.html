@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BBT Invite Generator</title>
+</head>
+<body>
+
+<h2>Generate BBT Invite</h2>
+
+<form id="inviteForm" method="post">
+    {% csrf_token %}
+
+    <input name="customer_name" placeholder="Customer Name" required><br><br>
+    <input name="coach_name" placeholder="Coach Name" required><br><br>
+    <input name="coach_phone" placeholder="Coach Phone" required><br><br>
+    <input name="customer_phone" placeholder="Customer Phone" required><br><br>
+
+
+    <label>Event Date (optional)</label><br>
+    <input type="date" name="event_date"><br><br>
+
+    <label>Event Time (optional)</label><br>
+    <input type="time" name="event_time"><br><br>
+
+    <button type="submit">Generate Invite</button>
+</form>
+
+<br>
+<div id="result"></div>
+
+<script>
+document.getElementById("inviteForm").onsubmit = async function(e){
+    e.preventDefault();
+
+    let form = this;
+    let formData = new FormData(form);
+
+    // Get CSRF token from the form
+    let csrfToken = form.querySelector('[name=csrfmiddlewaretoken]').value;
+
+    let res = await fetch("/invites/generate/", {
+        method: "POST",
+        headers: {
+            "X-CSRFToken": csrfToken
+        },
+        body: formData
+    });
+
+   let data = await res.json();
+
+document.getElementById("result").innerHTML = `
+    <img src="${data.image}" width="300"><br><br>
+    <a href="${data.whatsapp}" target="_blank">
+        Send via WhatsApp
+    </a>
+`;
+}
+</script>
+
+</body>
+</html>

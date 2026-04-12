@@ -84,7 +84,7 @@ Phone: {phone}
 Goal: {goal}
 """,
             from_email=settings.DEFAULT_FROM_EMAIL,
-            recipient_list=["bharathtsd@gmail.com"],
+            recipient_list=["naiduvardhineni@gmail.com"],
             fail_silently=True,
         )
 
@@ -138,7 +138,7 @@ def home(request):
             message = quote(
                 f"Hi, I’m {name}. I’m interested in a consultation for {goal}."
             )
-            return redirect(f"https://wa.me/919666615225?text={message}")
+            return redirect(f"https://wa.me/919246437143?text={message}")
 
     context = {
         "coach": Coach.objects.filter(is_head_coach=True).first(),
@@ -397,7 +397,7 @@ def calendar_page(request):
 #             admin_subject,
 #             admin_message,
 #             settings.DEFAULT_FROM_EMAIL,
-#             [bharathtsd@gmail.com],  # your email
+#             [naiduvardhineni@gmail.com],  # your email
 #         )
 
 #         # Auto-reply to customer

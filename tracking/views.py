@@ -896,3 +896,117 @@ def quick_checkin(request, slug):
         )
 
     return redirect("coach_dashboard", slug=coach.slug)
+
+
+
+
+from datetime import timedelta
+from django.utils import timezone
+
+
+def get_change_between(person, days):
+    checkins = person.checkins.order_by("-date")
+
+    if checkins.count() < 2:
+        return None
+
+    latest = checkins.first()
+    target_date = latest.date - timedelta(days=days)
+
+    previous = (
+        person.checkins
+        .filter(date__lte=target_date)
+        .order_by("-date")
+        .first()
+    )
+
+    if not previous:
+        return None
+
+    return latest.weight - previous.weight
+
+
+def get_leaderboards(coach):
+    today = timezone.now().date()
+    # people = coach.clients.all()
+    # people = Person.objects.filter(coach=coach, role="client")
+    # people = Person.objects.filter(sponsor=coach, role="client")
+    people = coach.downline.filter(role="client")
+
+
+
+
+    daily_loss = []
+    daily_gain = []
+    weekly_loss = []
+    weekly_gain = []
+    monthly_loss = []
+    monthly_gain = []
+
+    for person in people:
+
+        # DAILY
+        today_checkin = person.checkins.filter(date=today).first()
+        if today_checkin:
+            previous = (
+                person.checkins
+                .filter(date__lt=today)
+                .order_by("-date")
+                .first()
+            )
+
+            if previous:
+                change = today_checkin.weight - previous.weight
+                if change < 0:
+                    daily_loss.append((person, change))
+                elif change > 0:
+                    daily_gain.append((person, change))
+
+        # WEEKLY
+        weekly_change = get_change_between(person, 7)
+        if weekly_change is not None:
+            if weekly_change < 0:
+                weekly_loss.append((person, weekly_change))
+            elif weekly_change > 0:
+                weekly_gain.append((person, weekly_change))
+
+        # MONTHLY
+        monthly_change = get_change_between(person, 30)
+        if monthly_change is not None:
+            if monthly_change < 0:
+                monthly_loss.append((person, monthly_change))
+            elif monthly_change > 0:
+                monthly_gain.append((person, monthly_change))
+
+    def top3(data, reverse=False):
+        return sorted(data, key=lambda x: x[1], reverse=reverse)[:3]
+
+    return {
+        "daily_loss": top3(daily_loss),
+        "daily_gain": top3(daily_gain, reverse=True),
+        "weekly_loss": top3(weekly_loss),
+        "weekly_gain": top3(weekly_gain, reverse=True),
+        "monthly_loss": top3(monthly_loss),
+        "monthly_gain": top3(monthly_gain, reverse=True),
+    }
+
+
+@login_required
+def coach_leaderboard(request, slug):
+    coach = get_object_or_404(Person, slug=slug, role="coach")
+    leaderboards = get_leaderboards(coach)
+
+    return render(request, "tracking/coach_leaderboard.html", {
+        "coach": coach,
+        "leaderboards": leaderboards,
+    })
+
+
+def tvs_leaderboard(request, slug):
+    coach = get_object_or_404(Person, slug=slug, role="coach")
+    leaderboards = get_leaderboards(coach)
+
+    return render(request, "tracking/tvs_leaderboard.html", {
+        "coach": coach,
+        "leaderboards": leaderboards,
+    })

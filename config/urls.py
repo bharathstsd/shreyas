@@ -9,6 +9,8 @@ urlpatterns = [
     path("book/", include("bookings.urls")),
     path("tracking/", include("tracking.urls")),
     path("blog/", include("blog.urls")),
+    path('invites/', include('invites.urls')),
+
 
 
 

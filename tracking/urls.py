@@ -11,11 +11,21 @@ urlpatterns = [
     path("coach/<slug:slug>/leaderboard/", tv_leaderboard, name="tv_leaderboard"),
     path("search-people/", search_people, name="search_people"),
     path("coach/<slug:slug>/quick-checkin/",quick_checkin,name="quick_checkin"),
+    
 
 
+]
+from .views import coach_leaderboard, tvs_leaderboard
 
-
-
-
-
+urlpatterns += [
+    path(
+        "leaderboards/coach/<slug:slug>/",
+        coach_leaderboard,
+        name="coach_leaderboard"
+    ),
+    path(
+        "leaderboards/tv/<slug:slug>/",
+        tvs_leaderboard,
+        name="tvs_leaderboard"
+    ),
 ]

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ coach.name }} Leaderboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: system-ui, sans-serif;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: white;
+            overflow: hidden;
+        }
+
+        .screen {
+            display: none;
+            height: 100vh;
+            padding: 60px;
+            box-sizing: border-box;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        .title {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 40px;
+        }
+
+        .person {
+            font-size: 36px;
+            margin: 20px 0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .loss { color: #ff6b6b; }
+        .gain { color: #4cd137; }
+    </style>
+</head>
+<body>
+
+<!-- DAILY -->
+<div class="screen active">
+    <div class="title">Daily Leaders</div>
+
+    {% for p, value in leaderboards.daily_loss %}
+        <div class="person">
+            <span>{{ p.name }}</span>
+            <span class="loss">{{ value|floatformat:1 }} kg</span>
+        </div>
+    {% endfor %}
+
+    {% for p, value in leaderboards.daily_gain %}
+        <div class="person">
+            <span>{{ p.name }}</span>
+            <span class="gain">+{{ value|floatformat:1 }} kg</span>
+        </div>
+    {% endfor %}
+</div>
+
+<!-- WEEKLY -->
+<div class="screen">
+    <div class="title">Weekly Leaders</div>
+
+    {% for p, value in leaderboards.weekly_loss %}
+        <div class="person">
+            <span>{{ p.name }}</span>
+            <span class="loss">{{ value|floatformat:1 }} kg</span>
+        </div>
+    {% endfor %}
+
+    {% for p, value in leaderboards.weekly_gain %}
+        <div class="person">
+            <span>{{ p.name }}</span>
+            <span class="gain">+{{ value|floatformat:1 }} kg</span>
+        </div>
+    {% endfor %}
+</div>
+
+<!-- MONTHLY -->
+<div class="screen">
+    <div class="title">Monthly Leaders</div>
+
+    {% for p, value in leaderboards.monthly_loss %}
+        <div class="person">
+            <span>{{ p.name }}</span>
+            <span class="loss">{{ value|floatformat:1 }} kg</span>
+        </div>
+    {% endfor %}
+
+    {% for p, value in leaderboards.monthly_gain %}
+        <div class="person">
+            <span>{{ p.name }}</span>
+            <span class="gain">+{{ value|floatformat:1 }} kg</span>
+        </div>
+    {% endfor %}
+</div>
+
+<script>
+let index = 0;
+const screens = document.querySelectorAll(".screen");
+
+setInterval(() => {
+    screens[index].classList.remove("active");
+    index = (index + 1) % screens.length;
+    screens[index].classList.add("active");
+}, 6000); // rotate every 6 seconds
+</script>
+
+</body>
+</html>

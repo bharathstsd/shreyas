@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ coach.name }} Leaderboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: system-ui, sans-serif;
+            background: #f3f5f7;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .header {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .section {
+            background: white;
+            border-radius: 14px;
+            padding: 16px;
+            margin-bottom: 18px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+        }
+
+        .section h3 {
+            margin-bottom: 10px;
+        }
+
+        .person {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .person:last-child {
+            border-bottom: none;
+        }
+
+        .name {
+            font-weight: 600;
+        }
+
+        .loss {
+            color: #d32f2f;
+            font-weight: 600;
+        }
+
+        .gain {
+            color: #2e7d32;
+            font-weight: 600;
+        }
+
+        .back {
+            display: inline-block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: #1976d2;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <a class="back" href="{% url 'coach_dashboard' coach.slug %}">← Back to Dashboard</a>
+
+    <div class="header">
+        {{ coach.name }} Leaderboard
+    </div>
+
+    <!-- DAILY -->
+    <div class="section">
+        <h3>🏆 Daily Weight Loss</h3>
+        {% for p, value in leaderboards.daily_loss %}
+            <div class="person">
+                <span class="name">{{ p.name }}</span>
+                <span class="loss">{{ value|floatformat:1 }} kg</span>
+            </div>
+        {% empty %}
+            <div>No data</div>
+        {% endfor %}
+    </div>
+
+    <div class="section">
+        <h3>🚀 Daily Weight Gain</h3>
+        {% for p, value in leaderboards.daily_gain %}
+            <div class="person">
+                <span class="name">{{ p.name }}</span>
+                <span class="gain">+{{ value|floatformat:1 }} kg</span>
+            </div>
+        {% empty %}
+            <div>No data</div>
+        {% endfor %}
+    </div>
+
+    <!-- WEEKLY -->
+    <div class="section">
+        <h3>🔥 Weekly Weight Loss</h3>
+        {% for p, value in leaderboards.weekly_loss %}
+            <div class="person">
+                <span class="name">{{ p.name }}</span>
+                <span class="loss">{{ value|floatformat:1 }} kg</span>
+            </div>
+        {% empty %}
+            <div>No data</div>
+        {% endfor %}
+    </div>
+
+    <div class="section">
+        <h3>💪 Weekly Weight Gain</h3>
+        {% for p, value in leaderboards.weekly_gain %}
+            <div class="person">
+                <span class="name">{{ p.name }}</span>
+                <span class="gain">+{{ value|floatformat:1 }} kg</span>
+            </div>
+        {% empty %}
+            <div>No data</div>
+        {% endfor %}
+    </div>
+
+    <!-- MONTHLY -->
+    <div class="section">
+        <h3>📉 Monthly Weight Loss</h3>
+        {% for p, value in leaderboards.monthly_loss %}
+            <div class="person">
+                <span class="name">{{ p.name }}</span>
+                <span class="loss">{{ value|floatformat:1 }} kg</span>
+            </div>
+        {% empty %}
+            <div>No data</div>
+        {% endfor %}
+    </div>
+
+    <div class="section">
+        <h3>📈 Monthly Weight Gain</h3>
+        {% for p, value in leaderboards.monthly_gain %}
+            <div class="person">
+                <span class="name">{{ p.name }}</span>
+                <span class="gain">+{{ value|floatformat:1 }} kg</span>
+            </div>
+        {% empty %}
+            <div>No data</div>
+        {% endfor %}
+    </div>
+
+</div>
+
+</body>
+</html>
