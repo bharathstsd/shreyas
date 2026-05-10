@@ -4,7 +4,7 @@
 <html class="light" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Elite Coaching Team | Herbalife Luxury Wellness</title>
+<title>Coaching Team | Shreyas Wellness</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
@@ -72,25 +72,22 @@
     <!-- Logo -->
     <div class="flex items-center gap-2">
       <img 
-        src="{% static 'images/madhura.png' %}" 
-        alt="Madhura Wellness Logo"
+        src="{{ brand.logo_url }}" 
+        alt="Shreyas Wellness Logo"
         class="h-10 md:h-14 w-auto object-contain"
       />
       <span class="text-sm md:text-xl font-extrabold leading-tight">
-        MADHURA<span class="text-primary">WELLNESS</span>
+        SHREYAS<span class="text-primary">WELLNESS</span>
       </span>
     </div>
 
-    <!-- Desktop Menu -->
-    <div class="hidden md:flex gap-8">
-      <a href="#programs" class="hover:text-primary">Programs</a>
-      <a href="#transformations" class="hover:text-primary">Transformations</a>
-      <a href="#experience" class="hover:text-primary">Experience</a>
-      <a href="/about/" class="hover:text-primary">About</a>
-      <a href="/team/" class="hover:text-primary">Team</a>
+        <!-- Desktop Menu -->
+    <div class="hidden md:flex items-center gap-8 font-semibold text-sm">
+      {% for item in main_menu %}
+      <a href="{{ item.url }}" class="hover:text-primary">{{ item.label }}</a>
+      {% endfor %}
     </div>
-
-    <!-- CTA -->
+<!-- CTA -->
     <a href="/book/"
        class="hidden md:inline-block bg-primary text-white px-6 py-3 rounded-full text-sm font-semibold shadow-lg">
       Book Consultation
@@ -103,15 +100,13 @@
 
   </div>
 
-  <!-- Mobile Menu -->
+    <!-- Mobile Menu -->
   <div id="mobileMenu"
        class="hidden md:hidden bg-white border-t shadow-lg">
     <div class="flex flex-col px-6 py-4 space-y-4 text-sm font-semibold">
-      <a href="#programs">Programs</a>
-      <a href="#transformations">Transformations</a>
-      <a href="#experience">Experience</a>
-      <a href="/about/">About</a>
-      <a href="/team/">Team</a>
+      {% for item in main_menu %}
+      <a href="{{ item.url }}" class="hover:text-primary">{{ item.label }}</a>
+      {% endfor %}
 
       <a href="/book/"
          class="bg-primary text-white text-center px-6 py-3 rounded-full shadow-lg">
@@ -343,13 +338,13 @@
 <div class="grid lg:grid-cols-2 gap-16 items-center">
 <div>
 <h2 class="text-4xl font-light mb-6">Our Flagship <span class="italic">Center</span></h2>
-<p class="text-deep-forest/60 dark:text-background-light/60 mb-8 leading-relaxed">Located in the heart of the luxury wellness district, our center offers private consultations, premium nutrition bar, and cellular testing facilities.</p>
+<p class="text-deep-forest/60 dark:text-background-light/60 mb-8 leading-relaxed">Located in Tirupati, our center offers personal consultations, nutrition coaching, body composition tracking, and practical wellness support.</p>
 <div class="space-y-4">
 <div class="flex items-start gap-4">
 <span class="material-symbols-outlined text-primary mt-1">location_on</span>
 <div>
 <p class="font-bold uppercase tracking-widest text-xs">Address</p>
-<p class="text-deep-forest/50 dark:text-background-light/50">1022 Wellness Row, Beverly Hills, CA 90210</p>
+<p class="text-deep-forest/50 dark:text-background-light/50">5th Floor, Hare Plaza, KT Rd, Tirupati, Andhra Pradesh 517501</p>
 </div>
 </div>
 <div class="flex items-start gap-4">
@@ -362,7 +357,7 @@
 </div>
 </div>
 <div class="rounded-xl overflow-hidden grayscale hover:grayscale-0 transition-all duration-700 h-[400px]">
-<img class="w-full h-full object-cover" data-alt="Luxury modern architecture of a wellness center in Beverly Hills" data-location="Beverly Hills" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2zKxGEDhmX5h2JKVqb9JLVa1MQSQAXAGkMIv6nKaLCrQxzihgMNq1WUYTwp27n6__mM9rNKPD_lLixuXGm0oyZ6eCNLDj5fSV8vbfXV7RvazUXvi8D1WWgYSPOk3mwotwqYq9Yc0fYxN-dTFYFCCxBIGpEqx0hgHodZpD3AW7iVYVrld_CVVUktVnWiB1OWRsJOK5zJLnpoJj-Cg5MWm7NdSVbkuagfFgYAzBzPR3Owod6p-_g38s4BK62Ex-97G2WDS2oemUobd5"/>
+<img class="w-full h-full object-cover" data-alt="Modern wellness center in Tirupati" data-location="Tirupati" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2zKxGEDhmX5h2JKVqb9JLVa1MQSQAXAGkMIv6nKaLCrQxzihgMNq1WUYTwp27n6__mM9rNKPD_lLixuXGm0oyZ6eCNLDj5fSV8vbfXV7RvazUXvi8D1WWgYSPOk3mwotwqYq9Yc0fYxN-dTFYFCCxBIGpEqx0hgHodZpD3AW7iVYVrld_CVVUktVnWiB1OWRsJOK5zJLnpoJj-Cg5MWm7NdSVbkuagfFgYAzBzPR3Owod6p-_g38s4BK62Ex-97G2WDS2oemUobd5"/>
 </div>
 </div>
 </div>
@@ -381,13 +376,13 @@
       <div>
      <div class="flex items-center gap-3 mb-6">
  <img 
-  src="{% static 'images/madhura.png' %}" 
-  alt="Madhura Wellness Logo"
+  src="{{ brand.logo_url }}" 
+  alt="Shreyas Wellness Logo"
   class="h-14 w-auto object-contain"
 />
 
   <span class="text-lg font-extrabold uppercase">
-    Madhura <span class="text-primary">Wellness World</span>
+    Shreyas <span class="text-primary">Wellness World</span>
   </span>
 </div>
 
@@ -471,7 +466,7 @@
     <!-- Bottom Bar -->
     <div class="pt-8 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4">
       <p class="text-xs text-slate-500 uppercase tracking-widest">
-        © 2026 Madhura Wellness Center. Independent Herbalife Distributor.
+        Copyright 2026 Shreyas Wellness Center. Independent Herbalife Distributor.
       </p>
       <div class="flex gap-8 text-xs text-slate-500 uppercase tracking-widest">
         <a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>

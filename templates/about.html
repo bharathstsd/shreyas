@@ -5,7 +5,7 @@
     <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Madhura Wellness | Luxury Nutrition & Coaching</title>
+    <title>Shreyas Wellness | Personalized Nutrition & Coaching</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -81,25 +81,23 @@
     <!-- Logo -->
 <div class="flex items-center gap-3">
   <img 
-    src="{% static 'images/madhura.png' %}" 
-    alt="Madhura Wellness Logo"
+    src="{{ brand.logo_url }}" 
+    alt="Shreyas Wellness Logo"
     class="h-12 md:h-14 w-auto object-contain"
   />
   <span class="text-lg md:text-xl font-extrabold">
-    MADHURA<span class="text-primary">WELLNESS WORLD</span>
+    SHREYAS<span class="text-primary">WELLNESS WORLD</span>
   </span>
 </div>
 
 
-    <!-- Desktop Menu -->
-    <div class="hidden md:flex gap-10">
-      <a href="#programs" class="hover:text-primary">Programs</a>
-      <a href="#transformations" class="hover:text-primary">Transformations</a>
-      <a href="#experience" class="hover:text-primary">Experience</a>
-      <a href="/about/" class="hover:text-primary">About</a>
+            <!-- Desktop Menu -->
+    <div class="hidden md:flex items-center gap-8 font-semibold text-sm">
+      {% for item in main_menu %}
+      <a href="{{ item.url }}" class="hover:text-primary">{{ item.label }}</a>
+      {% endfor %}
     </div>
-
-    <!-- Desktop CTA -->
+<!-- Desktop CTA -->
     <a href="/book/"
        class="hidden md:inline-block bg-primary text-white px-5 md:px-8 py-2.5 md:py-3 rounded-full text-xs md:text-sm font-semibold shadow-lg">
       Book Consultation
@@ -112,14 +110,13 @@
 
   </div>
 
-  <!-- Mobile Menu -->
+    <!-- Mobile Menu -->
   <div id="mobileMenu"
        class="hidden md:hidden bg-white border-t shadow-lg">
     <div class="flex flex-col px-6 py-4 space-y-4 text-sm font-semibold">
-      <a href="#programs" class="hover:text-primary">Programs</a>
-      <a href="#transformations" class="hover:text-primary">Transformations</a>
-      <a href="#experience" class="hover:text-primary">Experience</a>
-      <a href="/about/" class="hover:text-primary">About</a>
+      {% for item in main_menu %}
+      <a href="{{ item.url }}" class="hover:text-primary">{{ item.label }}</a>
+      {% endfor %}
 
       <a href="/book/"
          class="bg-primary text-white text-center px-6 py-3 rounded-full shadow-lg">
@@ -167,28 +164,28 @@ Combining natural wellness with scientifically backed nutrition, we help you ach
 <div class="w-20 h-1 bg-accent-gold"></div>
 
 <p class="text-lg leading-relaxed text-slate-600 dark:text-slate-400 italic">
-"We started this journey to change our own lives — today, we help others do the same."
+"We started this journey to change our own lives - today, we help others do the same."
 </p>
 
 <p class="text-lg leading-relaxed text-slate-600 dark:text-slate-400">
-Our journey began during a difficult phase when health challenges in the family and financial pressure made us rethink our lifestyle. That’s when we discovered a better way through <strong>Herbalife Nutrition</strong>.
+Our journey began during a difficult phase when health challenges in the family and financial pressure made us rethink our lifestyle. That's when we discovered a better way through <strong>Herbalife Nutrition</strong>.
 </p>
 
 <p class="text-lg leading-relaxed text-slate-600 dark:text-slate-400">
-With real results — including Pushpa’s <strong>18 kg transformation</strong> — our belief turned into purpose. Today, we help people build healthier, more confident lives through proper guidance and support.
+With real results - including Pushpa's <strong>18 kg transformation</strong> - our belief turned into purpose. Today, we help people build healthier, more confident lives through proper guidance and support.
 </p>
 
 <div class="pt-4">
   <div class="flex items-center space-x-4">
 
     <div class="w-12 h-12 rounded-full overflow-hidden">
-      <img class="w-full h-full object-cover" src="{% static 'images/madhura.png' %}" alt="Naidu and Pushpa"/>
+      <img class="w-full h-full object-cover" src="{{ brand.logo_url }}" alt="Naidu and Pushpa"/>
     </div>
 
     <div>
       <h4 class="font-bold text-slate-900 dark:text-white">Naidu & Pushpa</h4>
       <p class="text-sm text-accent-gold font-semibold uppercase tracking-wider">
-        Founders, Madhura Wellness World
+        Founders, Shreyas Wellness World
       </p>
     </div>
 
@@ -239,7 +236,7 @@ With real results — including Pushpa’s <strong>18 kg transformation</strong>
 <span class="material-icons text-primary group-hover:text-white">person</span>
 </div>
 <h4 class="text-2xl font-bold mb-4 dark:text-white">Personalized Precision</h4>
-<p class="text-slate-600 dark:text-slate-400 mb-6">No two bodies are the same. We use advanced metabolic tracking and lifestyle assessment to tailor Herbalife programs to your unique DNA.</p>
+<p class="text-slate-600 dark:text-slate-400 mb-6">No two bodies are the same. We use advanced metabolic tracking and lifestyle assessment to tailor wellness programs to your unique DNA.</p>
 <ul class="space-y-3">
 <li class="flex items-center text-sm font-semibold text-slate-500"><span class="material-icons text-primary text-xs mr-2">check_circle</span> DNA Lifestyle Mapping</li>
 <li class="flex items-center text-sm font-semibold text-slate-500"><span class="material-icons text-primary text-xs mr-2">check_circle</span> Metabolic Profiling</li>
@@ -251,7 +248,7 @@ With real results — including Pushpa’s <strong>18 kg transformation</strong>
 <span class="material-icons text-primary group-hover:text-white">science</span>
 </div>
 <h4 class="text-2xl font-bold mb-4 dark:text-white">Scientific Excellence</h4>
-<p class="text-slate-600 dark:text-slate-400 mb-6">Our protocols are backed by the Herbalife Nutrition Advisory Board, ensuring every shake, supplement, and snack is rooted in clinical research.</p>
+<p class="text-slate-600 dark:text-slate-400 mb-6">Our protocols are backed by the nutrition and wellness best practices, ensuring every shake, supplement, and snack is rooted in clinical research.</p>
 <ul class="space-y-3">
 <li class="flex items-center text-sm font-semibold text-slate-500"><span class="material-icons text-primary text-xs mr-2">check_circle</span> Evidence-Based Results</li>
 <li class="flex items-center text-sm font-semibold text-slate-500"><span class="material-icons text-primary text-xs mr-2">check_circle</span> Clinically Proven Efficacy</li>
@@ -357,13 +354,13 @@ With real results — including Pushpa’s <strong>18 kg transformation</strong>
       <div>
      <div class="flex items-center gap-3 mb-6">
  <img 
-  src="{% static 'images/madhura.png' %}" 
-  alt="Madhura Wellness Logo"
+  src="{{ brand.logo_url }}" 
+  alt="Shreyas Wellness Logo"
   class="h-14 w-auto object-contain"
 />
 
   <span class="text-lg font-extrabold uppercase">
-    Madhura <span class="text-primary">Wellness World</span>
+    Shreyas <span class="text-primary">Wellness World</span>
   </span>
 </div>
 
@@ -448,7 +445,7 @@ With real results — including Pushpa’s <strong>18 kg transformation</strong>
     <!-- Bottom Bar -->
     <div class="pt-8 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4">
       <p class="text-xs text-slate-500 uppercase tracking-widest">
-        © 2026 Madhura Wellness Center. Independent Herbalife Distributor.
+        Copyright 2026 Shreyas Wellness Center. Independent Herbalife Distributor.
       </p>
       <div class="flex gap-8 text-xs text-slate-500 uppercase tracking-widest">
         <a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>

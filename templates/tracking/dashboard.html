@@ -206,10 +206,10 @@
 
                 <!-- CELEBRATIONS -->
                 <div class="card">
-                    <div class="section-title">🎉 Celebrations</div>
+                    <div class="section-title">ðŸŽ‰ Celebrations</div>
 
                     {% if today_birthdays %}
-                        <strong>🎂 Birthdays Today</strong>
+                        <strong>ðŸŽ‚ Birthdays Today</strong>
                         {% for p in today_birthdays %}
                             <div class="list-item">
                                 <a href="{% url 'client_profile' p.slug %}">
@@ -220,7 +220,7 @@
                     {% endif %}
 
                     {% if tomorrow_birthdays %}
-                        <strong>🎂 Birthdays Tomorrow</strong>
+                        <strong>ðŸŽ‚ Birthdays Tomorrow</strong>
                         {% for p in tomorrow_birthdays %}
                             <div class="list-item">
                                 <a href="{% url 'client_profile' p.slug %}">
@@ -231,7 +231,7 @@
                     {% endif %}
 
                     {% if today_anniversaries %}
-                        <strong>💐 Anniversaries Today</strong>
+                        <strong>ðŸ’ Anniversaries Today</strong>
                         {% for p in today_anniversaries %}
                             <div class="list-item">
                                 <a href="{% url 'client_profile' p.slug %}">
@@ -242,7 +242,7 @@
                     {% endif %}
 
                     {% if tomorrow_anniversaries %}
-                        <strong>💐 Anniversaries Tomorrow</strong>
+                        <strong>ðŸ’ Anniversaries Tomorrow</strong>
                         {% for p in tomorrow_anniversaries %}
                             <div class="list-item">
                                 <a href="{% url 'client_profile' p.slug %}">
@@ -259,7 +259,7 @@
 
                     {% if top_loss %}
                     <div class="performer">
-                        <strong>🏆 {{ top_loss.0.name }}</strong>
+                        <strong>ðŸ† {{ top_loss.0.name }}</strong>
                         Total Loss: {{ top_loss.1|floatformat:1 }} kg
                         <div class="actions">
                             <a href="{% url 'celebration' top_loss.0.slug %}">Celebrate</a>
@@ -270,7 +270,7 @@
 
                     {% if top_weekly_loss %}
                     <div class="performer">
-                        <strong>🔥 {{ top_weekly_loss.0.name }}</strong>
+                        <strong>ðŸ”¥ {{ top_weekly_loss.0.name }}</strong>
                         Weekly Loss: {{ top_weekly_loss.1|floatformat:1 }} kg
                         <div class="actions">
                             <a href="{% url 'celebration' top_weekly_loss.0.slug %}">Celebrate</a>
@@ -281,7 +281,7 @@
 
                     {% if top_gain %}
                     <div class="performer">
-                        <strong>🚀 {{ top_gain.0.name }}</strong>
+                        <strong>ðŸš€ {{ top_gain.0.name }}</strong>
                         Total Gain: {{ top_gain.1|floatformat:1 }} kg
                         <div class="actions">
                             <a href="{% url 'celebration' top_gain.0.slug %}">Celebrate</a>
@@ -292,7 +292,7 @@
 
                     {% if top_weekly_gain %}
                     <div class="performer">
-                        <strong>💪 {{ top_weekly_gain.0.name }}</strong>
+                        <strong>ðŸ’ª {{ top_weekly_gain.0.name }}</strong>
                         Weekly Gain: {{ top_weekly_gain.1|floatformat:1 }} kg
                         <div class="actions">
                             <a href="{% url 'celebration' top_weekly_gain.0.slug %}">Celebrate</a>
@@ -309,13 +309,13 @@
 
                 <!-- TODAY CHECKINS -->
                 <div class="card">
-                    <div class="section-title">Today’s Check-ins</div>
+                    <div class="section-title">Today's Check-ins</div>
                     {% for c in todays_checkins %}
                         <div class="list-item">
                             <a href="{% url 'client_profile' c.person.slug %}">
                                 {{ c.person.name }}
                             </a>
-                            – {{ c.weight }} kg
+                            - {{ c.weight }} kg
                         </div>
                     {% empty %}
                         <div class="list-item">No check-ins today</div>
@@ -350,10 +350,10 @@
 <!-- Bottom Navigation -->
 <div class="bottom-nav">
     <a class="nav-item active" href="{% url 'coach_dashboard' coach.slug %}">
-        🏠<br>Home
+        ðŸ <br>Home
     </a>
     <a class="nav-item" href="{% url 'tv_leaderboard' coach.slug %}">
-        🏆<br>Board
+        ðŸ†<br>Board
     </a>
 </div>
 <script>
@@ -404,7 +404,7 @@ input.addEventListener("keyup", function() {
                             ${person.name}
                         </div>
                         <div class="result-meta">
-                            ${person.role} • ${person.mobile}
+                            ${person.role} * ${person.mobile}
                         </div>
                         ${actions}
                     `;

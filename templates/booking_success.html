@@ -5,7 +5,7 @@
     <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Madhura Wellness | Luxury Nutrition & Coaching</title>
+    <title>Shreyas Wellness | Personalized Nutrition & Coaching</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -81,25 +81,23 @@
     <!-- Logo -->
 <div class="flex items-center gap-3">
   <img 
-    src="{% static 'images/madhura.png' %}" 
-    alt="Madhura Wellness Logo"
+    src="{{ brand.logo_url }}" 
+    alt="Shreyas Wellness Logo"
     class="h-12 md:h-14 w-auto object-contain"
   />
   <span class="text-lg md:text-xl font-extrabold">
-    MADHURA<span class="text-primary">WELLNESS WORLD</span>
+    SHREYAS<span class="text-primary">WELLNESS WORLD</span>
   </span>
 </div>
 
 
-    <!-- Desktop Menu -->
-    <div class="hidden md:flex gap-10">
-      <a href="#programs" class="hover:text-primary">Programs</a>
-      <a href="#transformations" class="hover:text-primary">Transformations</a>
-      <a href="#experience" class="hover:text-primary">Experience</a>
-      <a href="/about/" class="hover:text-primary">About</a>
+            <!-- Desktop Menu -->
+    <div class="hidden md:flex items-center gap-8 font-semibold text-sm">
+      {% for item in main_menu %}
+      <a href="{{ item.url }}" class="hover:text-primary">{{ item.label }}</a>
+      {% endfor %}
     </div>
-
-    <!-- Desktop CTA -->
+<!-- Desktop CTA -->
     <a href="/book/"
        class="hidden md:inline-block bg-primary text-white px-5 md:px-8 py-2.5 md:py-3 rounded-full text-xs md:text-sm font-semibold shadow-lg">
       Book Consultation
@@ -112,16 +110,15 @@
 
   </div>
 
-  <!-- Mobile Menu -->
+    <!-- Mobile Menu -->
   <div id="mobileMenu"
        class="hidden md:hidden bg-white border-t shadow-lg">
     <div class="flex flex-col px-6 py-4 space-y-4 text-sm font-semibold">
-      <a href="#programs" class="hover:text-primary">Programs</a>
-      <a href="#transformations" class="hover:text-primary">Transformations</a>
-      <a href="#experience" class="hover:text-primary">Experience</a>
-      <a href="/about/" class="hover:text-primary">About</a>
+      {% for item in main_menu %}
+      <a href="{{ item.url }}" class="hover:text-primary">{{ item.label }}</a>
+      {% endfor %}
 
-      <a href="#consultation"
+      <a href="/book/"
          class="bg-primary text-white text-center px-6 py-3 rounded-full shadow-lg">
         Book Consultation
       </a>
@@ -208,13 +205,13 @@
       <div>
      <div class="flex items-center gap-3 mb-6">
  <img 
-  src="{% static 'images/madhura.png' %}" 
-  alt="Madhura Wellness Logo"
+  src="{{ brand.logo_url }}" 
+  alt="Shreyas Wellness Logo"
   class="h-14 w-auto object-contain"
 />
 
   <span class="text-lg font-extrabold uppercase">
-    Madhura <span class="text-primary">Wellness World</span>
+    Shreyas <span class="text-primary">Wellness World</span>
   </span>
 </div>
 
@@ -299,7 +296,7 @@
     <!-- Bottom Bar -->
     <div class="pt-8 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4">
       <p class="text-xs text-slate-500 uppercase tracking-widest">
-        © 2026 Madhura Wellness Center. Independent Herbalife Distributor.
+        Copyright 2026 Shreyas Wellness Center. Independent Herbalife Distributor.
       </p>
       <div class="flex gap-8 text-xs text-slate-500 uppercase tracking-widest">
         <a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>

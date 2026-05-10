@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Lifestyle Gallery | Madhura Wellness</title>
+<title>Lifestyle Gallery | Shreyas Wellness</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 
@@ -46,9 +46,15 @@ tailwind.config = {
 <!-- NAVBAR -->
 <nav class="bg-white shadow-sm border-b">
   <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-    <a href="/" class="font-bold text-lg">
-      MADHURA<span class="text-primary">WELLNESS</span>
+    <a href="/" class="flex items-center gap-3 font-bold text-lg">
+      <img src="{{ brand.logo_url }}" alt="Shreyas Wellness Logo" class="h-10 w-auto object-contain">
+      <span>SHREYAS<span class="text-primary">WELLNESS</span></span>
     </a>
+    <div class="hidden md:flex items-center gap-8 text-sm font-semibold">
+      {% for item in main_menu %}
+      <a href="{{ item.url }}" class="hover:text-primary">{{ item.label }}</a>
+      {% endfor %}
+    </div>
     <a href="/book/"
        class="bg-primary text-white px-5 py-2 rounded-full text-sm font-semibold">
       Book Consultation

@@ -2,6 +2,23 @@ from django.db import models
 from django.utils.text import slugify
 
 
+class SiteSetting(models.Model):
+    site_name = models.CharField(max_length=120, default="Shreyas Wellness World")
+    short_name = models.CharField(max_length=80, default="Shreyas Wellness")
+    logo = models.ImageField(upload_to="site/", blank=True, null=True)
+
+    class Meta:
+        verbose_name = "Site Setting"
+        verbose_name_plural = "Site Settings"
+
+    def save(self, *args, **kwargs):
+        self.pk = 1
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.site_name
+
+
 # class Coach(models.Model):
 #     name = models.CharField(max_length=100)
 #     title = models.CharField(max_length=100, default="Coach")

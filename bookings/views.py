@@ -78,7 +78,7 @@ def book_consultation(request):
 
             cal = Calendar()
             event = Event()
-            event.name = "Madhura Wellness Consultation"
+            event.name = "Shreyas Wellness Consultation"
             event.begin = start_dt
             event.end = end_dt
             event.description = f"Zoom link: {zoom_link}"
@@ -178,7 +178,7 @@ def book_consultation(request):
 #                 f"Time: {time_str}\n"
 #                 f"Zoom Link: {zoom_link}\n\n"
 #                 "Please join on time.\n"
-#                 "– Madhura Wellness"
+#                 "- Shreyas Wellness"
 #             )
 
 #             # Create calendar event
@@ -189,7 +189,7 @@ def book_consultation(request):
 
 #             cal = Calendar()
 #             event = Event()
-#             event.name = "Madhura Wellness Consultation"
+#             event.name = "Shreyas Wellness Consultation"
 #             event.begin = start_dt
 #             event.end = end_dt
 #             event.description = f"Zoom link: {zoom_link}"
@@ -283,7 +283,7 @@ def booking_success(request):
 
         calendar_link = (
             "https://calendar.google.com/calendar/render?action=TEMPLATE"
-            f"&text=Madhura+Wellness+Consultation"
+            f"&text=Shreyas+Wellness+Consultation"
             f"&dates={start}/{end}"
             f"&details=Zoom+Link:+{zoom}"
         )

@@ -1,6 +1,13 @@
 from django.contrib import admin
-from .models import Coach, Program, Testimonial, Lead, Event
+from .models import Coach, Program, Testimonial, Lead, Event, SiteSetting
 
+
+@admin.register(SiteSetting)
+class SiteSettingAdmin(admin.ModelAdmin):
+    list_display = ("site_name", "short_name", "logo")
+
+    def has_add_permission(self, request):
+        return not SiteSetting.objects.exists()
 
 
 admin.site.register(Coach)

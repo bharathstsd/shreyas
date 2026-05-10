@@ -5,7 +5,7 @@
     <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Madhura Wellness | Luxury Nutrition & Coaching</title>
+    <title>Shreyas Wellness | Personalized Nutrition & Coaching</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -83,29 +83,22 @@
     <!-- Logo -->
     <a href="/" class="flex items-center gap-3">
       <img 
-        src="{% static 'images/madhura.png' %}" 
-        alt="Madhura Wellness Logo"
+        src="{{ brand.logo_url }}" 
+        alt="Shreyas Wellness Logo"
         class="h-12 md:h-14 w-auto object-contain"
       />
       <span class="text-lg md:text-xl font-extrabold">
-        MADHURA<span class="text-primary">WELLNESS WORLD</span>
+        SHREYAS<span class="text-primary">WELLNESS WORLD</span>
       </span>
     </a>
 
-    <!-- Desktop Menu -->
+            <!-- Desktop Menu -->
     <div class="hidden md:flex items-center gap-8 font-semibold text-sm">
-      <a href="/" class="hover:text-primary">Home</a>
-      <a href="/programs/" class="hover:text-primary">Programs</a>
-      <a href="/transformations/" class="hover:text-primary">Transformations</a>
-      <a href="/team/" class="hover:text-primary">Team</a>
-      <a href="/gallery/" class="hover:text-primary">Gallery</a>
-      <a href="/about/" class="hover:text-primary">About</a>
-      <a href="/blog/" class="hover:text-primary">Blog</a>
-
-      <a href="/contact/" class="hover:text-primary">Contact</a>
+      {% for item in main_menu %}
+      <a href="{{ item.url }}" class="hover:text-primary">{{ item.label }}</a>
+      {% endfor %}
     </div>
-
-    <!-- Desktop CTA -->
+<!-- Desktop CTA -->
     <a href="/book/"
        class="hidden md:inline-block bg-primary text-white px-5 md:px-8 py-2.5 md:py-3 rounded-full text-xs md:text-sm font-semibold shadow-lg hover:shadow-xl transition">
       Book Appointment
@@ -118,25 +111,17 @@
 
   </div>
 
-  <!-- Mobile Menu -->
+    <!-- Mobile Menu -->
   <div id="mobileMenu"
        class="hidden md:hidden bg-white border-t shadow-lg">
     <div class="flex flex-col px-6 py-4 space-y-4 text-sm font-semibold">
-
-      <a href="/" class="hover:text-primary">Home</a>
-      <a href="/programs/" class="hover:text-primary">Programs</a>
-      <a href="/transformations/" class="hover:text-primary">Transformations</a>
-      <a href="/team/" class="hover:text-primary">Team</a>
-      <a href="/gallery/" class="hover:text-primary">Gallery</a>
-      <a href="/about/" class="hover:text-primary">About</a>
-      <a href="/blog/" class="hover:text-primary">Blog</a>
-
-      <a href="/contact/" class="hover:text-primary">Contact</a>
-
+      {% for item in main_menu %}
+      <a href="{{ item.url }}" class="hover:text-primary">{{ item.label }}</a>
+      {% endfor %}
 
       <a href="/book/"
          class="bg-primary text-white text-center px-6 py-3 rounded-full shadow-lg">
-        Book Appointment
+        Book Consultation
       </a>
     </div>
   </div>
@@ -320,7 +305,7 @@ Head Coach <span class="text-primary italic">{{ coach.name }}</span>
     <span class="text-xs font-bold text-accent-gold uppercase tracking-widest">Weight Management</span>
     <h4 class="text-2xl font-semibold mt-2 mb-4 dark:text-white">Metabolic Reset</h4>
     <p class="text-slate-500 dark:text-slate-400 mb-6 leading-relaxed">
-                                A science-based 12-week protocol utilizing elite Herbalife supplementation to optimize your biology.
+                                A science-based 12-week protocol utilizing structured nutrition support to optimize your biology.
                             </p>
     <ul class="space-y-3 mb-8">
     <li class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
@@ -486,9 +471,9 @@ Client Success <span class="italic text-primary">Stories</span>
     </div>
     <div class="max-w-7xl mx-auto px-6 relative z-10">
     <div class="text-center max-w-3xl mx-auto mb-20">
-    <h2 class="text-4xl md:text-5xl font-light mb-6">The Madhura <span class="italic text-primary">Difference</span></h2>
+    <h2 class="text-4xl md:text-5xl font-light mb-6">The Shreyas <span class="italic text-primary">Difference</span></h2>
     <p class="text-slate-400 text-lg font-light">
-                        We combine premium Herbalife Nutrition with bespoke concierge coaching to deliver results that aren't just seen—they're felt.
+                        We combine personalized nutrition guidance with consistent coach support to deliver results that aren't just seen, they're felt.
                     </p>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-16">
@@ -673,13 +658,13 @@ Lives Transformed
       <div>
      <div class="flex items-center gap-3 mb-6">
  <img 
-  src="{% static 'images/madhura.png' %}" 
-  alt="Madhura Wellness Logo"
+  src="{{ brand.logo_url }}" 
+  alt="Shreyas Wellness Logo"
   class="h-14 w-auto object-contain"
 />
 
   <span class="text-lg font-extrabold uppercase">
-    Madhura <span class="text-primary">Wellness World</span>
+    Shreyas <span class="text-primary">Wellness World</span>
   </span>
 </div>
 
@@ -766,7 +751,7 @@ Lives Transformed
     <!-- Bottom Bar -->
     <div class="pt-8 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4">
       <p class="text-xs text-slate-500 uppercase tracking-widest">
-        © 2026 Madhura Wellness Center. Independent Herbalife Distributor.
+        Copyright 2026 Shreyas Wellness Center. Independent Herbalife Distributor.
       </p>
   <div class="flex gap-8 text-xs text-slate-500 uppercase tracking-widest">
   <a class="hover:text-primary transition-colors" href="/tracking/login/">

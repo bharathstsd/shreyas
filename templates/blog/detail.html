@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{{ post.title }} – Madhura Wellness</title>
+    <title>{{ post.title }} - Shreyas Wellness</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -16,15 +16,25 @@
 <body>
 
 <!-- Header -->
-<div class="bg-white shadow p-4 text-center font-bold text-xl">
-    <a href="/">Madhura Wellness</a>
+<div class="bg-white shadow">
+  <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-3 font-bold text-xl">
+      <img src="{{ brand.logo_url }}" alt="Shreyas Wellness Logo" class="h-10 w-auto object-contain">
+      <span>Shreyas Wellness</span>
+    </a>
+    <div class="hidden md:flex items-center gap-8 text-sm font-semibold">
+      {% for item in main_menu %}
+      <a href="{{ item.url }}" class="hover:text-green-600">{{ item.label }}</a>
+      {% endfor %}
+    </div>
+  </div>
 </div>
 
 <section class="py-16 px-6">
   <div class="max-w-4xl mx-auto">
 
     <a href="/blog/" class="text-green-600 font-semibold mb-8 inline-block">
-      ← Back to Blog
+      <- Back to Blog
     </a>
 
     <h1 class="text-4xl md:text-5xl font-light mb-6">

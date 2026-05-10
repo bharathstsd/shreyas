@@ -72,7 +72,7 @@
 
 <div class="container">
 
-    <a class="back" href="{% url 'coach_dashboard' coach.slug %}">← Back to Dashboard</a>
+    <a class="back" href="{% url 'coach_dashboard' coach.slug %}"><- Back to Dashboard</a>
 
     <div class="header">
         {{ coach.name }} Leaderboard
@@ -80,7 +80,7 @@
 
     <!-- DAILY -->
     <div class="section">
-        <h3>🏆 Daily Weight Loss</h3>
+        <h3>ðŸ† Daily Weight Loss</h3>
         {% for p, value in leaderboards.daily_loss %}
             <div class="person">
                 <span class="name">{{ p.name }}</span>
@@ -92,7 +92,7 @@
     </div>
 
     <div class="section">
-        <h3>🚀 Daily Weight Gain</h3>
+        <h3>ðŸš€ Daily Weight Gain</h3>
         {% for p, value in leaderboards.daily_gain %}
             <div class="person">
                 <span class="name">{{ p.name }}</span>
@@ -105,7 +105,7 @@
 
     <!-- WEEKLY -->
     <div class="section">
-        <h3>🔥 Weekly Weight Loss</h3>
+        <h3>ðŸ”¥ Weekly Weight Loss</h3>
         {% for p, value in leaderboards.weekly_loss %}
             <div class="person">
                 <span class="name">{{ p.name }}</span>
@@ -117,7 +117,7 @@
     </div>
 
     <div class="section">
-        <h3>💪 Weekly Weight Gain</h3>
+        <h3>ðŸ’ª Weekly Weight Gain</h3>
         {% for p, value in leaderboards.weekly_gain %}
             <div class="person">
                 <span class="name">{{ p.name }}</span>
@@ -130,7 +130,7 @@
 
     <!-- MONTHLY -->
     <div class="section">
-        <h3>📉 Monthly Weight Loss</h3>
+        <h3>ðŸ“‰ Monthly Weight Loss</h3>
         {% for p, value in leaderboards.monthly_loss %}
             <div class="person">
                 <span class="name">{{ p.name }}</span>
@@ -142,7 +142,7 @@
     </div>
 
     <div class="section">
-        <h3>📈 Monthly Weight Gain</h3>
+        <h3>ðŸ“ˆ Monthly Weight Gain</h3>
         {% for p, value in leaderboards.monthly_gain %}
             <div class="person">
                 <span class="name">{{ p.name }}</span>

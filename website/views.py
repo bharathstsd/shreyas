@@ -46,7 +46,7 @@
 
 #             # WhatsApp redirect message
 #             message = quote(
-#                 f"Hi, I’m {name}. I’m interested in a consultation for {goal}."
+#                 f"Hi, I'm {name}. I'm interested in a consultation for {goal}."
 #             )
 
 #             return redirect(f"https://wa.me/919666615225?text={message}")
@@ -71,6 +71,7 @@ from django.conf import settings
 
 
 def send_lead_email(name, email, phone, goal):
+    brand_name = settings.BRAND["short_name"]
     try:
         # Admin email
         send_mail(
@@ -90,18 +91,18 @@ Goal: {goal}
 
         # User confirmation
         send_mail(
-            subject="Your Consultation Request – Madhura Wellness",
+            subject=f"Your Consultation Request - {brand_name}",
             message=f"""
 Hi {name},
 
-Thank you for requesting a consultation with Madhura Wellness.
+Thank you for requesting a consultation with {brand_name}.
 
 We have received your details and our coach will contact you shortly.
 
 Your Goal: {goal}
 
 Stay healthy,
-Madhura Wellness Team
+{brand_name} Team
 """,
             from_email=settings.DEFAULT_FROM_EMAIL,
             recipient_list=[email],
@@ -136,9 +137,9 @@ def home(request):
 
             # WhatsApp redirect
             message = quote(
-                f"Hi, I’m {name}. I’m interested in a consultation for {goal}."
+                f"Hi, I'm {name}. I'm interested in a consultation for {goal}."
             )
-            return redirect(f"https://wa.me/919246437143?text={message}")
+            return redirect(f"https://wa.me/{settings.BRAND['whatsapp']}?text={message}")
 
     context = {
         "coach": Coach.objects.filter(is_head_coach=True).first(),
@@ -307,7 +308,7 @@ from .models import Event
 
 #     context = {
 #         "month_days": month_days,
-#         "events_by_day": events_by_day,   # ← match template
+#         "events_by_day": events_by_day,   # match template
 #         "month": month,
 #         "year": year,
 #     }
@@ -401,11 +402,11 @@ def calendar_page(request):
 #         )
 
 #         # Auto-reply to customer
-#         customer_subject = "We received your message | Madhura Wellness"
+#         customer_subject = "We received your message | Shreyas Wellness"
 #         customer_message = f"""
 # Hi {name},
 
-# Thank you for contacting Madhura Wellness.
+# Thank you for contacting Shreyas Wellness.
 
 # Our team will get in touch with you shortly.
 
@@ -414,7 +415,7 @@ def calendar_page(request):
 # WhatsApp: https://wa.me/919246437143
 
 # Warm regards,
-# Madhura Wellness Team
+# Shreyas Wellness Team
 # """
 
 #         send_mail(
@@ -456,17 +457,18 @@ Message:
 
         # Auto-reply to customer
         if email:
-            customer_subject = "We received your message | Madhura Wellness"
+            brand_name = settings.BRAND["short_name"]
+            customer_subject = f"We received your message | {brand_name}"
             customer_message = f"""
 Hi {name},
 
-Thank you for contacting Madhura Wellness.
+Thank you for contacting {brand_name}.
 Our team will get in touch with you shortly.
 
-Phone: +91 92464 37143
-WhatsApp: https://wa.me/919246437143
+Phone: {settings.BRAND["phone"]}
+WhatsApp: https://wa.me/{settings.BRAND["whatsapp"]}
 
-Madhura Wellness Team
+{brand_name} Team
 """
 
             send_mail(

@@ -1,11 +1,11 @@
 {
-  "name": "Madhura Wellness",
-  "short_name": "Madhura",
+  "name": "Shreyas Wellness",
+  "short_name": "Shreyas",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#11d473",
-  "description": "Madhura Wellness Center – Nutrition, transformation and lifestyle coaching.",
+  "description": "Shreyas Wellness Center - Nutrition, transformation and lifestyle coaching.",
   "icons": [
     {
       "src": "/static/icons/icon-192.png",

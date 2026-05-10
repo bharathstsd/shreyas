@@ -64,25 +64,22 @@ tailwind.config = {
     <!-- Logo -->
     <div class="flex items-center gap-2">
       <img 
-        src="{% static 'images/madhura.png' %}" 
-        alt="Madhura Wellness Logo"
+        src="{{ brand.logo_url }}" 
+        alt="Shreyas Wellness Logo"
         class="h-10 md:h-14 w-auto object-contain"
       />
       <span class="text-sm md:text-xl font-extrabold leading-tight">
-        MADHURA<span class="text-primary">WELLNESS</span>
+        SHREYAS<span class="text-primary">WELLNESS</span>
       </span>
     </div>
 
-    <!-- Desktop Menu -->
-    <div class="hidden md:flex gap-8">
-      <a href="#programs" class="hover:text-primary">Programs</a>
-      <a href="#transformations" class="hover:text-primary">Transformations</a>
-      <a href="#experience" class="hover:text-primary">Experience</a>
-      <a href="/about/" class="hover:text-primary">About</a>
-      <a href="/team/" class="hover:text-primary">Team</a>
+        <!-- Desktop Menu -->
+    <div class="hidden md:flex items-center gap-8 font-semibold text-sm">
+      {% for item in main_menu %}
+      <a href="{{ item.url }}" class="hover:text-primary">{{ item.label }}</a>
+      {% endfor %}
     </div>
-
-    <!-- CTA -->
+<!-- CTA -->
     <a href="/book/"
        class="hidden md:inline-block bg-primary text-white px-6 py-3 rounded-full text-sm font-semibold shadow-lg">
       Book Consultation
@@ -95,15 +92,13 @@ tailwind.config = {
 
   </div>
 
-  <!-- Mobile Menu -->
+    <!-- Mobile Menu -->
   <div id="mobileMenu"
        class="hidden md:hidden bg-white border-t shadow-lg">
     <div class="flex flex-col px-6 py-4 space-y-4 text-sm font-semibold">
-      <a href="#programs">Programs</a>
-      <a href="#transformations">Transformations</a>
-      <a href="#experience">Experience</a>
-      <a href="/about/">About</a>
-      <a href="/team/">Team</a>
+      {% for item in main_menu %}
+      <a href="{{ item.url }}" class="hover:text-primary">{{ item.label }}</a>
+      {% endfor %}
 
       <a href="/book/"
          class="bg-primary text-white text-center px-6 py-3 rounded-full shadow-lg">
@@ -405,7 +400,7 @@ tailwind.config = {
 <!-- FOOTER -->
 {% comment %} <footer class="bg-white border-t py-10 text-center">
   <p class="text-sm text-slate-500">
-    © 2026 Madhura Wellness Center
+    Copyright 2026 Shreyas Wellness Center
   </p>
 </footer> {% endcomment %}
 
@@ -435,13 +430,13 @@ document.addEventListener("DOMContentLoaded", function () {
       <div>
      <div class="flex items-center gap-3 mb-6">
  <img 
-  src="{% static 'images/madhura.png' %}" 
-  alt="Madhura Wellness Logo"
+  src="{{ brand.logo_url }}" 
+  alt="Shreyas Wellness Logo"
   class="h-14 w-auto object-contain"
 />
 
   <span class="text-lg font-extrabold uppercase">
-    Madhura <span class="text-primary">Wellness World</span>
+    Shreyas <span class="text-primary">Wellness World</span>
   </span>
 </div>
 
@@ -525,7 +520,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <!-- Bottom Bar -->
     <div class="pt-8 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4">
       <p class="text-xs text-slate-500 uppercase tracking-widest">
-        © 2026 Madhura Wellness Center. Independent Herbalife Distributor.
+        Copyright 2026 Shreyas Wellness Center. Independent Herbalife Distributor.
       </p>
       <div class="flex gap-8 text-xs text-slate-500 uppercase tracking-widest">
         <a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>

@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -20,12 +21,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-u7_)ds%hswd)5kqsbk7$gp3hj)_5l)6=dpx1dr6ac)*ljgyb9_'
+SECRET_KEY = os.environ.get(
+    "DJANGO_SECRET_KEY",
+    "django-insecure-development-only-change-me"
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DJANGO_DEBUG", "True").lower() == "true"
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    host.strip()
+    for host in os.environ.get("DJANGO_ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
+    if host.strip()
+]
 
 
 # Application definition
@@ -75,6 +83,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'website.context_processors.brand',
             ],
         },
     },
@@ -118,7 +127,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
@@ -147,13 +156,35 @@ LOGOUT_REDIRECT_URL = "login"
 
 
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.zeptomail.in'          # your SMTP host
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'emailapikey'   # your email
-EMAIL_HOST_PASSWORD = 'PHtE6r0KEbrujjYmoBcA5vW4EcGjMIso9OlufwRG4tsUCvQFHU0Eq9oslWe3rB18XKYUEqXPyY4+uL2asL2FIjvoZGhMXWqyqK3sx/VYSPOZsbq6x00VtFUbcUXeVoTscdBo0yffuN/SNA=='
-DEFAULT_FROM_EMAIL = "noreply@madhuraswellnessworld.com"
-ADMIN_EMAIL = "bharathtsd@gmail.com"
+EMAIL_BACKEND = os.environ.get(
+    "EMAIL_BACKEND",
+    "django.core.mail.backends.smtp.EmailBackend"
+)
+EMAIL_HOST = os.environ.get("EMAIL_HOST", "smtp.zeptomail.in")
+EMAIL_USE_TLS = os.environ.get("EMAIL_USE_TLS", "True").lower() == "true"
+EMAIL_PORT = int(os.environ.get("EMAIL_PORT", "587"))
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER", "emailapikey")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD", "")
+DEFAULT_FROM_EMAIL = os.environ.get(
+    "DEFAULT_FROM_EMAIL",
+    "noreply@shreyaswellnessworld.com"
+)
+ADMIN_EMAIL = os.environ.get("ADMIN_EMAIL", "bharathtsd@gmail.com")
+
+BRAND = {
+    "name": os.environ.get("BRAND_NAME", "Shreyas Wellness World"),
+    "short_name": os.environ.get("BRAND_SHORT_NAME", "Shreyas Wellness"),
+    "center_name": os.environ.get("BRAND_CENTER_NAME", "Shreyas Wellness Center"),
+    "phone": os.environ.get("BRAND_PHONE", "+91 92464 37143"),
+    "phone_href": os.environ.get("BRAND_PHONE_HREF", "+919246437143"),
+    "whatsapp": os.environ.get("BRAND_WHATSAPP", "919246437143"),
+    "email": os.environ.get("BRAND_EMAIL", DEFAULT_FROM_EMAIL),
+    "address": os.environ.get(
+        "BRAND_ADDRESS",
+        "5th Floor, Hare Plaza, KT Rd, opp. Varadaraja Swamy Temple, Tirupati, Andhra Pradesh 517501"
+    ),
+    "map_query": os.environ.get("BRAND_MAP_QUERY", "Shreyas Wellness World Tirupati"),
+    "logo": os.environ.get("BRAND_LOGO", "images/shreyas.png"),
+}
 
 

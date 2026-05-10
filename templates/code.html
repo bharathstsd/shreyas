@@ -1,9 +1,10 @@
+{% load static %}
 <!DOCTYPE html>
 
 <html class="light" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Contact &amp; Location | Luxury Herbalife Wellness Center</title>
+<title>Contact &amp; Location | Shreyas Wellness Center</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
@@ -39,20 +40,17 @@
 <nav class="fixed top-0 w-full z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-primary/10">
 <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
 <div class="flex items-center gap-2">
-<div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
-<span class="material-icons text-white">spa</span>
-</div>
-<span class="text-xl font-extrabold tracking-tight uppercase">Luxe<span class="text-primary">Herbal</span></span>
+<img src="{{ brand.logo_url }}" alt="Shreyas Wellness Logo" class="h-12 w-auto object-contain"/>
+<span class="text-xl font-extrabold tracking-tight uppercase">Shreyas<span class="text-primary">Wellness</span></span>
 </div>
 <div class="hidden md:flex items-center gap-10 text-sm font-semibold tracking-wide uppercase">
-<a class="hover:text-primary transition-colors" href="#">Programs</a>
-<a class="hover:text-primary transition-colors" href="#">Supplements</a>
-<a class="hover:text-primary transition-colors" href="#">Our Story</a>
-<a class="text-primary" href="#">Contact</a>
+{% for item in main_menu %}
+<a class="hover:text-primary transition-colors" href="{{ item.url }}">{{ item.label }}</a>
+{% endfor %}
 </div>
-<button class="bg-primary text-white px-8 py-3 rounded-full font-bold hover:shadow-lg hover:shadow-primary/30 transition-all text-sm uppercase tracking-wider">
+<a href="/book/" class="bg-primary text-white px-8 py-3 rounded-full font-bold hover:shadow-lg hover:shadow-primary/30 transition-all text-sm uppercase tracking-wider">
                 Book Consultation
-            </button>
+            </a>
 </div>
 </nav>
 <main class="pt-24 min-h-screen">
@@ -61,7 +59,7 @@
 <div class="w-full lg:w-[55%] relative overflow-hidden group">
 <div class="absolute inset-0 bg-neutral-soft dark:bg-gray-900">
 <!-- Placeholder for Monochromatic Map with custom styling -->
-<img alt="Monochromatic grayscale aerial map of luxury district" class="w-full h-full object-cover filter grayscale brightness-110 contrast-125 dark:brightness-50 dark:contrast-150" data-location="Beverly Hills, California" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYQmr0620jZm-T-f_pqkLfTjgMesXW8alxwcX9nejmA0YiiVLcQMxsP1W9r6r7bSHcdhdS0zzFm1zOUtKOiyCqlLvpbRkMfzSp6UNFOZhl-BJxHBhzpnb6OuPuqJrGgtcK5gahjIrzHA1ovrdfqs3_hjoU_sBCoyWqRko5PMUt4OHEBdyBPg-s6OZJTmf6uzIUuq1E0jFcXV5idItGO_8fuE_vkTDn80vLQgGXFsGbmxnefF-Dy84s7aQ58vXf7LFH-mTpdICU6d8x"/>
+<img alt="Monochromatic grayscale aerial map of luxury district" class="w-full h-full object-cover filter grayscale brightness-110 contrast-125 dark:brightness-50 dark:contrast-150" data-location="Tirupati, Andhra Pradesh" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYQmr0620jZm-T-f_pqkLfTjgMesXW8alxwcX9nejmA0YiiVLcQMxsP1W9r6r7bSHcdhdS0zzFm1zOUtKOiyCqlLvpbRkMfzSp6UNFOZhl-BJxHBhzpnb6OuPuqJrGgtcK5gahjIrzHA1ovrdfqs3_hjoU_sBCoyWqRko5PMUt4OHEBdyBPg-s6OZJTmf6uzIUuq1E0jFcXV5idItGO_8fuE_vkTDn80vLQgGXFsGbmxnefF-Dy84s7aQ58vXf7LFH-mTpdICU6d8x"/>
 </div>
 <!-- Floating Map Card -->
 <div class="absolute bottom-12 left-12 right-12 lg:right-auto lg:w-96 bg-white/90 dark:bg-background-dark/90 backdrop-blur-xl p-8 rounded-xl shadow-2xl border border-white/20">
@@ -76,7 +74,7 @@
 <div class="flex flex-col gap-3">
 <div class="flex items-start gap-4">
 <span class="material-icons text-primary text-xl">location_on</span>
-<span class="text-sm font-medium">90210 Wellness Ave, Suite 500<br/>Beverly Hills, CA</span>
+<span class="text-sm font-medium">5th Floor, Hare Plaza<br/>Tirupati, Andhra Pradesh</span>
 </div>
 <div class="flex items-start gap-4">
 <span class="material-icons text-primary text-xl">schedule</span>
@@ -141,10 +139,8 @@
 <!-- Brand -->
 <div class="lg:col-span-1">
 <div class="flex items-center gap-2 mb-6">
-<div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-<span class="material-icons text-white text-sm">spa</span>
-</div>
-<span class="text-lg font-extrabold uppercase tracking-tight">Luxe<span class="text-primary">Herbal</span></span>
+<img src="{{ brand.logo_url }}" alt="Shreyas Wellness Logo" class="h-10 w-auto object-contain"/>
+<span class="text-lg font-extrabold uppercase tracking-tight">Shreyas<span class="text-primary">Wellness</span></span>
 </div>
 <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-8">
                     Elevating your lifestyle through science-backed nutrition and personalized wellness pathways.
@@ -164,10 +160,9 @@
 <!-- Links -->
 <div class="lg:col-span-1 grid grid-cols-1 gap-4">
 <h4 class="font-bold uppercase tracking-widest text-xs mb-2">Explore</h4>
-<a class="text-sm text-gray-500 hover:text-primary" href="#">Nutrition Plans</a>
-<a class="text-sm text-gray-500 hover:text-primary" href="#">Supplements</a>
-<a class="text-sm text-gray-500 hover:text-primary" href="#">Personal Coaching</a>
-<a class="text-sm text-gray-500 hover:text-primary" href="#">Success Stories</a>
+{% for item in main_menu %}
+<a class="text-sm text-gray-500 hover:text-primary" href="{{ item.url }}">{{ item.label }}</a>
+{% endfor %}
 </div>
 <!-- Newsletter -->
 <div class="lg:col-span-2">
@@ -183,7 +178,7 @@
 </div>
 <!-- Bottom Footer -->
 <div class="max-w-7xl mx-auto pt-20 mt-20 border-t border-primary/10 flex flex-col md:flex-row justify-between items-center gap-6">
-<p class="text-xs text-gray-400 uppercase tracking-widest">© 2024 LUXE HERBAL WELLNESS CENTER. ALL RIGHTS RESERVED.</p>
+<p class="text-xs text-gray-400 uppercase tracking-widest">Copyright 2024 SHREYAS WELLNESS CENTER. ALL RIGHTS RESERVED.</p>
 <div class="flex gap-8">
 <a class="text-xs text-gray-400 hover:text-primary uppercase tracking-widest" href="#">Privacy Policy</a>
 <a class="text-xs text-gray-400 hover:text-primary uppercase tracking-widest" href="#">Terms of Service</a>
