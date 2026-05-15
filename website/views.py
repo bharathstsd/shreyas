@@ -411,8 +411,8 @@ def calendar_page(request):
 # Our team will get in touch with you shortly.
 
 # If your query is urgent, you can reach us directly:
-# Phone: +91 92464 37143
-# WhatsApp: https://wa.me/919246437143
+# Phone: +91 96760 11011
+# WhatsApp: https://wa.me/919676011011
 
 # Warm regards,
 # Shreyas Wellness Team
