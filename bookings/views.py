@@ -56,10 +56,21 @@ def book_consultation(request):
                     "form_data": request.POST,
                 })
 
-            zoom_link = create_zoom_meeting(
-                topic=f"Consultation with {name}",
-                start_time=f"{selected_date}T{time_str}:00"
-            )
+            try:
+                zoom_link = create_zoom_meeting(
+                    topic=f"Consultation with {name}",
+                    start_time=f"{selected_date}T{time_str}:00"
+                )
+            except Exception as exc:
+                # Don't fail the booking if Zoom creation fails; record and notify admin
+                zoom_link = ""
+                send_mail(
+                    "Zoom meeting creation failed",
+                    f"Failed to create Zoom meeting for {name} on {selected_date} at {time_str}: {exc}",
+                    settings.DEFAULT_FROM_EMAIL,
+                    [settings.ADMIN_EMAIL],
+                    fail_silently=True,
+                )
 
             Appointment.objects.create(
                 name=name,
