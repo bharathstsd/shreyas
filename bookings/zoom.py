@@ -1,9 +1,9 @@
 import requests
 import base64
 
-ACCOUNT_ID = "uU4bnC8_QYaKxWlNi9pbrQ"
-CLIENT_ID = "lm5xl_dQQ3SKstOguzYjQ"
-CLIENT_SECRET = "nlpB6KLgx2BRjRUHQLrfpI861DUoKd4D"
+ACCOUNT_ID = "MHTOsWebSFeeMaJ5Wzj8lQ"
+CLIENT_ID = "MHTOsWebSFeeMaJ5Wzj8lQ"
+CLIENT_SECRET = "K1Eckct40xJB5OW9nCYC4ZFV86KsRYl2"
 
 
 def get_zoom_token():
