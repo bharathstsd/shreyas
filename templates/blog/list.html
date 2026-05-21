@@ -6,8 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: { primary: "#11d473" },
+                fontFamily: { display: ["Manrope", "sans-serif"] }
+            }
+        }
+    };
+    </script>
 
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <style>
         body { font-family: 'Manrope', sans-serif; background: #f6f8f7; }
@@ -20,22 +31,10 @@
 </head>
 <body>
 
-<!-- Header -->
-<div class="bg-white shadow">
-  <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-    <a href="/" class="flex items-center gap-3 font-bold text-xl">
-      <img src="{{ brand.logo_url }}" alt="Shreyas Wellness Logo" class="h-10 w-auto object-contain">
-      <span>Shreyas Wellness</span>
-    </a>
-    <div class="hidden md:flex items-center gap-8 text-sm font-semibold">
-      {% for item in main_menu %}
-      <a href="{{ item.url }}" class="hover:text-green-600">{{ item.label }}</a>
-      {% endfor %}
-    </div>
-  </div>
-</div>
+<!-- NAVBAR -->
+{% include "includes/navbar.html" %}
 
-<section class="py-16 px-6">
+<section class="pt-28 md:pt-32 pb-16 px-6">
   <div class="max-w-7xl mx-auto">
 
     <div class="text-center mb-16">
@@ -73,8 +72,8 @@
             {{ post.content|striptags|truncatewords:20 }}
           </p>
 
-          <div class="mt-4 text-green-600 font-semibold">
-            Read Article ->
+          <div class="mt-4 inline-flex items-center gap-2 text-primary font-semibold group-hover:text-primary/80 transition-colors">
+            Read Article <span class="material-icons text-base">arrow_forward</span>
           </div>
         </div>
       </a>
@@ -85,5 +84,15 @@
   </div>
 </section>
 
+<script>
+  const toggleBtn = document.getElementById("menuToggle");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  if (toggleBtn && mobileMenu) {
+    toggleBtn.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+  }
+</script>
 </body>
 </html>

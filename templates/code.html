@@ -36,24 +36,9 @@
     </script>
 </head>
 <body class="font-display bg-background-light dark:bg-background-dark text-neutral-text dark:text-gray-100 antialiased overflow-x-hidden">
-<!-- Navigation -->
-<nav class="fixed top-0 w-full z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-primary/10">
-<div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
-<div class="flex items-center gap-2">
-<img src="{{ brand.logo_url }}" alt="Shreyas Wellness Logo" class="h-12 w-auto object-contain"/>
-<span class="text-xl font-extrabold tracking-tight uppercase">Shreyas<span class="text-primary">Wellness</span></span>
-</div>
-<div class="hidden md:flex items-center gap-10 text-sm font-semibold tracking-wide uppercase">
-{% for item in main_menu %}
-<a class="hover:text-primary transition-colors" href="{{ item.url }}">{{ item.label }}</a>
-{% endfor %}
-</div>
-<a href="/book/" class="bg-primary text-white px-8 py-3 rounded-full font-bold hover:shadow-lg hover:shadow-primary/30 transition-all text-sm uppercase tracking-wider">
-                Book Consultation
-            </a>
-</div>
-</nav>
-<main class="pt-24 min-h-screen">
+<!-- NAVBAR -->
+{% include "includes/navbar.html" %}
+<main class="pt-20 md:pt-24 min-h-screen">
 <div class="flex flex-col lg:flex-row min-h-[calc(100vh-6rem)]">
 <!-- Left Side: Interactive Map Visual -->
 <div class="w-full lg:w-[55%] relative overflow-hidden group">
@@ -78,7 +63,7 @@
 </div>
 <div class="flex items-start gap-4">
 <span class="material-icons text-primary text-xl">schedule</span>
-<span class="text-sm font-medium">7:30 AM – 9:30 AM</span>
+<span class="text-sm font-medium">7:30 AM â€“ 9:30 AM</span>
 </div>
 </div>
 <button class="mt-8 w-full border border-primary text-primary hover:bg-primary hover:text-white py-4 rounded-full font-bold transition-all text-sm flex items-center justify-center gap-2">
@@ -140,7 +125,7 @@
 <div class="lg:col-span-1">
 <div class="flex items-center gap-2 mb-6">
 <img src="{{ brand.logo_url }}" alt="Shreyas Wellness Logo" class="h-10 w-auto object-contain"/>
-<span class="text-lg font-extrabold uppercase tracking-tight">Shreyas<span class="text-primary">Wellness</span></span>
+<span class="text-lg font-extrabold uppercase tracking-tight">Shreyas Wellness <span class="text-primary">world</span></span>
 </div>
 <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-8">
                     Elevating your lifestyle through science-backed nutrition and personalized wellness pathways.
@@ -186,4 +171,14 @@
 </div>
 </div>
 </footer>
+<script>
+  const toggleBtn = document.getElementById("menuToggle");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  if (toggleBtn && mobileMenu) {
+    toggleBtn.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+  }
+</script>
 </body></html>

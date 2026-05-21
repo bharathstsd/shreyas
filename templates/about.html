@@ -75,56 +75,7 @@
     <body class="bg-background-light text-slate-800">
 
 <!-- NAVBAR -->
-<nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b">
-  <div class="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex items-center justify-between">
-
-    <!-- Logo -->
-<div class="flex items-center gap-3">
-  <img 
-    src="{{ brand.logo_url }}" 
-    alt="Shreyas Wellness Logo"
-    class="h-12 md:h-14 w-auto object-contain"
-  />
-  <span class="text-lg md:text-xl font-extrabold">
-    SHREYAS<span class="text-primary">WELLNESS WORLD</span>
-  </span>
-</div>
-
-
-            <!-- Desktop Menu -->
-    <div class="hidden md:flex items-center gap-8 font-semibold text-sm">
-      {% for item in main_menu %}
-      <a href="{{ item.url }}" class="hover:text-primary">{{ item.label }}</a>
-      {% endfor %}
-    </div>
-<!-- Desktop CTA -->
-    <a href="/book/"
-       class="hidden md:inline-block bg-primary text-white px-5 md:px-8 py-2.5 md:py-3 rounded-full text-xs md:text-sm font-semibold shadow-lg">
-      Book Consultation
-    </a>
-
-    <!-- Mobile Menu Button -->
-    <button id="menuToggle" class="md:hidden text-primary">
-      <span class="material-icons text-3xl">menu</span>
-    </button>
-
-  </div>
-
-    <!-- Mobile Menu -->
-  <div id="mobileMenu"
-       class="hidden md:hidden bg-white border-t shadow-lg">
-    <div class="flex flex-col px-6 py-4 space-y-4 text-sm font-semibold">
-      {% for item in main_menu %}
-      <a href="{{ item.url }}" class="hover:text-primary">{{ item.label }}</a>
-      {% endfor %}
-
-      <a href="/book/"
-         class="bg-primary text-white text-center px-6 py-3 rounded-full shadow-lg">
-        Book Consultation
-      </a>
-    </div>
-  </div>
-</nav>
+{% include "includes/navbar.html" %}
 <!-- Hero Section -->
 <section class="relative h-[90vh] flex items-center overflow-hidden pt-24">
 <div class="absolute inset-0 z-0">
@@ -133,7 +84,7 @@
 </div>
 <div class="container mx-auto px-6 relative z-10">
 <div class="max-w-2xl">
-<span class="inline-block py-1 px-4 rounded-full bg-primary/10 text-primary font-bold text-xs uppercase tracking-[0.2em] mb-6">Established 2012</span>
+<span class="inline-block py-1 px-4 rounded-full bg-primary/10 text-primary font-bold text-xs uppercase tracking-[0.2em] mb-6">Est. 2024</span>
 <h1 class="text-4xl sm:text-5xl md:text-7xl font-light" mb-8 leading-tight dark:text-white">Where Nature <br/> <span class="font-extrabold text-primary">Meets Science.</span></h1>
 <p class="text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-10 leading-relaxed max-w-lg">
 Combining natural wellness with scientifically backed nutrition, we help you achieve sustainable weight loss, better energy, and a lifestyle you can maintain for life.
@@ -353,8 +304,8 @@ With real results - including Pushpa's <strong>18 kg transformation</strong> - o
       <!-- Brand -->
       <div>
      <div class="flex items-center gap-3 mb-6">
- <img 
-  src="{{ brand.logo_url }}" 
+ <img
+  src="{{ brand.logo_url }}"
   alt="Shreyas Wellness Logo"
   class="h-14 w-auto object-contain"
 />
@@ -397,7 +348,7 @@ With real results - including Pushpa's <strong>18 kg transformation</strong> - o
     <li><a class="hover:text-primary transition-colors" href="/">Home</a></li>
     <li><a class="hover:text-primary transition-colors" href="/transformations/">Transformations</a></li>
     <li><a class="hover:text-primary transition-colors" href="/team/">Coaches</a></li>
-    <li><a class="hover:text-primary transition-colors" href="/book/">Book Consultation</a></li>
+    <li><a class="hover:text-primary transition-colors" href="/book/">Get Free Wellness Assessment</a></li>
 
     <!-- Coach Login -->
     <li>
@@ -554,11 +505,11 @@ document.addEventListener("DOMContentLoaded", function () {
   <a href="https://wa.me/919676011011?text=Hi%20I%20want%20to%20book%20a%20consultation"
      target="_blank"
      class="w-14 h-14 bg-[#25D366] rounded-full shadow-xl flex items-center justify-center hover:scale-110 transition">
-     
+
     <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"
          alt="WhatsApp"
          class="w-7 h-7">
-         
+
   </a>
 
 </div>

@@ -44,23 +44,7 @@ tailwind.config = {
 <body class="bg-background-light font-display text-slate-800">
 
 <!-- NAVBAR -->
-<nav class="bg-white shadow-sm border-b">
-  <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-    <a href="/" class="flex items-center gap-3 font-bold text-lg">
-      <img src="{{ brand.logo_url }}" alt="Shreyas Wellness Logo" class="h-10 w-auto object-contain">
-      <span>SHREYAS<span class="text-primary">WELLNESS</span></span>
-    </a>
-    <div class="hidden md:flex items-center gap-8 text-sm font-semibold">
-      {% for item in main_menu %}
-      <a href="{{ item.url }}" class="hover:text-primary">{{ item.label }}</a>
-      {% endfor %}
-    </div>
-    <a href="/book/"
-       class="bg-primary text-white px-5 py-2 rounded-full text-sm font-semibold">
-      Book Consultation
-    </a>
-  </div>
-</nav>
+{% include "includes/navbar.html" %}
 
 <!-- HERO -->
 <header class="py-16 text-center">
@@ -147,5 +131,15 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 
+<script>
+  const toggleBtn = document.getElementById("menuToggle");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  if (toggleBtn && mobileMenu) {
+    toggleBtn.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+  }
+</script>
 </body>
 </html>

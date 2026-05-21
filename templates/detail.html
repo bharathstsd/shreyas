@@ -58,55 +58,7 @@ tailwind.config = {
 <body class="bg-background-light text-slate-800 pt-20 md:pt-24">
 
 <!-- NAVBAR -->
-<nav class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md border-b">
-  <div class="max-w-7xl mx-auto px-4 h-16 md:h-20 flex items-center justify-between">
-
-    <!-- Logo -->
-    <div class="flex items-center gap-2">
-      <img 
-        src="{{ brand.logo_url }}" 
-        alt="Shreyas Wellness Logo"
-        class="h-10 md:h-14 w-auto object-contain"
-      />
-      <span class="text-sm md:text-xl font-extrabold leading-tight">
-        SHREYAS<span class="text-primary">WELLNESS</span>
-      </span>
-    </div>
-
-        <!-- Desktop Menu -->
-    <div class="hidden md:flex items-center gap-8 font-semibold text-sm">
-      {% for item in main_menu %}
-      <a href="{{ item.url }}" class="hover:text-primary">{{ item.label }}</a>
-      {% endfor %}
-    </div>
-<!-- CTA -->
-    <a href="/book/"
-       class="hidden md:inline-block bg-primary text-white px-6 py-3 rounded-full text-sm font-semibold shadow-lg">
-      Book Consultation
-    </a>
-
-    <!-- Mobile Button -->
-    <button id="menuToggle" class="md:hidden text-primary">
-      <span class="material-icons text-3xl">menu</span>
-    </button>
-
-  </div>
-
-    <!-- Mobile Menu -->
-  <div id="mobileMenu"
-       class="hidden md:hidden bg-white border-t shadow-lg">
-    <div class="flex flex-col px-6 py-4 space-y-4 text-sm font-semibold">
-      {% for item in main_menu %}
-      <a href="{{ item.url }}" class="hover:text-primary">{{ item.label }}</a>
-      {% endfor %}
-
-      <a href="/book/"
-         class="bg-primary text-white text-center px-6 py-3 rounded-full shadow-lg">
-        Book Consultation
-      </a>
-    </div>
-  </div>
-</nav>
+{% include "includes/navbar.html" %}
 
 <!-- HERO -->
  <!-- HERO -->
@@ -429,8 +381,8 @@ document.addEventListener("DOMContentLoaded", function () {
       <!-- Brand -->
       <div>
      <div class="flex items-center gap-3 mb-6">
- <img 
-  src="{{ brand.logo_url }}" 
+ <img
+  src="{{ brand.logo_url }}"
   alt="Shreyas Wellness Logo"
   class="h-14 w-auto object-contain"
 />
@@ -473,7 +425,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <li><a class="hover:text-primary transition-colors" href="/">Home</a></li>
     <li><a class="hover:text-primary transition-colors" href="/transformations/">Transformations</a></li>
     <li><a class="hover:text-primary transition-colors" href="/team/">Coaches</a></li>
-    <li><a class="hover:text-primary transition-colors" href="/book/">Book Consultation</a></li>
+    <li><a class="hover:text-primary transition-colors" href="/book/">Get Free Wellness Assessment</a></li>
 
     <!-- Coach Login -->
     <li>
@@ -629,11 +581,11 @@ document.addEventListener("DOMContentLoaded", function () {
   <a href="https://wa.me/919676011011?text=Hi%20I%20want%20to%20book%20a%20consultation"
      target="_blank"
      class="w-14 h-14 bg-[#25D366] rounded-full shadow-xl flex items-center justify-center hover:scale-110 transition">
-     
+
     <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"
          alt="WhatsApp"
          class="w-7 h-7">
-         
+
   </a>
 
 </div>

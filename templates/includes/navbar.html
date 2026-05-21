@@ -1,0 +1,40 @@
+<nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-200 shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex items-center justify-between gap-4">
+    <a href="/" class="flex items-center gap-3 min-w-0">
+      <img
+        src="{{ brand.logo_url }}"
+        alt="Shreyas Wellness world Logo"
+        class="h-12 md:h-14 w-auto object-contain shrink-0"
+      />
+      <span class="text-base sm:text-lg md:text-xl font-extrabold leading-tight whitespace-nowrap">
+        Shreyas Wellness <span class="text-primary">world</span>
+      </span>
+    </a>
+
+    <div class="hidden lg:flex items-center gap-5 xl:gap-8 font-semibold text-sm">
+      {% for item in main_menu %}
+      <a href="{{ item.url }}" class="hover:text-primary transition-colors">{{ item.label }}</a>
+      {% endfor %}
+    </div>
+
+    <a href="/book/"
+       class="hidden lg:inline-flex items-center justify-center whitespace-nowrap bg-primary text-white px-5 xl:px-7 py-2.5 md:py-3 rounded-full text-xs xl:text-sm font-semibold shadow-lg hover:shadow-xl hover:bg-primary/90 transition-all">
+      Get Free Wellness Assessment
+    </a>
+
+    <button id="menuToggle" type="button" class="lg:hidden text-primary" aria-label="Open menu">
+      <span class="material-icons text-3xl">menu</span>
+    </button>
+  </div>
+
+  <div id="mobileMenu" class="hidden lg:hidden bg-white border-t border-slate-200 shadow-lg">
+    <div class="flex flex-col px-6 py-4 space-y-4 text-sm font-semibold">
+      {% for item in main_menu %}
+      <a href="{{ item.url }}" class="hover:text-primary transition-colors">{{ item.label }}</a>
+      {% endfor %}
+      <a href="/book/" class="bg-primary text-white text-center px-6 py-3 rounded-full shadow-lg hover:bg-primary/90 transition-all">
+        Get Free Wellness Assessment
+      </a>
+    </div>
+  </div>
+</nav>

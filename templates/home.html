@@ -77,55 +77,7 @@
     <body class="bg-background-light text-slate-800">
 
 <!-- NAVBAR -->
-<nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b">
-  <div class="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex items-center justify-between">
-
-    <!-- Logo -->
-    <a href="/" class="flex items-center gap-3">
-      <img 
-        src="{{ brand.logo_url }}" 
-        alt="Shreyas Wellness Logo"
-        class="h-12 md:h-14 w-auto object-contain"
-      />
-      <span class="text-lg md:text-xl font-extrabold">
-        SHREYAS<span class="text-primary">WELLNESS WORLD</span>
-      </span>
-    </a>
-
-            <!-- Desktop Menu -->
-    <div class="hidden md:flex items-center gap-8 font-semibold text-sm">
-      {% for item in main_menu %}
-      <a href="{{ item.url }}" class="hover:text-primary">{{ item.label }}</a>
-      {% endfor %}
-    </div>
-<!-- Desktop CTA -->
-    <a href="/book/"
-       class="hidden md:inline-block bg-primary text-white px-5 md:px-8 py-2.5 md:py-3 rounded-full text-xs md:text-sm font-semibold shadow-lg hover:shadow-xl transition">
-      Book Appointment
-    </a>
-
-    <!-- Mobile Menu Button -->
-    <button id="menuToggle" class="md:hidden text-primary">
-      <span class="material-icons text-3xl">menu</span>
-    </button>
-
-  </div>
-
-    <!-- Mobile Menu -->
-  <div id="mobileMenu"
-       class="hidden md:hidden bg-white border-t shadow-lg">
-    <div class="flex flex-col px-6 py-4 space-y-4 text-sm font-semibold">
-      {% for item in main_menu %}
-      <a href="{{ item.url }}" class="hover:text-primary">{{ item.label }}</a>
-      {% endfor %}
-
-      <a href="/book/"
-         class="bg-primary text-white text-center px-6 py-3 rounded-full shadow-lg">
-        Book Consultation
-      </a>
-    </div>
-  </div>
-</nav>
+{% include "includes/navbar.html" %}
 
 
     <!-- HERO -->
@@ -153,10 +105,10 @@
     </p>
 
     <div class="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-    <a class="px-8 py-4 bg-primary text-white rounded-full font-bold shadow-xl">
+    <a href="/book/" class="inline-flex items-center justify-center px-8 py-4 bg-primary text-white rounded-full font-bold shadow-xl hover:bg-primary/90 hover:shadow-2xl transition-all">
     Begin Your Journey
     </a>
-    <a class="px-8 py-4 border border-white text-white rounded-full">
+    <a href="/programs/" class="inline-flex items-center justify-center px-8 py-4 border border-white text-white rounded-full font-bold hover:bg-white hover:text-slate-900 transition-all">
     Explore Programs
     </a>
     </div>
@@ -167,7 +119,7 @@
     <!-- ABOUT COACH -->
     <section class="py-16 md:py-24 px-4 md:px-6 fade-up">
     <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
-{% comment %} 
+{% comment %}
     <img class="rounded-xl shadow-2xl"
     src="https://images.unsplash.com/photo-1605296867304-46d5465a13f1?q=80&w=1400"
     alt="Coach"/> {% endcomment %}
@@ -221,8 +173,8 @@ Head Coach <span class="text-primary italic">{{ coach.name }}</span>
     </div>
     </div> {% endcomment %}
 
-    <a class="px-8 py-4 bg-primary text-white rounded-full font-semibold glow-hover">
-    Book Consultation
+    <a href="/book/" class="inline-flex items-center justify-center px-8 py-4 bg-primary text-white rounded-full font-semibold shadow-xl hover:bg-primary/90 transition-all glow-hover">
+    Get Free Wellness Assessment
     </a>
     </div>
 
@@ -238,7 +190,7 @@ Head Coach <span class="text-primary italic">{{ coach.name }}</span>
     <h2 class="text-sm font-bold text-primary uppercase tracking-[0.2em] mb-4">Elite Offerings</h2>
     <h3 class="text-4xl md:text-5xl font-light dark:text-white leading-tight">Signature Nutrition &amp; <br/><span class="text-primary italic">Performance Protocols</span></h3>
     </div>
-    <a class="text-accent-gold font-bold flex items-center gap-2 group" href="#">
+    <a class="text-primary font-bold flex items-center gap-2 group hover:text-primary-dark transition-colors" href="/programs/">
                         View All Programs <span class="material-icons group-hover:translate-x-1 transition-transform">arrow_forward</span>
     </a>
     </div>
@@ -273,7 +225,7 @@ Head Coach <span class="text-primary italic">{{ coach.name }}</span>
             {{ program.description }}
         </p>
 
-        <button class="text-primary font-semibold read-more-btn mb-6">
+        <button type="button" class="text-primary font-semibold read-more-btn mb-6 hover:text-primary-dark transition-colors">
             Read More
         </button>
 
@@ -287,7 +239,7 @@ Head Coach <span class="text-primary italic">{{ coach.name }}</span>
             {% endfor %}
         </ul>
 
-        <a class="inline-block w-full text-center py-4 rounded-full border border-primary text-primary font-bold hover:bg-primary hover:text-white transition-colors">
+        <a href="/programs/{{ program.slug }}/" class="inline-flex w-full items-center justify-center py-4 rounded-full border border-primary text-primary font-bold hover:bg-primary hover:text-white transition-colors">
             Learn More
         </a>
     </div>
@@ -530,7 +482,7 @@ Join hundreds of clients who have reclaimed their energy, confidence, and health
 
 {% for t in featured %}
 <div class="featured-slide {% if not forloop.first %}hidden{% endif %}">
-    
+
     <p class="text-lg italic text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">
         "{{ t.quote }}"
     </p>
@@ -583,12 +535,12 @@ Lives Transformed
       <div class="p-12 md:w-1/2 flex flex-col justify-center">
         <h2 class="text-4xl font-light text-white mb-6">
           Begin Your <br>
-          <span class="text-primary italic">Private Consultation</span>
+          <span class="text-primary italic">Weight Loss + Body Transformation + Consultation</span>
         </h2>
 
         <p class="text-slate-400 mb-10 text-lg font-light leading-relaxed">
-          Secure your exclusive placement in our next intake. 
-          Let's design the blueprint for your ultimate transformation.
+          Start with a focused wellness assessment.
+          Get clear next steps for weight loss, body transformation, and consultation support.
         </p>
 
         <form method="POST" class="space-y-5">
@@ -630,7 +582,7 @@ Lives Transformed
             type="submit"
             class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-5 rounded-full text-lg transition-all shadow-xl shadow-primary/20"
           >
-            Request My Blueprint
+            Get Free Wellness Assessment
           </button>
         </form>
       </div>
@@ -657,8 +609,8 @@ Lives Transformed
       <!-- Brand -->
       <div>
      <div class="flex items-center gap-3 mb-6">
- <img 
-  src="{{ brand.logo_url }}" 
+ <img
+  src="{{ brand.logo_url }}"
   alt="Shreyas Wellness Logo"
   class="h-14 w-auto object-contain"
 />
@@ -702,7 +654,7 @@ Lives Transformed
     <li><a class="hover:text-primary transition-colors" href="/">Home</a></li>
     <li><a class="hover:text-primary transition-colors" href="/transformations/">Transformations</a></li>
     <li><a class="hover:text-primary transition-colors" href="/team/">Coaches</a></li>
-    <li><a class="hover:text-primary transition-colors" href="/book/">Book Consultation</a></li>
+    <li><a class="hover:text-primary transition-colors" href="/book/">Get Free Wellness Assessment</a></li>
 
     <!-- Coach Login -->
     <li>
@@ -864,11 +816,11 @@ document.addEventListener("DOMContentLoaded", function () {
   <a href="https://wa.me/919676011011?text=Hi%20I%20want%20to%20book%20a%20consultation"
      target="_blank"
      class="w-14 h-14 bg-[#25D366] rounded-full shadow-xl flex items-center justify-center hover:scale-110 transition">
-     
+
     <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"
          alt="WhatsApp"
          class="w-7 h-7">
-         
+
   </a>
 
 </div>

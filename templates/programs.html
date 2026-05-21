@@ -24,58 +24,9 @@ tailwind.config = {
 
 <body class="bg-gray-50 font-display text-slate-800">
 <!-- NAVBAR -->
-<nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b">
-  <div class="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex items-center justify-between">
-
-    <!-- Logo -->
-<div class="flex items-center gap-3">
-  <img 
-    src="{{ brand.logo_url }}" 
-    alt="Shreyas Wellness Logo"
-    class="h-12 md:h-14 w-auto object-contain"
-  />
-  <span class="text-lg md:text-xl font-extrabold">
-    SHREYAS<span class="text-primary">WELLNESS WORLD</span>
-  </span>
-</div>
-
-
-            <!-- Desktop Menu -->
-    <div class="hidden md:flex items-center gap-8 font-semibold text-sm">
-      {% for item in main_menu %}
-      <a href="{{ item.url }}" class="hover:text-primary">{{ item.label }}</a>
-      {% endfor %}
-    </div>
-<!-- Desktop CTA -->
-    <a href="/book/"
-       class="hidden md:inline-block bg-primary text-white px-5 md:px-8 py-2.5 md:py-3 rounded-full text-xs md:text-sm font-semibold shadow-lg">
-      Book Consultation
-    </a>
-
-    <!-- Mobile Menu Button -->
-    <button id="menuToggle" class="md:hidden text-primary">
-      <span class="material-icons text-3xl">menu</span>
-    </button>
-
-  </div>
-
-    <!-- Mobile Menu -->
-  <div id="mobileMenu"
-       class="hidden md:hidden bg-white border-t shadow-lg">
-    <div class="flex flex-col px-6 py-4 space-y-4 text-sm font-semibold">
-      {% for item in main_menu %}
-      <a href="{{ item.url }}" class="hover:text-primary">{{ item.label }}</a>
-      {% endfor %}
-
-      <a href="/book/"
-         class="bg-primary text-white text-center px-6 py-3 rounded-full shadow-lg">
-        Book Consultation
-      </a>
-    </div>
-  </div>
-</nav>
+{% include "includes/navbar.html" %}
 <!-- HEADER -->
-<section class="py-24 text-center bg-white">
+<section class="pt-32 md:pt-36 pb-16 text-center bg-white">
     <h1 class="text-4xl md:text-5xl font-extrabold">
         Our <span class="text-primary">Programs</span>
     </h1>
@@ -124,8 +75,8 @@ tailwind.config = {
 
                 <!-- CTA -->
                 <div class="mt-6">
-                    <span class="text-primary font-semibold">
-                        View Program ->
+                    <span class="inline-flex w-full items-center justify-center gap-2 rounded-full border border-primary px-6 py-3 text-primary font-bold group-hover:bg-primary group-hover:text-white transition-colors">
+                        View Program <span class="material-icons text-base">arrow_forward</span>
                     </span>
                 </div>
             </div>
@@ -146,8 +97,8 @@ tailwind.config = {
       <!-- Brand -->
       <div>
      <div class="flex items-center gap-3 mb-6">
- <img 
-  src="{{ brand.logo_url }}" 
+ <img
+  src="{{ brand.logo_url }}"
   alt="Shreyas Wellness Logo"
   class="h-14 w-auto object-contain"
 />
@@ -190,7 +141,7 @@ tailwind.config = {
     <li><a class="hover:text-primary transition-colors" href="/">Home</a></li>
     <li><a class="hover:text-primary transition-colors" href="/transformations/">Transformations</a></li>
     <li><a class="hover:text-primary transition-colors" href="/team/">Coaches</a></li>
-    <li><a class="hover:text-primary transition-colors" href="/book/">Book Consultation</a></li>
+    <li><a class="hover:text-primary transition-colors" href="/book/">Get Free Wellness Assessment</a></li>
 
     <!-- Coach Login -->
     <li>
@@ -347,11 +298,11 @@ document.addEventListener("DOMContentLoaded", function () {
   <a href="https://wa.me/919676011011?text=Hi%20I%20want%20to%20book%20a%20consultation"
      target="_blank"
      class="w-14 h-14 bg-[#25D366] rounded-full shadow-xl flex items-center justify-center hover:scale-110 transition">
-     
+
     <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"
          alt="WhatsApp"
          class="w-7 h-7">
-         
+
   </a>
 
 </div>
